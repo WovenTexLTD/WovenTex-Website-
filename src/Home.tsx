@@ -1,3 +1,4 @@
+```tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -23,13 +24,21 @@ const Home = () => {
     { name: 'Sedex', desc: 'Supplier Ethical Data' },
   ];
 
+  // UPDATED: use images from /public/images
+  const categories = [
+    { name: 'Premium Denim',       image: '/images/jeans.png',        position: 'object-top' },
+    { name: 'Casual Outerwear',    image: '/images/jacket.png',       position: 'object-top' },
+    { name: 'Contemporary Basics', image: '/images/shirt.png',        position: 'object-center' },
+    { name: 'Technical Workwear',  image: '/images/construction.png', position: 'object-center' },
+  ];
+
   return (
     <div className="pt-16 lg:pt-20">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/Untitled design (30).png"
+            src="/images/background.png" // UPDATED
             alt="High-end garment manufacturing"
             className="w-full h-full object-cover"
           />
@@ -306,12 +315,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { name: 'Premium Denim', image: '/Untitled design (33) copy copy copy copy copy copy.png', position: 'object-top' },
-              { name: 'Casual Outerwear', image: '/ChatGPT Image Aug 18, 2025, 01_03_37 PM copy copy.png', position: 'object-top' },
-              { name: 'Contemporary Basics', image: '/ChatGPT Image Aug 18, 2025, 03_20_49 PM copy.png', position: 'object-top' },
-              { name: 'Technical Workwear', image: '/ChatGPT Image Aug 18, 2025, 01_16_48 PM.png', position: 'object-top' }
-            ].map((category, index) => (
+            {categories.map((category, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -321,6 +325,7 @@ const Home = () => {
               >
                 <img
                   src={category.image}
+                  alt={category.name}
                   className={`w-full h-48 object-cover ${category.position} group-hover:scale-110 transition-transform duration-300`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -421,3 +426,4 @@ const Home = () => {
 };
 
 export default Home;
+```
