@@ -12,7 +12,10 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
+
+    /* JSX */
     "jsx": "react-jsx",
+    "jsxImportSource": "react",
 
     /* Linting */
     "strict": true,
@@ -22,3 +25,4 @@
   },
   "include": ["src"]
 }
+
