@@ -1,15 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Capabilities from './pages/Capabilities';
-import Certifications from './pages/Certifications';
-import Clients from './pages/Clients';
-import Sustainability from './pages/Sustainability';
-import Contact from './pages/Contact';
-import QuoteButton from './components/common/QuoteButton';
+
+import Header from './Header';
+import Footer from './Footer';
+import QuoteButton from './QuoteButton';
+
+import Home from './Home';
+import About from './About';
+import Capabilities from './Capabilities';
+import Certifications from './Certifications';
+import Clients from './Clients';
+import Sustainability from './Sustainability';
+import Contact from './Contact';
 
 function App() {
   return (
