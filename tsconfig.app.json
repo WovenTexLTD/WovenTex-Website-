@@ -9,7 +9,7 @@
     "strict": true,
     "skipLibCheck": true,
 
-    /* JSX — these two lines are the fix */
+    /* JSX — the actual fix */
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   },
