@@ -35,10 +35,10 @@ const About = () => {
       {/* Hero Section */}
       <section className="relative py-20 bg-gray-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* Use images from /public directly with a leading slash (no /public in the path) */}
+          {/* no /public in the path */}
           <img
             src="/images/factory.png"
-            alt="Professional garment manufacturing backdrop"
+            alt="Professional manufacturing facility"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
@@ -167,7 +167,7 @@ const About = () => {
               </div>
             </motion.div>
 
-            {/* Image Grid — uses files that exist: hands.jpg, guys.jpg, jacket.png, construction.png */}
+            {/* Image Grid — specified images */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -176,23 +176,23 @@ const About = () => {
               className="grid grid-cols-2 gap-4"
             >
               <img
-                src="/images/machine.jpg"
-                alt="Skilled hands during stitching process"
+                src="/images/cutting.jpg"
+                alt="Fabric cutting process"
                 className="w-full h-48 object-cover rounded-lg shadow-md"
               />
               <img
-                src="/images/guys.jpg"
-                alt="Production team at work"
+                src="/images/man.jpg"
+                alt="Operator inspecting garment"
                 className="w-full h-48 object-cover rounded-lg shadow-md mt-8"
               />
               <img
-                src="/images/man.jpg"
-                alt="Outerwear sample on production floor"
+                src="/images/machine.jpg"
+                alt="Industrial sewing machine"
                 className="w-full h-48 object-cover rounded-lg shadow-md -mt-8"
               />
               <img
-                src="/images/cutting.jpg"
-                alt="Industrial manufacturing environment"
+                src="/images/guys.jpg"
+                alt="Production team on the floor"
                 className="w-full h-48 object-cover rounded-lg shadow-md"
               />
             </motion.div>
