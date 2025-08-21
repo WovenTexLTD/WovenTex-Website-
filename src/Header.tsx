@@ -34,7 +34,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16 lg:h-20">
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="/logo black.png" 
+              src="/logoblack.png" 
               alt="WovenTex Logo" 
               className="h-8 w-auto"
             />
