@@ -6,42 +6,42 @@ const Capabilities = () => {
   const products = [
     {
       title: 'Denim',
-      image: '/Untitled design (33) copy copy copy copy copy copy.png',
+      image: '/iamge/jeans.png',
       description: 'Premium denim jeans, jackets, and shirting with advanced washing techniques'
     },
     {
       title: 'T-shirts & Basics',
-      image: '/ChatGPT Image Aug 18, 2025, 03_20_49 PM copy.png',
+      image: '/iamge/shirt.png',
       description: 'High-quality knit basics, graphics tees, and premium cotton essentials'
     },
     {
       title: 'Jackets & Outerwear',
-      image: '/ChatGPT Image Aug 18, 2025, 01_03_37 PM copy copy.png',
+      image: '/image/jacket.png',
       description: 'Tailored blazers, casual jackets, and technical outerwear for all seasons'
     },
     {
       title: 'Puffer Jackets',
-      image: '/ChatGPT Image Aug 18, 2025, 01_06_29 PM.png',
+      image: '/image/puffer.png',
       description: 'Insulated outerwear with down and synthetic fill options'
     },
     {
       title: 'Activewear',
-      image: '/ChatGPT Image Aug 18, 2025, 01_25_15 PM.png',
+      image: '/image/sport.png',
       description: 'Performance sportswear with moisture-wicking and stretch technologies'
     },
     {
       title: 'Workwear',
-      image: '/ChatGPT Image Aug 18, 2025, 01_16_48 PM.png',
+      image: '/image/construction.png',
       description: 'Durable industrial and corporate uniforms with safety features'
     },
     {
       title: 'Courier Apparel',
-      image: '/ChatGPT Image Aug 18, 2025, 01_21_01 PM.png',
+      image: '/image/bag.png',
       description: 'Professional delivery uniforms with durability, comfort, and brand visibility features'
     },
     {
       title: 'Swimwear',
-      image: '/ChatGPT Image Aug 18, 2025, 03_08_40 PM.png',
+      image: '/image/swim.png',
       description: 'Performance swimwear and beachwear with UV protection and quick-dry technologies'
     }
   ];
