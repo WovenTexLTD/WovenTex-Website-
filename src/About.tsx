@@ -37,7 +37,7 @@ const About = () => {
         <div className="absolute inset-0 z-0">
           {/* Use images from /public directly with a leading slash (no /public in the path) */}
           <img
-            src="/images/background.png"
+            src="/images/factory.png"
             alt="Professional garment manufacturing backdrop"
             className="w-full h-full object-cover"
           />
@@ -176,7 +176,7 @@ const About = () => {
               className="grid grid-cols-2 gap-4"
             >
               <img
-                src="/images/hands.jpg"
+                src="/images/machine.jpg"
                 alt="Skilled hands during stitching process"
                 className="w-full h-48 object-cover rounded-lg shadow-md"
               />
@@ -186,12 +186,12 @@ const About = () => {
                 className="w-full h-48 object-cover rounded-lg shadow-md mt-8"
               />
               <img
-                src="/images/jacket.png"
+                src="/images/man.jpg"
                 alt="Outerwear sample on production floor"
                 className="w-full h-48 object-cover rounded-lg shadow-md -mt-8"
               />
               <img
-                src="/images/construction.png"
+                src="/images/cutting.jpg"
                 alt="Industrial manufacturing environment"
                 className="w-full h-48 object-cover rounded-lg shadow-md"
               />
