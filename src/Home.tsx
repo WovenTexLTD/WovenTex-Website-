@@ -30,8 +30,8 @@ const certifications = [
 const categories: Category[] = [
   { name: 'Premium Denim',       image: '/images/jeans.png',        position: 'object-top' },
   { name: 'Casual Outerwear',    image: '/images/jacket.png',       position: 'object-top' },
-  { name: 'Contemporary Basics', image: '/images/shirt.png',        position: 'object-center' },
-  { name: 'Technical Workwear',  image: '/images/construction.png', position: 'object-center' },
+  { name: 'Contemporary Basics', image: '/images/shirt.png',        position: 'object-top' },
+  { name: 'Technical Workwear',  image: '/images/construction.png', position: 'object-top' },
 ];
 
 const Home = () => {
