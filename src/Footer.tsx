@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <img 
-                src="/logo black.png" 
+                src="/images/logowhite.png" 
                 alt="WovenTex Logo" 
                 className="h-8 w-auto filter invert"
               />
