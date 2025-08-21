@@ -294,7 +294,7 @@ const Certifications = () => {
               transition={{ duration: 0.8 }}
             >
               <img
-                src="/laptop-3196481_1280.jpg"
+                src="/images/hands.jpg"
                 alt="Compliance monitoring and documentation systems"
                 className="w-full h-96 object-cover rounded-lg shadow-lg"
               />
