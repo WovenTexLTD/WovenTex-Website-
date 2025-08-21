@@ -32,7 +32,7 @@ const About = () => {
       <section className="relative py-20 bg-gray-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/Untitled design (30).png"
+            src="/factory.png"
             alt="Professional manufacturing facility"
             className="w-full h-full object-cover"
           />
@@ -169,22 +169,22 @@ const About = () => {
               className="grid grid-cols-2 gap-4"
             >
               <img
-                src="/HHA03313 copy.jpg"
+                src="/machine.jpg"
                 alt="Factory floor"
                 className="w-full h-48 object-cover rounded-lg shadow-md"
               />
               <img
-                src="/HHA03322.jpg"
+                src="/man.jpg"
                 alt="Quality control"
                 className="w-full h-48 object-cover rounded-lg shadow-md mt-8"
               />
               <img
-                src="/HHA03297 copy.jpg"
+                src="/cutting.jpg"
                 alt="Workers"
                 className="w-full h-48 object-cover rounded-lg shadow-md -mt-8"
               />
               <img
-                src="/background.jpeg"
+                src="/guys.jpg"
                 alt="Production line"
                 className="w-full h-48 object-cover rounded-lg shadow-md"
               />
