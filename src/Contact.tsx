@@ -35,7 +35,7 @@ const Contact = () => {
       <section className="relative py-20 bg-gray-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/Untitled design (30).png"
+            src="/images/background.png"
             alt="Contact WovenTex for manufacturing solutions"
             className="w-full h-full object-cover"
           />
@@ -340,7 +340,7 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
             >
               <img
-                src="/London%20headquarters%20with%20experienced%20leadership%20providing%20local%20support,%20clear%20communication,%20and%20uncompromising%20professionalism%20(1)%20copy%20copy%20copy%20copy%20copy%20copy.png"
+                src="/images/logowhite.png"
                 alt="London headquarters with experienced leadership"
                 className="w-full h-96 object-cover rounded-lg shadow-lg"
               />
