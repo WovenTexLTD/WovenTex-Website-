@@ -6,42 +6,42 @@ const Capabilities = () => {
   const products = [
     {
       title: 'Denim',
-      image: '/iamge/jeans.png',
+      image: '/images/jeans.png',
       description: 'Premium denim jeans, jackets, and shirting with advanced washing techniques'
     },
     {
       title: 'T-shirts & Basics',
-      image: '/iamge/shirt.png',
+      image: '/images/shirt.png',
       description: 'High-quality knit basics, graphics tees, and premium cotton essentials'
     },
     {
       title: 'Jackets & Outerwear',
-      image: '/image/jacket.png',
+      image: '/images/jacket.png',
       description: 'Tailored blazers, casual jackets, and technical outerwear for all seasons'
     },
     {
       title: 'Puffer Jackets',
-      image: '/image/puffer.png',
+      image: '/images/puffer.png',
       description: 'Insulated outerwear with down and synthetic fill options'
     },
     {
       title: 'Activewear',
-      image: '/image/sport.png',
+      image: '/images/sport.png',
       description: 'Performance sportswear with moisture-wicking and stretch technologies'
     },
     {
       title: 'Workwear',
-      image: '/image/construction.png',
+      image: '/images/construction.png',
       description: 'Durable industrial and corporate uniforms with safety features'
     },
     {
       title: 'Courier Apparel',
-      image: '/image/bag.png',
+      image: '/images/bag.png',
       description: 'Professional delivery uniforms with durability, comfort, and brand visibility features'
     },
     {
       title: 'Swimwear',
-      image: '/image/swim.png',
+      image: '/images/swim.png',
       description: 'Performance swimwear and beachwear with UV protection and quick-dry technologies'
     }
   ];
@@ -228,7 +228,7 @@ const Capabilities = () => {
               transition={{ duration: 0.8 }}
             >
               <img
-                src="/London%20headquarters%20with%20experienced%20leadership%20providing%20local%20support,%20clear%20communication,%20and%20uncompromising%20professionalism%20(1)%20copy%20copy%20copy%20copy%20copy%20copy.png"
+                src="/images/factory.png"
                 alt="London headquarters with experienced leadership"
                 className="w-full h-96 object-cover rounded-lg shadow-lg"
               />
