@@ -13,11 +13,17 @@ import Clients from './Clients';
 import Sustainability from './Sustainability';
 import Contact from './Contact';
 
+import ScrollToTop from './ScrollToTop';
+
 function App() {
   return (
     <Router>
+      {/* scroll to top on every route change */}
+      <ScrollToTop />
+
       <div className="min-h-screen bg-white">
         <Header />
+
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -29,6 +35,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
+
         <Footer />
         <QuoteButton />
       </div>
