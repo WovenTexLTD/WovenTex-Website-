@@ -91,8 +91,8 @@ const Contact: React.FC = () => {
                 <Mail size={20} className="mt-1 text-gray-700" />
                 <div>
                   <div className="font-medium text-gray-900">Email</div>
-                  <a className="text-gray-600 hover:underline" href="mailto:info@yourdomain.com">
-                    info@yourdomain.com
+                  <a className="text-gray-600 hover:underline" href="mailto:contact@woventex.co">
+                    contact@woventex.co
                   </a>
                 </div>
               </div>
@@ -101,8 +101,8 @@ const Contact: React.FC = () => {
                 <Phone size={20} className="mt-1 text-gray-700" />
                 <div>
                   <div className="font-medium text-gray-900">Phone</div>
-                  <a className="text-gray-600 hover:underline" href="tel:+441234567890">
-                    +44 1234 567 890
+                  <a className="text-gray-600 hover:underline" href="tel:+447933291037">
+                    +44 7933291037
                   </a>
                 </div>
               </div>
