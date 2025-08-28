@@ -2,32 +2,67 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
+const Contact: React.FC = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // optional local state (not required for Formspree, but useful if you want to reset the form)
+  const [formdata, setFormdata] = useState({
     name: '',
     email: '',
     company: '',
     phone: '',
     productType: '',
     quantity: '',
-    message: ''
+    message: '',
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  function onChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) {
+    const { name, value } = e.target;
+    setFormdata((prev) => ({ ...prev, [name]: value }));
+  }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Handle form submission here
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-  };
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      // Build a plain object from the form
+      const data = new FormData(e.currentTarget);
+
+      // POST directly to Formspree
+      const res = await fetch('https://formspree.io/f/mvgbgyjn', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data,
+      });
+
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        throw new Error(j?.errors?.[0]?.message || `Request failed with ${res.status}`);
+      }
+
+      setIsSubmitted(true);
+      setFormdata({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        productType: '',
+        quantity: '',
+        message: '',
+      });
+      (e.currentTarget as HTMLFormElement).reset();
+    } catch (err: any) {
+      setError(err?.message || 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <div className="pt-16 lg:pt-20">
@@ -41,16 +76,16 @@ const Contact = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60"></div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative z-10 text-center">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl lg:text-6xl font-bold mb-6"
+              className="text-4xl lg:text-6xl font-bold text-white mb-6"
             >
-              Let's Start Your <span className="text-yellow-400">Production Journey</span>
+              Let’s Start Your <span className="text-yellow-400">Production Journey</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -58,43 +93,61 @@ const Contact = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto"
             >
-              Ready to bring your designs to life? Get in touch with our team for a detailed 
+              Ready to bring your designs to life? Get in touch with our team for a detailed
               quote and production timeline within 24 hours.
             </motion.p>
           </div>
         </div>
       </section>
 
-      {/* Contact Form Section */}
+      {/* Contact + Form Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="bg-gray-50 p-8 rounded-lg"
-              >
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Request a Quote</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                      />
-                    </div>
-                    <div>
+            {/* Left: contact info / details */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6"
+            >
+              <h2 className="text-3xl font-bold text-gray-900">Get in touch</h2>
+              <p className="text-gray-600">
+                We typically respond within a few business hours. Share your requirements and
+                we’ll prepare a tailored quotation.
+              </p>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Mail className="mt-1 text-gray-700" size={20} />
+                  <div>
+                    <div className="font-medium text-gray-900">Email</div>
+                    <a
+                      href="mailto:info@yourdomain.com"
+                      className="text-gray-600 hover:underline"
+                    >
+                      info@yourdomain.com
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Phone className="mt-1 text-gray-700" size={20} />
+                  <div>
+                    <div className="font-medium text-gray-900">Phone</div>
+                    <a href="tel:+441234567890" className="text-gray-600 hover:underline">
+                      +44 1234 567 890
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <MapPin className="mt-1 text-gray-700" size={20} />
+                  <div>
+                    <div className="font-medium text-gray-900">Office</div>
+                    <div className="text-gray-600">London, United Kingdom</div>
+                  </div>
+                </div>
+                <div className="flex items-start
+
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                         Email Address *
                       </label>
