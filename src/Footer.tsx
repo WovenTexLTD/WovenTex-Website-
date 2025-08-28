@@ -63,6 +63,12 @@ const Footer = () => {
             </div>
           </div>
         </div>
+<button
+  onClick={() => (window as any).openCookiePreferences?.()}
+  className="text-sm text-gray-500 hover:underline"
+>
+  Cookie settings
+</button>
 
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">© 2025 WovenTex LTD. All rights reserved.</p>
