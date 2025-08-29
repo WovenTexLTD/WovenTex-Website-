@@ -10,8 +10,8 @@ const Clients = () => {
       description: 'Fast fashion leader',
     },
     {
-      name: 'Hugo Boss',
-      logo: 'HB',
+      name: 'Boss',
+      logo: 'B',
       description: 'Luxury menswear',
     },
     {
@@ -25,9 +25,9 @@ const Clients = () => {
       description: 'Global fashion group',
     },
     {
-      name: 'Bershka',
-      logo: 'B',
-      description: 'Young fashion brand',
+      name: 'Giant Tiger',
+      logo: 'GT',
+      description: 'Fashion brand',
     },
     {
       name: 'LIDL',
