@@ -8,57 +8,41 @@ const Clients = () => {
       name: 'Zara',
       logo: 'Z',
       description: 'Fast fashion leader',
-      partnership: '5+ years',
-      category: 'Fashion Retail'
     },
     {
       name: 'Hugo Boss',
       logo: 'HB',
       description: 'Luxury menswear',
-      partnership: '3+ years',
-      category: 'Premium Fashion'
     },
     {
       name: 'DKNY',
       logo: 'D',
       description: 'Contemporary fashion',
-      partnership: '4+ years',
-      category: 'Designer'
     },
     {
       name: 'Inditex',
       logo: 'I',
       description: 'Global fashion group',
-      partnership: '6+ years',
-      category: 'Fashion Group'
     },
     {
       name: 'Bershka',
       logo: 'B',
       description: 'Young fashion brand',
-      partnership: '4+ years',
-      category: 'Fashion Retail'
     },
     {
       name: 'LIDL',
       logo: 'L',
       description: 'European retailer',
-      partnership: '2+ years',
-      category: 'Retail'
     },
     {
       name: 'Polo Ralph Lauren',
       logo: 'PRL',
       description: 'Classic American style',
-      partnership: '3+ years',
-      category: 'Premium Fashion'
     },
     {
       name: 'C&A',
       logo: 'C&A',
       description: 'European fashion',
-      partnership: '5+ years',
-      category: 'Fashion Retail'
     }
   ];
 
