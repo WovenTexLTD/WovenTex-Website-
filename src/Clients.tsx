@@ -5,8 +5,8 @@ import { Star, Quote } from 'lucide-react';
 const Clients = () => {
   const majorClients = [
     {
-      name: 'Zara',
-      logo: 'Z',
+      name: 'Inditex',
+      logo: 'I',
       description: 'Fast fashion leader',
     },
     {
@@ -20,8 +20,8 @@ const Clients = () => {
       description: 'Contemporary fashion',
     },
     {
-      name: 'Inditex',
-      logo: 'I',
+      name: 'Pull&Bear',
+      logo: 'PB',
       description: 'Global fashion group',
     },
     {
