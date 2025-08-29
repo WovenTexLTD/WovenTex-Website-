@@ -11,7 +11,6 @@ const Certifications = () => {
       description: 'Ensures organic fiber content and environmental criteria throughout the supply chain',
       scope: 'Organic cotton processing and manufacturing',
       certNumber: 'GOTS-2024-BD-001',
-      validity: 'Valid until March 2025',
       color: 'green'
     },
     {
@@ -21,7 +20,6 @@ const Certifications = () => {
       description: 'Verifies recycled content and responsible supply chain practices',
       scope: 'Recycled polyester and fiber processing',
       certNumber: 'GRS-2024-BD-002',
-      validity: 'Valid until June 2025',
       color: 'blue'
     },
     {
@@ -31,7 +29,6 @@ const Certifications = () => {
       description: 'Tracks and verifies recycled raw material content in products',
       scope: 'Recycled material verification',
       certNumber: 'RCS-2024-BD-003',
-      validity: 'Valid until August 2025',
       color: 'cyan'
     },
     {
@@ -41,7 +38,6 @@ const Certifications = () => {
       description: 'Ensures ethical working conditions and social compliance standards',
       scope: 'Labor practices and worker rights',
       certNumber: 'BSCI-2024-BD-004',
-      validity: 'Valid until December 2024',
       color: 'orange'
     },
     {
@@ -51,7 +47,6 @@ const Certifications = () => {
       description: 'Promotes responsible business practices in global supply chains',
       scope: 'Ethical trade and supply chain transparency',
       certNumber: 'SEDEX-2024-BD-005',
-      validity: 'Valid until February 2025',
       color: 'purple'
     },
     {
@@ -61,7 +56,6 @@ const Certifications = () => {
       description: 'Tests for harmful substances and ensures textile safety',
       scope: 'Chemical safety and textile testing',
       certNumber: 'OEKO-2024-BD-006',
-      validity: 'Valid until September 2025',
       color: 'red'
     },
     {
@@ -71,7 +65,6 @@ const Certifications = () => {
       description: 'International standard for quality management systems',
       scope: 'Quality management and continuous improvement',
       certNumber: 'ISO-9001-2024-BD-007',
-      validity: 'Valid until January 2026',
       color: 'gray'
     },
     {
@@ -81,7 +74,6 @@ const Certifications = () => {
       description: 'Framework for environmental management and sustainability',
       scope: 'Environmental impact management',
       certNumber: 'ISO-14001-2024-BD-008',
-      validity: 'Valid until April 2025',
       color: 'green'
     },
     {
@@ -91,7 +83,6 @@ const Certifications = () => {
       description: 'Certification for safe, lawful, humane, and ethical manufacturing',
       scope: 'Manufacturing facility certification',
       certNumber: 'WRAP-2024-BD-009',
-      validity: 'Valid until November 2025',
       color: 'blue'
     }
   ];
