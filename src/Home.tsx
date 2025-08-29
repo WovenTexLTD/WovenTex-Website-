@@ -15,7 +15,7 @@ const stats: Stat[] = [
 ];
 
 const clients = [
-  'Pull%Bear', 'Boss', 'DKNY', 'Inditex', 'Giant Tiger', 'LIDL', 'Polo Ralph Lauren',
+  'Pull&Bear', 'Boss', 'DKNY', 'Inditex', 'Giant Tiger', 'LIDL', 'Polo Ralph Lauren',
 ];
 
 const certifications = [
