@@ -189,7 +189,6 @@ const Certifications = () => {
                 <div className="space-y-2 text-xs text-gray-500">
                   <div><strong>Scope:</strong> {cert.scope}</div>
                   <div><strong>Certificate:</strong> {cert.certNumber}</div>
-                  <div><strong>Validity:</strong> {cert.validity}</div>
                 </div>
               </motion.div>
             ))}
