@@ -108,7 +108,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <MapPin size={20} className="mt-1 text-gray-700" />
+                <MapPin size={30} className="mt-1 text-gray-700" />
                 <div>
                   <div className="font-medium text-gray-900">Office</div>
                   <div className="text-gray-600">167-169 Great Portland Street, 5th Floor, London, England, W1W 5PF</div>
