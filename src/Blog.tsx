@@ -24,17 +24,17 @@ const Blog: React.FC = () => {
           <article className="blog-card">
             <div className="blog-image-wrapper">
               <img
-                src="/images/blog/lead-times.jpg"
+                src="/images/blog/dpp.jpg"
                 alt="Garment production line in a factory"
               />
             </div>
             <div className="blog-content">
               <h2 className="blog-title">
-                How to Reduce Lead Times Without Sacrificing Quality
+                The Rise of Digital Product Passports (DPPs) — And Why Brands Must Prepare Now
               </h2>
-              <p className="blog-meta">Posted on 24 November 2025</p>
+              <p className="blog-meta">Posted on 16 December 2025</p>
               <a href="/blog/reduce-lead-times" className="blog-button">
-                Read Article
+                Coming soon
               </a>
             </div>
           </article>
@@ -43,17 +43,17 @@ const Blog: React.FC = () => {
           <article className="blog-card">
             <div className="blog-image-wrapper">
               <img
-                src="/images/blog/sustainable-sourcing.jpg"
+                src="/images/blog/denim.jpg"
                 alt="Close-up of sustainable fabric rolls"
               />
             </div>
             <div className="blog-content">
               <h2 className="blog-title">
-                What Buyers Should Really Ask Their Suppliers
+                How Is Denim Leading the Sustainability Transition
               </h2>
-              <p className="blog-meta">Posted on 17 November 2025</p>
+              <p className="blog-meta">Posted on 8 December 2025</p>
               <a href="/blog/questions-for-suppliers" className="blog-button">
-                Read Article
+               Coming Soon
               </a>
             </div>
           </article>
@@ -62,15 +62,15 @@ const Blog: React.FC = () => {
           <article className="blog-card">
             <div className="blog-image-wrapper">
               <img
-                src="/images/blog/bangladesh-factories.jpg"
+                src="/images/blog/fibers.jpg"
                 alt="Garment factories in Bangladesh"
               />
             </div>
             <div className="blog-content">
               <h2 className="blog-title">
-                Why Bangladesh Should Be Your Next Sourcing Hub
+                Why Recycled Fibres Are the New Mainstream
               </h2>
-              <p className="blog-meta">Posted on 10 November 2025</p>
+              <p className="blog-meta">Posted on 1 December 2025</p>
               <a href="/blog/bangladesh-sourcing-hub" className="blog-button">
                 Read Article
               </a>
