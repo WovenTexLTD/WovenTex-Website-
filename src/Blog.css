@@ -1,69 +1,107 @@
-/* PUSH PAGE BELOW FIXED HEADER */
+/* Push page below fixed header */
 .blog-page {
-  padding-top: 96px; 
+  padding-top: 96px;
 }
 
-/* HERO SECTION */
+/* ---------- HERO ---------- */
+
 .blog-hero {
   position: relative;
   width: 100%;
-  height: 240px;
-  background-image: url("/images/blogheader.png"); /* <-- USE THE FILE YOU UPLOADED */
+  height: 340px;
+  background-image: url("/blogheader.png"); /* adjust path if needed */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
-/* DARK GRADIENT OVERLAY */
-.blog-hero::after {
-  content: "";
+/* Softer overlay in brand-like dark tone */
+.blog-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.45)
-  );
+  background: radial-gradient(
+      circle at top left,
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.7)
+    );
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* HERO TEXT */
-.blog-hero-overlay {
+.blog-hero-content {
   position: relative;
   text-align: center;
   color: #ffffff;
-  padding: 1.25rem 2rem;
+  padding: 1.5rem 2.5rem;
+  max-width: 760px;
+  animation: blog-hero-fade-up 0.7s ease-out forwards;
+  opacity: 0;
+  transform: translateY(12px);
 }
 
-.blog-hero-overlay h1 {
-  font-size: 2.6rem;
-  font-weight: 700;
-  margin-bottom: 0.3rem;
+/* Small pill above the title */
+.blog-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  margin-bottom: 0.9rem;
 }
 
-.blog-hero-overlay p {
-  font-size: 1rem;
-  opacity: 0.9;
+/* Bigger, sharper title */
+.blog-hero-content h1 {
+  font-size: clamp(2.6rem, 3.3vw + 1rem, 3.6rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);
 }
 
-/* BLOG SECTION BELOW HERO */
+/* Confident but clean subtitle */
+.blog-hero-content p {
+  font-size: clamp(1rem, 0.5vw + 0.9rem, 1.25rem);
+  color: #ffffff;
+  opacity: 0.96;
+  font-weight: 400;
+  line-height: 1.6;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.8);
+}
+
+/* Fade-up animation */
+@keyframes blog-hero-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- BLOG GRID ---------- */
+
 .blog-section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem 4rem;
 }
 
-/* GRID LAYOUT */
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
-/* CARD */
+/* Cards (kept close to your existing style) */
 .blog-card {
   background: #ffffff;
   border-radius: 1rem;
@@ -79,7 +117,6 @@
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
 }
 
-/* IMAGE */
 .blog-image-wrapper {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -97,7 +134,6 @@
   transform: scale(1.05);
 }
 
-/* CONTENT */
 .blog-content {
   padding: 1.25rem 1.25rem 1.5rem;
   display: flex;
@@ -116,7 +152,6 @@
   margin-bottom: 1rem;
 }
 
-/* BUTTON */
 .blog-button {
   margin-top: auto;
   display: inline-block;
