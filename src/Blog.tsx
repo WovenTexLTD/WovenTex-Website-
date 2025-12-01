@@ -71,7 +71,7 @@ const Blog: React.FC = () => {
                 Why Recycled Fibres Are the New Mainstream
               </h2>
               <p className="blog-meta">Posted on 1 December 2025</p>
-              <a href="/blog/bangladesh-sourcing-hub" className="blog-button">
+             <a href="/blog/fibers.html" className="blog-button">
                 Read Article
               </a>
             </div>
