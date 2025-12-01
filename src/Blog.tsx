@@ -4,11 +4,17 @@ import "./Blog.css";
 const Blog: React.FC = () => {
   return (
     <div className="blog-page">
-      {/* HERO SECTION WITH BACKGROUND IMAGE */}
+      {/* HERO SECTION */}
       <section className="blog-hero">
         <div className="blog-hero-overlay">
-          <h1>WT Blog</h1>
-          <p>Insights on global sourcing, apparel manufacturing, and supply chain strategy.</p>
+          <div className="blog-hero-content">
+            <span className="blog-hero-tag">Journal</span>
+            <h1>WT Blog</h1>
+            <p>
+              Perspective from the factory floor to the boardroom – sourcing,
+              manufacturing, and supply chain strategy for modern brands.
+            </p>
+          </div>
         </div>
       </section>
 
