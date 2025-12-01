@@ -1,29 +1,66 @@
-.blog-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 4rem;
+/* PUSH PAGE BELOW FIXED HEADER */
+.blog-page {
+  padding-top: 96px; /* adjust if header height changes */
 }
 
-.blog-header {
-  text-align: center;
+/* HERO SECTION */
+.blog-hero {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background-image: url("/images/blog/blog-hero.jpg"); /* Change to your image */
+  background-size: cover;
+  background-position: center;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 2.5rem;
 }
 
-.blog-header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
+/* DARK GRADIENT OVERLAY */
+.blog-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.6)
+  );
 }
 
-.blog-header p {
+/* HERO CONTENT */
+.blog-hero-overlay {
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+  padding: 1.75rem 2.5rem;
+  border-radius: 1.25rem;
+}
+
+.blog-hero-overlay h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.blog-hero-overlay p {
   font-size: 1rem;
-  opacity: 0.8;
+  opacity: 0.9;
+}
+
+/* BLOG SECTION BELOW HERO */
+.blog-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
 }
 
 /* GRID LAYOUT */
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
 /* CARD */
@@ -35,7 +72,6 @@
   flex-direction: column;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-height: 320px; /* keeps them looking like squares/blocks */
 }
 
 .blog-card:hover {
@@ -46,7 +82,7 @@
 /* IMAGE */
 .blog-image-wrapper {
   width: 100%;
-  aspect-ratio: 4 / 3; /* keeps all images same shape */
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 
@@ -54,7 +90,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
   transition: transform 0.3s ease;
 }
 
@@ -72,7 +107,7 @@
 
 .blog-title {
   font-size: 1.1rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .blog-meta {
@@ -81,22 +116,22 @@
   margin-bottom: 1rem;
 }
 
-/* BUTTON (TITLE / CTA) */
+/* BUTTON */
 .blog-button {
   margin-top: auto;
   display: inline-block;
   padding: 0.6rem 1.2rem;
   border-radius: 999px;
-  border: 1px solid #111;
+  border: 1px solid #000;
   text-decoration: none;
+  text-align: center;
   font-size: 0.9rem;
   font-weight: 500;
-  text-align: center;
   transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
 
 .blog-button:hover {
-  background: #111;
+  background: #000;
   color: #fff;
   transform: translateY(-1px);
 }
