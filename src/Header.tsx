@@ -23,6 +23,7 @@ const Header = () => {
     { path: '/certifications', label: 'Certifications' },
     { path: '/clients', label: 'Clients' },
     { path: '/sustainability', label: 'Sustainability' },
+    { path: '/blog', label: 'Blog' },
     { path: '/contact', label: 'Contact' },
   ];
 
