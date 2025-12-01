@@ -8,7 +8,6 @@ const Blog: React.FC = () => {
       <section className="blog-hero">
         <div className="blog-hero-overlay">
           <div className="blog-hero-content">
-            <span className="blog-hero-tag">Journal</span>
             <h1>WT Blog</h1>
             <p>
               Perspective from the factory floor to the boardroom – sourcing,
