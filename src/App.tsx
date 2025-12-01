@@ -11,6 +11,7 @@ import Capabilities from './Capabilities';
 import Certifications from './Certifications';
 import Clients from './Clients';
 import Sustainability from './Sustainability';
+import Blog from "./Blog";
 import Contact from './Contact';
 
 /* -------------------- ScrollToTop -------------------- */
@@ -97,6 +98,7 @@ function App() {
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/clients" element={<Clients />} />
             <Route path="/sustainability" element={<Sustainability />} />
+            <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
