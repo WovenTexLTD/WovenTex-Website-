@@ -32,7 +32,7 @@ const Blog: React.FC = () => {
               <h2 className="blog-title">
                 The Rise of Digital Product Passports (DPPs) — And Why Brands Must Prepare Now
               </h2>
-              <p className="blog-meta">Posted on 16 December 2025</p>
+              <p className="blog-meta">Posting on 16 December 2025</p>
               <a href="/src/Blog.tsx" className="blog-button">
                 Coming soon
               </a>
@@ -51,7 +51,7 @@ const Blog: React.FC = () => {
               <h2 className="blog-title">
                 How Is Denim Leading the Sustainability Transition
               </h2>
-              <p className="blog-meta">Posted on 8 December 2025</p>
+              <p className="blog-meta">Posting on 8 December 2025</p>
               <a href="/src/Blog.tsx" className="blog-button">
                Coming Soon
               </a>
