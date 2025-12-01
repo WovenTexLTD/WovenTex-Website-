@@ -7,8 +7,8 @@ const Blog: React.FC = () => {
       {/* HERO SECTION WITH BACKGROUND IMAGE */}
       <section className="blog-hero">
         <div className="blog-hero-overlay">
-          <h1>WovenTex Blog</h1>
-          <p>Weekly insights on apparel manufacturing, sourcing, and retail.</p>
+          <h1>WT Blog</h1>
+          <p>Insights on global sourcing, apparel manufacturing, and supply chain strategy.</p>
         </div>
       </section>
 
