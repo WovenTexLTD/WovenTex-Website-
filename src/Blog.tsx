@@ -24,7 +24,7 @@ const Blog: React.FC = () => {
           <article className="blog-card">
             <div className="blog-image-wrapper">
               <img
-                src="/images/blog/dpp.jpg"
+                src="/images/dpp.jpeg"
                 alt="Garment production line in a factory"
               />
             </div>
@@ -43,7 +43,7 @@ const Blog: React.FC = () => {
           <article className="blog-card">
             <div className="blog-image-wrapper">
               <img
-                src="/images/blog/denim.jpg"
+                src="/images/denim.jpeg"
                 alt="Close-up of sustainable fabric rolls"
               />
             </div>
@@ -62,7 +62,7 @@ const Blog: React.FC = () => {
           <article className="blog-card">
             <div className="blog-image-wrapper">
               <img
-                src="/images/blog/fibers.jpg"
+                src="/images/fibers.jpeg"
                 alt="Garment factories in Bangladesh"
               />
             </div>
