@@ -8,7 +8,7 @@
   position: relative;
   width: 100%;
   height: 240px;
-  background-image: url("/blogheader.png"); /* <-- USE THE FILE YOU UPLOADED */
+  background-image: url("images/blogheader.png"); /* <-- USE THE FILE YOU UPLOADED */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
