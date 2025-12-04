@@ -23,8 +23,7 @@ const Header = () => {
     { path: '/certifications', label: 'Certifications' },
     { path: '/clients', label: 'Clients' },
     { path: '/sustainability', label: 'Sustainability' },
-    { path: '/blog', label: 'Blog' },
-    { path: '/contact', label: 'Contact' },
+    { path: '/blog', label: 'WovenTex Blog' },
   ];
 
   return (
@@ -62,7 +61,7 @@ const Header = () => {
               to="/contact"
               className="bg-yellow-500 text-black px-6 py-2 rounded-sm font-medium hover:bg-yellow-400 transition-colors duration-200"
             >
-              Let's Talk Production
+              Get in Touch
             </Link>
           </nav>
 
