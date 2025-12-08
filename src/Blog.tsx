@@ -52,8 +52,8 @@ const Blog: React.FC = () => {
                 How Is Denim Leading the Sustainability Transition
               </h2>
               <p className="blog-meta">Posting on 8 December 2025</p>
-              <a href="/src/Blog.tsx" className="blog-button">
-               Coming Soon
+              <a href="/blog/denimblog.html" className="blog-button">
+               View Article
               </a>
             </div>
           </article>
@@ -72,7 +72,7 @@ const Blog: React.FC = () => {
               </h2>
               <p className="blog-meta">Posted on 1 December 2025</p>
              <a href="/blog/fibers.html" className="blog-button">
-                Read Article
+                View Article
               </a>
             </div>
           </article>
