@@ -32,9 +32,9 @@ const Blog: React.FC = () => {
               <h2 className="blog-title">
                 The Rise of Digital Product Passports (DPPs) — And Why Brands Must Prepare Now
               </h2>
-              <p className="blog-meta">Posting on 16 December 2025</p>
-              <a href="/src/Blog.tsx" className="blog-button">
-                Coming soon
+              <p className="blog-meta">Posting on 15 December 2025</p>
+              <a href="/blog/DPP.html" className="blog-button">
+              View Article
               </a>
             </div>
           </article>
