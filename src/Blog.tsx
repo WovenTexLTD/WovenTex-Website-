@@ -32,7 +32,7 @@ const Blog: React.FC = () => {
               <h2 className="blog-title">
 How Ethical Compliance Became a Dealbreaker for Global Buyers              </h2>
               <p className="blog-meta">Posted on 22 December 2025</p>
-              <a href="/blog/ethicalcomp.html" className="blog-button">
+              <a href="/images/ethicalcomp.html" className="blog-button">
               View Article
               </a>
             </div>
