@@ -24,15 +24,14 @@ const Blog: React.FC = () => {
           <article className="blog-card">
             <div className="blog-image-wrapper">
               <img
-                src="/images/ethical.jpg"
+                src="/images/ethicalcomp.jpg"
                 alt="Garment production line in a factory"
               />
             </div>
             <div className="blog-content">
               <h2 className="blog-title">
-                The Rise of Digital Product Passports (DPPs) — And Why Brands Must Prepare Now
-              </h2>
-              <p className="blog-meta">Posting on 15 December 2025</p>
+How Ethical Compliance Became a Dealbreaker for Global Buyers              </h2>
+              <p className="blog-meta">Posted on 22 December 2025</p>
               <a href="/blog/ethicalcomp.html" className="blog-button">
               View Article
               </a>
@@ -51,7 +50,7 @@ const Blog: React.FC = () => {
               <h2 className="blog-title">
                 The Rise of Digital Product Passports (DPPs) — And Why Brands Must Prepare Now
               </h2>
-              <p className="blog-meta">Posting on 15 December 2025</p>
+              <p className="blog-meta">Posted on 15 December 2025</p>
               <a href="/blog/DPP.html" className="blog-button">
               View Article
               </a>
@@ -70,7 +69,7 @@ const Blog: React.FC = () => {
               <h2 className="blog-title">
                 How Is Denim Leading the Sustainability Transition
               </h2>
-              <p className="blog-meta">Posting on 8 December 2025</p>
+              <p className="blog-meta">Posted on 8 December 2025</p>
               <a href="/blog/denimblog.html" className="blog-button">
                View Article
               </a>
