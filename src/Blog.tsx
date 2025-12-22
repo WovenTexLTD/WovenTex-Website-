@@ -20,6 +20,25 @@ const Blog: React.FC = () => {
       {/* BLOG GRID SECTION */}
       <main className="blog-section">
         <div className="blog-grid">
+            {/* BLOG CARD 4 */}
+          <article className="blog-card">
+            <div className="blog-image-wrapper">
+              <img
+                src="/images/ethical.jpg"
+                alt="Garment production line in a factory"
+              />
+            </div>
+            <div className="blog-content">
+              <h2 className="blog-title">
+                The Rise of Digital Product Passports (DPPs) — And Why Brands Must Prepare Now
+              </h2>
+              <p className="blog-meta">Posting on 15 December 2025</p>
+              <a href="/blog/ethicalcomp.html" className="blog-button">
+              View Article
+              </a>
+            </div>
+          </article>
+
           {/* BLOG CARD 1 */}
           <article className="blog-card">
             <div className="blog-image-wrapper">
