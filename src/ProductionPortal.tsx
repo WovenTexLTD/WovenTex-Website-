@@ -182,9 +182,9 @@ const ProductionPortal = () => {
                     href="https://productionportal.co"
                     target="_blank"
                     rel="noreferrer"
-                    className="ml-4 inline-flex items-center justify-center bg-white text-[#000c38] px-4 py-2.5 rounded-full font-semibold hover:bg-white/90 transition-colors"
+                    className="ml-4 inline-flex items-center justify-center bg-white text-[#000c38] px-5 py-2.5 rounded-full font-semibold hover:bg-white/90 transition-colors whitespace-nowrap gap-2"
                   >
-                    Open Web App <span className="ml-2">→</span>
+                  Open Web App <span className="text-lg leading-none">→</span>
                   </a>
                 </div>
               </motion.div>
