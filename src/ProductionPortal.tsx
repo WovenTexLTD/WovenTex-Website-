@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, Monitor, Apple, Linux, PlayCircle, ArrowRight } from 'lucide-react';
+import { Download, Monitor, Apple, Terminal, PlayCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 type DownloadItem = {
@@ -27,7 +27,7 @@ const downloads: DownloadItem[] = [
   },
   {
     os: 'Linux',
-    icon: <Linux size={22} />,
+    icon: <Terminal size={22} />,
     primary: { label: 'Download (AppImage)', href: '/downloads/production-portal/linux-appimage' },
     secondary: { label: 'Download (DEB)', href: '/downloads/production-portal/linux-deb' },
     note: 'AppImage works on most distros.',
