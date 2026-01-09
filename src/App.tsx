@@ -7,6 +7,7 @@ import QuoteButton from './QuoteButton';
 
 import Home from './Home';
 import About from './About';
+import ProductionPortal from './ProductionPortal';
 import Capabilities from './Capabilities';
 import Certifications from './Certifications';
 import Clients from './Clients';
@@ -94,6 +95,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/production-portal" element={<ProductionPortal />} />
             <Route path="/capabilities" element={<Capabilities />} />
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/clients" element={<Clients />} />
