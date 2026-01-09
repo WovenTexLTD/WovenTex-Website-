@@ -13,37 +13,81 @@ import {
   Zap,
   LineChart,
   Layers,
+  Package,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+type DownloadButton = {
+  label: string;
+  href: string;
+  variant: 'primary' | 'secondary';
+};
 
 type DownloadItem = {
   os: string;
   icon: React.ReactNode;
-  primary: { label: string; href: string };
-  secondary?: { label: string; href: string };
+  buttons: DownloadButton[];
   note?: string;
 };
+
+const RELEASE_TAG = 'desktop-v1.0.39';
 
 const downloads: DownloadItem[] = [
   {
     os: 'Windows',
     icon: <Monitor size={22} />,
-    primary: { label: 'Download (MSI)', href: '/downloads/production-portal/windows' },
-    secondary: { label: 'Alternative (EXE)', href: '/downloads/production-portal/windows-exe' },
-    note: 'Recommended for most Windows users.',
+    buttons: [
+      {
+        label: 'Download (MSI)',
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/${RELEASE_TAG}/Production.Portal_1.0.39_x64_en-US.msi`,
+        variant: 'primary',
+      },
+      {
+        label: 'Alternative (EXE)',
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/${RELEASE_TAG}/Production.Portal_1.0.39_x64-setup.exe`,
+        variant: 'secondary',
+      },
+    ],
+    note: 'Recommended: MSI for most Windows environments.',
   },
   {
     os: 'macOS',
     icon: <Apple size={22} />,
-    primary: { label: 'Download (DMG)', href: '/downloads/production-portal/macos' },
-    note: 'Universal build (Apple Silicon + Intel) if you uploaded universal.',
+    buttons: [
+      {
+        label: 'Download (DMG)',
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/${RELEASE_TAG}/Production.Portal_1.0.39_universal.dmg`,
+        variant: 'primary',
+      },
+      {
+        label: 'App bundle (.tar.gz)',
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/${RELEASE_TAG}/Production.Portal.app.tar.gz`,
+        variant: 'secondary',
+      },
+    ],
+    note: 'Universal build (Apple Silicon + Intel).',
   },
   {
     os: 'Linux',
     icon: <Terminal size={22} />,
-    primary: { label: 'Download (AppImage)', href: '/downloads/production-portal/linux-appimage' },
-    secondary: { label: 'Download (DEB)', href: '/downloads/production-portal/linux-deb' },
-    note: 'AppImage works on most distros.',
+    buttons: [
+      {
+        label: 'Download (AppImage)',
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/${RELEASE_TAG}/Production.Portal_1.0.39_amd64.AppImage`,
+        variant: 'primary',
+      },
+      {
+        label: 'Ubuntu/Debian (.deb)',
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/${RELEASE_TAG}/Production.Portal_1.0.39_amd64.deb`,
+        variant: 'secondary',
+      },
+      {
+        label: 'Fedora/RHEL (.rpm)',
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/${RELEASE_TAG}/Production.Portal-1.0.39-1.x86_64.rpm`,
+        variant: 'secondary',
+      },
+    ],
+    note: 'AppImage works on most distros. Use DEB/RPM for system installs.',
   },
 ];
 
@@ -75,23 +119,28 @@ const ProductionPortal = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* LEFT */}
             <div>
-              <motion.div {...fadeUp(0)} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm">
+              <motion.div
+                {...fadeUp(0)}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm"
+              >
                 <Sparkles size={16} className="text-[#ffb905]" />
-                <span className="text-sm text-white/80">Production Intelligence • Real-time Factory Control</span>
+                <span className="text-sm text-white/80">
+                  Production Portal • Release {RELEASE_TAG.replace('desktop-', '')}
+                </span>
               </motion.div>
 
-              <motion.div {...fadeUp(0.08)} className="mt-7 flex items-start gap-5">
-                {/* Bigger icon */}
-                <div className="shrink-0">
-                  <div className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28 rounded-2xl border border-white/15 bg-white/10 backdrop-blur-sm flex items-center justify-center shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
-                    <img
-                      src="/images/app-icon.svg"
-                      alt="Production Portal logo"
-                      className="h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20 object-contain"
-                      loading="eager"
-                      decoding="async"
-                    />
-                  </div>
+              {/* Logo + Title + Slogan (logo is BIG and NOT in a box) */}
+              <motion.div {...fadeUp(0.08)} className="mt-7 flex items-start gap-6">
+                <div className="relative shrink-0">
+                  {/* subtle glow behind logo */}
+                  <div className="absolute inset-0 rounded-[28px] bg-[#ffb905]/20 blur-2xl" />
+                  <img
+                    src="/images/app-icon.svg"
+                    alt="Production Portal logo"
+                    className="relative h-24 w-24 sm:h-28 sm:w-28 lg:h-32 lg:w-32 object-contain drop-shadow-[0_18px_40px_rgba(0,0,0,0.45)]"
+                    loading="eager"
+                    decoding="async"
+                  />
                 </div>
 
                 <div className="pt-1">
@@ -112,7 +161,6 @@ const ProductionPortal = () => {
                 Built for factories and brands that need speed, clarity, and control.
               </motion.p>
 
-              {/* micro proof row */}
               <motion.div {...fadeUp(0.22)} className="mt-8 flex flex-wrap gap-3">
                 {[
                   { icon: <Zap size={16} className="text-[#ffb905]" />, text: 'Faster daily decisions' },
@@ -170,20 +218,12 @@ const ProductionPortal = () => {
                   />
                 </div>
               </div>
-
-              {/* subtle corner badge */}
-              <div className="absolute -bottom-4 -left-4 hidden sm:block">
-                <div className="px-4 py-3 rounded-xl border border-white/15 bg-white/5 backdrop-blur-sm">
-                  <div className="text-xs text-white/60">Built for factories</div>
-                  <div className="text-sm font-semibold text-white">Daily Control Dashboard</div>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* FEATURE GRID (premium cards) */}
+      {/* FEATURE GRID */}
       <section className="relative py-10 lg:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeUp(0)} className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -201,7 +241,7 @@ const ProductionPortal = () => {
               {
                 icon: <ShieldCheck className="text-[#ffb905]" size={22} />,
                 title: 'Accountability by design',
-                text: 'Daily ownership, clear status, and structured reporting that your team actually uses.',
+                text: 'Daily ownership, clear status, and structured reporting your team actually uses.',
               },
             ].map((b) => (
               <div
@@ -219,20 +259,21 @@ const ProductionPortal = () => {
         </div>
       </section>
 
-      {/* BIG PREMIUM INFO CARD + LAPTOP HUG RIGHT EDGE */}
+      {/* BIG INFO CARD + LAPTOP OVER (NOT BEHIND) */}
       <section className="relative py-16 lg:py-20 overflow-hidden">
-        {/* Laptop hugs the right wall */}
+        {/* Laptop hugs the right wall and sits ABOVE the translucent card */}
         <img
           src="/images/laptop.svg"
           alt="Production Portal on laptop"
-          className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 h-[640px] w-auto max-w-none pointer-events-none select-none"
+          className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 h-[700px] w-auto max-w-none pointer-events-none select-none z-30"
           loading="lazy"
           decoding="async"
         />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="rounded-3xl border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_26px_100px_rgba(0,0,0,0.45)] overflow-hidden">
-            <div className="p-8 sm:p-10 lg:p-12 lg:max-w-4xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Card is below the laptop (z-10) and leaves room on the right for overlap */}
+          <div className="relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_26px_100px_rgba(0,0,0,0.45)] overflow-hidden">
+            <div className="p-8 sm:p-10 lg:p-12 lg:pr-[22rem]">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5">
                 <CheckCircle2 size={16} className="text-[#ffb905]" />
                 <span className="text-sm text-white/80">Designed for daily execution</span>
@@ -297,7 +338,7 @@ const ProductionPortal = () => {
             <div>
               <h2 className="text-3xl font-bold">Download Production Portal</h2>
               <p className="mt-2 text-white/80 max-w-2xl">
-                Choose your operating system. If you need help installing, watch the walkthrough below.
+                Choose your operating system. These links download the official installers from GitHub Releases.
               </p>
             </div>
 
@@ -312,33 +353,42 @@ const ProductionPortal = () => {
                 key={d.os}
                 className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-6 shadow-[0_18px_70px_rgba(0,0,0,0.25)]"
               >
-                <div className="flex items-center gap-2 font-semibold text-white">
-                  <span className="h-10 w-10 rounded-xl border border-white/15 bg-white/10 flex items-center justify-center">
+                <div className="flex items-center gap-3 font-semibold text-white">
+                  <span className="h-11 w-11 rounded-xl border border-white/15 bg-white/10 flex items-center justify-center">
                     {d.icon}
                   </span>
-                  {d.os}
+                  <div>
+                    <div className="text-lg">{d.os}</div>
+                    <div className="text-xs text-white/60 flex items-center gap-1">
+                      <Package size={14} className="text-[#ffb905]" />
+                      Release {RELEASE_TAG.replace('desktop-', '')}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="mt-5 flex flex-col gap-3">
-                  <a
-                    href={d.primary.href}
-                    className="inline-flex items-center justify-center bg-white text-[#000c38] px-4 py-3 rounded-md font-semibold hover:bg-white/90 transition-colors"
-                  >
-                    <Download className="mr-2" size={16} />
-                    {d.primary.label}
-                  </a>
-
-                  {d.secondary && (
-                    <a
-                      href={d.secondary.href}
-                      className="inline-flex items-center justify-center border border-white/25 text-white px-4 py-3 rounded-md font-semibold hover:bg-white/10 transition-colors"
-                    >
-                      {d.secondary.label}
-                    </a>
-                  )}
-
-                  {d.note && <div className="text-sm text-white/70">{d.note}</div>}
+                  {d.buttons.map((btn) => {
+                    const isPrimary = btn.variant === 'primary';
+                    return (
+                      <a
+                        key={btn.label}
+                        href={btn.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={
+                          isPrimary
+                            ? 'inline-flex items-center justify-center bg-white text-[#000c38] px-4 py-3 rounded-md font-semibold hover:bg-white/90 transition-colors'
+                            : 'inline-flex items-center justify-center border border-white/25 text-white px-4 py-3 rounded-md font-semibold hover:bg-white/10 transition-colors'
+                        }
+                      >
+                        <Download className="mr-2" size={16} />
+                        {btn.label}
+                      </a>
+                    );
+                  })}
                 </div>
+
+                {d.note && <div className="mt-4 text-sm text-white/70">{d.note}</div>}
               </div>
             ))}
           </div>
