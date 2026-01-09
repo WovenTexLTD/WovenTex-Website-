@@ -9,9 +9,7 @@ const Header = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -23,20 +21,31 @@ const Header = () => {
     { path: '/certifications', label: 'Certifications' },
     { path: '/clients', label: 'Clients' },
     { path: '/sustainability', label: 'Sustainability' },
+    { path: '/production-portal', label: 'Production Portal' },
     { path: '/blog', label: 'WovenTex Blog' },
   ];
 
+  const isActive = (path: string) => {
+    // Exact match for most routes; also handle nested routes if you add them later
+    return location.pathname === path || location.pathname.startsWith(path + '/');
+  };
+
+  const closeMobile = () => setIsMobileMenuOpen(false);
+
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
-    }`}>
+    <header
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
-          <Link to="/" className="flex items-center space-x-2">
-            <img 
-              src="/images/logoblack.png" 
-              alt="WovenTex Logo" 
+          <Link to="/" className="flex items-center space-x-2" onClick={closeMobile}>
+            <img
+              src="/images/logoblack.png"
+              alt="WovenTex Logo"
               className="h-8 w-auto"
+              loading="eager"
             />
             <span className="text-xl lg:text-2xl font-bold text-gray-900">WovenTex</span>
             <span className="text-sm text-gray-600 hidden sm:block">LTD</span>
@@ -49,7 +58,7 @@ const Header = () => {
                 key={item.path}
                 to={item.path}
                 className={`text-sm font-medium transition-colors duration-200 ${
-                  location.pathname === item.path
+                  isActive(item.path)
                     ? 'text-gray-900 border-b-2 border-yellow-500'
                     : 'text-gray-700 hover:text-gray-900'
                 }`}
@@ -57,6 +66,7 @@ const Header = () => {
                 {item.label}
               </Link>
             ))}
+
             <Link
               to="/contact"
               className="bg-yellow-500 text-black px-6 py-2 rounded-sm font-medium hover:bg-yellow-400 transition-colors duration-200"
@@ -67,8 +77,10 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => setIsMobileMenuOpen((v) => !v)}
             className="lg:hidden p-2"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -88,9 +100,9 @@ const Header = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={closeMobile}
                     className={`block px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                      location.pathname === item.path
+                      isActive(item.path)
                         ? 'text-gray-900 bg-yellow-50'
                         : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
                     }`}
@@ -98,12 +110,13 @@ const Header = () => {
                     {item.label}
                   </Link>
                 ))}
+
                 <Link
                   to="/contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={closeMobile}
                   className="mx-4 bg-yellow-500 text-black px-6 py-3 rounded-sm font-medium hover:bg-yellow-400 transition-colors duration-200 text-center block"
                 >
-                  Let's Talk Production
+                  Let&apos;s Talk Production
                 </Link>
               </div>
             </motion.nav>
