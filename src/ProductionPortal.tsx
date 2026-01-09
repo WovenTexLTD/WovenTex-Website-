@@ -94,7 +94,7 @@ const ProductionPortal = () => {
             >
               {/* Use your existing image asset here */}
               <img
-                src="/images/pphero.svg"
+                src="/images/pp.svg"
                 alt="Production Portal preview"
                 className="w-full h-auto"
                 loading="lazy"
