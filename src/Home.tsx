@@ -9,40 +9,29 @@ type Category = { name: string; image: string; position?: string };
 
 const stats: Stat[] = [
   { value: '500,000', label: 'pcs/month capacity', icon: Truck },
-  { value: '100%',   label: 'CIS Certified',       icon: Award },
-  { value: 'Global', label: 'Clients',             icon: Globe },
-  { value: 'Guaranteed', label: 'Delivery',        icon: Users },
+  { value: '100%', label: 'CIS Certified', icon: Award },
+  { value: 'Global', label: 'Clients', icon: Globe },
+  { value: 'Guaranteed', label: 'Delivery', icon: Users },
 ];
 
 const clients = [
   'Pull&Bear', 'Boss', 'DKNY', 'Inditex', 'Giant Tiger', 'LIDL', 'Polo Ralph Lauren',
 ];
-{/* Production Portal Hero (right under the screenshot) */}
-<div className="w-full mt-10">
-  <div className="max-w-6xl mx-auto px-4">
-    <img
-      src="/images/pphero.svg"
-      alt="Production Portal"
-      className="w-full h-auto"
-      loading="lazy"
-    />
-  </div>
-</div>
 
 const certifications = [
-  { name: 'GOTS',  desc: 'Global Organic Textile' },
-  { name: 'GRS',   desc: 'Global Recycled Standard' },
-  { name: 'RCS',   desc: 'Recycled Claim Standard' },
-  { name: 'BSCI',  desc: 'Business Social Compliance' },
+  { name: 'GOTS', desc: 'Global Organic Textile' },
+  { name: 'GRS', desc: 'Global Recycled Standard' },
+  { name: 'RCS', desc: 'Recycled Claim Standard' },
+  { name: 'BSCI', desc: 'Business Social Compliance' },
   { name: 'Sedex', desc: 'Supplier Ethical Data' },
 ];
 
 // Images must exist at /public/images/...
 const categories: Category[] = [
-  { name: 'Premium Denim',       image: '/images/jeans.png',        position: 'object-top' },
-  { name: 'Casual Outerwear',    image: '/images/jacket.png',       position: 'object-top' },
-  { name: 'Contemporary Basics', image: '/images/shirt.png',        position: 'object-top' },
-  { name: 'Technical Workwear',  image: '/images/construction.png', position: 'object-top' },
+  { name: 'Premium Denim', image: '/images/jeans.png', position: 'object-top' },
+  { name: 'Casual Outerwear', image: '/images/jacket.png', position: 'object-top' },
+  { name: 'Contemporary Basics', image: '/images/shirt.png', position: 'object-top' },
+  { name: 'Technical Workwear', image: '/images/construction.png', position: 'object-top' },
 ];
 
 const Home = () => {
@@ -100,6 +89,19 @@ const Home = () => {
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Production Portal Hero (RIGHT under the screenshot/hero) */}
+      <section className="bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <img
+            src="/images/pphero.svg"
+            alt="Production Portal"
+            className="w-full h-auto"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </section>
 
@@ -240,9 +242,9 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { step: '01', title: 'Design & Consultation', description: 'Technical review, fabric selection, and production planning with our expert team.' },
-              { step: '02', title: 'Sample Development',    description: 'Rapid prototyping and sample approval process with detailed quality specifications.' },
-              { step: '03', title: 'Production & QC',       description: 'Manufacturing with inline quality control and regular progress updates.' },
-              { step: '04', title: 'Delivery & Support',    description: 'Final inspection, packaging, and global shipping with ongoing support.' },
+              { step: '02', title: 'Sample Development', description: 'Rapid prototyping and sample approval process with detailed quality specifications.' },
+              { step: '03', title: 'Production & QC', description: 'Manufacturing with inline quality control and regular progress updates.' },
+              { step: '04', title: 'Delivery & Support', description: 'Final inspection, packaging, and global shipping with ongoing support.' },
             ].map((p, i) => (
               <motion.div
                 key={p.step}
