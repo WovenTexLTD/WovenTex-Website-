@@ -21,7 +21,7 @@ const clients = [
 <div className="w-full mt-10">
   <div className="max-w-6xl mx-auto px-4">
     <img
-      src="public/images/pphero.svg"
+      src="/images/pphero.svg"
       alt="Production Portal"
       className="w-full h-auto"
       loading="lazy"
