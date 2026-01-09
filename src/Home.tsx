@@ -129,7 +129,7 @@ const Home = () => {
     />
 
     {/* Button OVER the SVG (centered, under the 3 points) */}
-  <div className="absolute right-[12%] bottom-[12%] sm:bottom-[13%] md:bottom-[14%] lg:bottom-[15%]">
+  <div className="absolute right-[18%] bottom-[12%] sm:bottom-[13%] md:bottom-[14%] lg:bottom-[15%]">
   <Link
     to="/production-portal"
     className="inline-flex items-center justify-center bg-gray-900 text-white px-10 py-3 rounded-sm font-semibold hover:bg-gray-800 transition-colors duration-300 shadow-lg"
