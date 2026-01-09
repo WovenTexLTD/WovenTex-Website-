@@ -14,6 +14,7 @@ import {
   LineChart,
   Layers,
   Package,
+  Globe,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -124,10 +125,9 @@ const ProductionPortal = () => {
                 </span>
               </motion.div>
 
-              {/* Logo + Title + Slogan (logo is BIG and NOT in a box) */}
+              {/* Logo + Title + Slogan */}
               <motion.div {...fadeUp(0.08)} className="mt-7 flex items-start gap-6">
                 <div className="relative shrink-0">
-                  {/* subtle glow behind logo */}
                   <div className="absolute inset-0 rounded-[28px] bg-[#ffb905]/20 blur-2xl" />
                   <img
                     src="/images/app-icon.svg"
@@ -152,11 +152,44 @@ const ProductionPortal = () => {
                 {...fadeUp(0.16)}
                 className="mt-7 text-lg sm:text-xl text-white/80 max-w-xl leading-relaxed"
               >
-                Real-time visibility across production lines. Updates, blockers, output, and accountability in one place.
+                Real-time visibility across production lines—updates, blockers, output, and accountability in one place.
                 Built for factories and brands that need speed, clarity, and control.
               </motion.p>
 
-              <motion.div {...fadeUp(0.22)} className="mt-8 flex flex-wrap gap-3">
+              {/* Web version (important CTA) */}
+              <motion.div {...fadeUp(0.2)} className="mt-8">
+                <div className="inline-flex items-center gap-3 px-5 py-4 rounded-2xl border border-white/15 bg-white/8 backdrop-blur-sm shadow-[0_18px_70px_rgba(0,0,0,0.25)]">
+                  <div className="h-11 w-11 rounded-xl border border-white/15 bg-white/10 flex items-center justify-center">
+                    <Globe size={20} className="text-[#ffb905]" />
+                  </div>
+
+                  <div className="leading-tight">
+                    <div className="text-xs uppercase tracking-wider text-white/60">Web Version</div>
+                    <a
+                      href="https://productionportal.co"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-lg sm:text-xl font-bold text-[#ffb905] hover:underline"
+                    >
+                      productionportal.co
+                    </a>
+                    <div className="text-sm text-white/70 mt-1">
+                      Access the platform instantly in your browser.
+                    </div>
+                  </div>
+
+                  <a
+                    href="https://productionportal.co"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="ml-4 inline-flex items-center justify-center bg-white text-[#000c38] px-4 py-2.5 rounded-full font-semibold hover:bg-white/90 transition-colors"
+                  >
+                    Open Web App <span className="ml-2">→</span>
+                  </a>
+                </div>
+              </motion.div>
+
+              <motion.div {...fadeUp(0.24)} className="mt-8 flex flex-wrap gap-3">
                 {[
                   { icon: <Zap size={16} className="text-[#ffb905]" />, text: 'Faster daily decisions' },
                   { icon: <ShieldCheck size={16} className="text-[#ffb905]" />, text: 'Single source of truth' },
@@ -189,40 +222,8 @@ const ProductionPortal = () => {
                   Watch walkthrough
                 </a>
               </motion.div>
-{/* Web version (primary access) */}
-<div className="mt-8">
-  <div className="inline-flex items-center gap-3 px-5 py-4 rounded-2xl border border-white/15 bg-white/8 backdrop-blur-sm shadow-[0_18px_70px_rgba(0,0,0,0.25)]">
-    <div className="h-11 w-11 rounded-xl border border-white/15 bg-white/10 flex items-center justify-center">
-      <Globe size={20} className="text-[#ffb905]" />
-    </div>
 
-    <div className="leading-tight">
-      <div className="text-xs uppercase tracking-wider text-white/60">Web Version</div>
-      <a
-        href="https://productionportal.co"
-        target="_blank"
-        rel="noreferrer"
-        className="text-lg sm:text-xl font-bold text-[#ffb905] hover:underline"
-      >
-        productionportal.co
-      </a>
-      <div className="text-sm text-white/70 mt-1">
-        Access the platform instantly in your browser.
-      </div>
-    </div>
-
-    <a
-      href="https://productionportal.co"
-      target="_blank"
-      rel="noreferrer"
-      className="ml-4 inline-flex items-center justify-center bg-white text-[#000c38] px-4 py-2.5 rounded-full font-semibold hover:bg-white/90 transition-colors"
-    >
-      Open Web App <span className="ml-2">→</span>
-    </a>
-  </div>
-</div>
-
-              <motion.div {...fadeUp(0.34)} className="mt-4 text-sm text-white/60">
+              <motion.div {...fadeUp(0.34)} className="mt-5 text-sm text-white/70">
                 Want onboarding? We can set up roles, workflows, and reporting in one session.
               </motion.div>
             </div>
@@ -298,7 +299,6 @@ const ProductionPortal = () => {
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Card is below the laptop (z-10) and leaves room on the right for overlap */}
           <div className="relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_26px_100px_rgba(0,0,0,0.45)] overflow-hidden">
             <div className="p-8 sm:p-10 lg:p-12 lg:pr-[22rem]">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5">
@@ -311,7 +311,7 @@ const ProductionPortal = () => {
               </h2>
 
               <p className="mt-4 text-white/80 text-lg leading-relaxed max-w-2xl">
-                Production Portal turns factory reporting into a real-time operating system. Managers can
+                Production Portal turns factory reporting into a real-time operating system—so managers can
                 see line performance, bottlenecks, and priorities instantly.
               </p>
 
@@ -352,7 +352,6 @@ const ProductionPortal = () => {
               </div>
             </div>
 
-            {/* subtle bottom highlight strip */}
             <div className="h-1 w-full bg-gradient-to-r from-transparent via-[#ffb905]/60 to-transparent" />
           </div>
         </div>
