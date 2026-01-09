@@ -189,6 +189,17 @@ const ProductionPortal = () => {
                   Watch walkthrough
                 </a>
               </motion.div>
+<div className="mt-4 text-sm text-white/70">
+  Official site:{' '}
+  <a
+    href="https://productionportal.co"
+    target="_blank"
+    rel="noreferrer"
+    className="text-[#ffb905] font-semibold hover:underline"
+  >
+    productionportal.co
+  </a>
+</div>
 
               <motion.div {...fadeUp(0.34)} className="mt-4 text-sm text-white/60">
                 Want onboarding? We can set up roles, workflows, and reporting in one session.
