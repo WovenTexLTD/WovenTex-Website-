@@ -129,16 +129,14 @@ const Home = () => {
     />
 
     {/* Button OVER the SVG (centered, under the 3 points) */}
-    <div className="absolute left-1/2 -translate-x-1/2 bottom-[10%] sm:bottom-[11%] md:bottom-[12%] lg:bottom-[13%]">
-      <Link
-        to="/production-portal"
-        className="inline-flex items-center justify-center bg-gray-900 text-white px-10 py-3 rounded-sm font-semibold hover:bg-gray-800 transition-colors duration-300 shadow-lg"
-      >
-        Explore Production Portal
-      </Link>
-    </div>
-  </div>
-</section>
+  <div className="absolute right-[12%] bottom-[12%] sm:bottom-[13%] md:bottom-[14%] lg:bottom-[15%]">
+  <Link
+    to="/production-portal"
+    className="inline-flex items-center justify-center bg-gray-900 text-white px-10 py-3 rounded-sm font-semibold hover:bg-gray-800 transition-colors duration-300 shadow-lg"
+  >
+    Explore Production Portal
+  </Link>
+</div>
 
       {/* Why Choose WovenTex */}
       <section className="py-20 bg-gray-50">
