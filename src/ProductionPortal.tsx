@@ -47,14 +47,24 @@ const ProductionPortal = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              <motion.h1
+              {/* Brand row: Logo on the left + Title */}
+              <motion.div
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-4xl sm:text-5xl font-bold leading-tight"
+                className="flex items-center gap-4"
               >
-                Production Portal
-              </motion.h1>
+                <img
+                  src="/images/app-icon.svg"
+                  alt="Production Portal logo"
+                  className="h-12 w-12 sm:h-14 sm:w-14 object-contain"
+                  loading="eager"
+                  decoding="async"
+                />
+                <h1 className="text-4xl sm:text-5xl font-bold leading-tight">
+                  Production Portal
+                </h1>
+              </motion.div>
 
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
@@ -64,6 +74,16 @@ const ProductionPortal = () => {
               >
                 Real-time visibility across production lines—updates, blockers, output, and accountability in one place.
                 Built for factories and brands that need speed, clarity, and control.
+              </motion.p>
+
+              {/* Slogan */}
+              <motion.p
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="mt-4 text-xl sm:text-2xl font-semibold tracking-tight text-white"
+              >
+                Every Order. Every Line. Under Control.
               </motion.p>
 
               <motion.div
