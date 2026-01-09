@@ -117,24 +117,28 @@ const Home = () => {
       </section>
 
       {/* Production Portal Hero (FULL WIDTH, under Stats) */}
-      <section className="w-full bg-white">
-        <img
-          src="/images/pphero.svg"
-          alt="Production Portal"
-          className="block w-full h-auto -mt-px"
-          loading="lazy"
-          decoding="async"
-        />
-      </section>
+    {/* Production Portal Hero (FULL WIDTH, under Stats) */}
+<section className="w-full bg-white">
+  <div className="relative w-full">
+    <img
+      src="/images/pphero.svg"
+      alt="Production Portal"
+      className="block w-full h-auto"
+      loading="lazy"
+      decoding="async"
+    />
 
-      <div className="w-full flex justify-center py-10 bg-gradient-to-b from-white to-gray-100">
-  <Link
-    to="/production-portal"
-    className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-3 rounded-sm font-semibold hover:bg-gray-800 transition-colors duration-300"
-  >
-    Explore Production Portal
-  </Link>
-</div>
+    {/* Button OVER the SVG (centered, under the 3 points) */}
+    <div className="absolute left-1/2 -translate-x-1/2 bottom-[10%] sm:bottom-[11%] md:bottom-[12%] lg:bottom-[13%]">
+      <Link
+        to="/production-portal"
+        className="inline-flex items-center justify-center bg-gray-900 text-white px-10 py-3 rounded-sm font-semibold hover:bg-gray-800 transition-colors duration-300 shadow-lg"
+      >
+        Explore Production Portal
+      </Link>
+    </div>
+  </div>
+</section>
 
       {/* Why Choose WovenTex */}
       <section className="py-20 bg-gray-50">
