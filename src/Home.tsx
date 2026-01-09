@@ -17,6 +17,17 @@ const stats: Stat[] = [
 const clients = [
   'Pull&Bear', 'Boss', 'DKNY', 'Inditex', 'Giant Tiger', 'LIDL', 'Polo Ralph Lauren',
 ];
+{/* Production Portal Hero (right under the screenshot) */}
+<div className="w-full mt-10">
+  <div className="max-w-6xl mx-auto px-4">
+    <img
+      src="public/images/pphero.svg"
+      alt="Production Portal"
+      className="w-full h-auto"
+      loading="lazy"
+    />
+  </div>
+</div>
 
 const certifications = [
   { name: 'GOTS',  desc: 'Global Organic Textile' },
