@@ -23,7 +23,7 @@ const downloads: DownloadItem[] = [
     os: 'macOS',
     icon: <Apple size={22} />,
     primary: { label: 'Download (DMG)', href: '/downloads/production-portal/macos' },
-    note: 'Universal build for Apple Silicon + Intel (if you uploaded universal).',
+    note: 'Universal build (Apple Silicon + Intel) if you uploaded universal.',
   },
   {
     os: 'Linux',
@@ -36,7 +36,12 @@ const downloads: DownloadItem[] = [
 
 const ProductionPortal = () => {
   return (
-    <div className="pt-16 lg:pt-20 bg-white">
+    <div
+      className="pt-16 lg:pt-20 text-white min-h-screen"
+      style={{
+        background: 'radial-gradient(circle at 50% 50%, #000a68, #000c38)',
+      }}
+    >
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
@@ -46,7 +51,7 @@ const ProductionPortal = () => {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight"
+                className="text-4xl sm:text-5xl font-bold leading-tight"
               >
                 Production Portal
               </motion.h1>
@@ -55,7 +60,7 @@ const ProductionPortal = () => {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="mt-5 text-lg text-gray-600 max-w-xl"
+                className="mt-5 text-lg text-white/80 max-w-xl"
               >
                 Real-time visibility across production lines—updates, blockers, output, and accountability in one place.
                 Built for factories and brands that need speed, clarity, and control.
@@ -69,7 +74,7 @@ const ProductionPortal = () => {
               >
                 <a
                   href="#download"
-                  className="inline-flex items-center justify-center bg-gray-900 text-white px-6 py-3 rounded-sm font-semibold hover:bg-gray-800 transition-colors"
+                  className="inline-flex items-center justify-center bg-white text-[#000c38] px-6 py-3 rounded-sm font-semibold hover:bg-white/90 transition-colors"
                 >
                   <Download className="mr-2" size={18} />
                   Download
@@ -77,7 +82,7 @@ const ProductionPortal = () => {
 
                 <a
                   href="#video"
-                  className="inline-flex items-center justify-center border border-gray-300 text-gray-900 px-6 py-3 rounded-sm font-semibold hover:bg-gray-50 transition-colors"
+                  className="inline-flex items-center justify-center border border-white/30 text-white px-6 py-3 rounded-sm font-semibold hover:bg-white/10 transition-colors"
                 >
                   <PlayCircle className="mr-2" size={18} />
                   Watch the walkthrough
@@ -90,9 +95,8 @@ const ProductionPortal = () => {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="bg-gray-50 rounded-xl p-4 shadow-sm border border-gray-100"
+              className="rounded-xl p-4 shadow-sm border border-white/10 bg-white/5 backdrop-blur-sm"
             >
-              {/* Use your existing image asset here */}
               <img
                 src="/images/pp.svg"
                 alt="Production Portal preview"
@@ -106,17 +110,20 @@ const ProductionPortal = () => {
       </section>
 
       {/* BENEFITS */}
-      <section className="py-14 bg-gray-50">
+      <section className="py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { title: 'Real-time production status', text: 'Track daily output, targets, and issues without chasing updates.' },
-              { title: 'Fewer delays, fewer surprises', text: 'Surface blockers early and fix them before they cost you lead time.' },
+              { title: 'Fewer delays, fewer surprises', text: 'Surface blockers early and fix them before they cost lead time.' },
               { title: 'One source of truth', text: 'Operators, merchandisers, and management aligned on the same live data.' },
             ].map((b) => (
-              <div key={b.title} className="bg-white rounded-lg border border-gray-100 p-6 shadow-sm">
-                <div className="text-lg font-semibold text-gray-900">{b.title}</div>
-                <div className="mt-2 text-gray-600">{b.text}</div>
+              <div
+                key={b.title}
+                className="rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm p-6"
+              >
+                <div className="text-lg font-semibold">{b.title}</div>
+                <div className="mt-2 text-white/80">{b.text}</div>
               </div>
             ))}
           </div>
@@ -124,27 +131,28 @@ const ProductionPortal = () => {
       </section>
 
       {/* DOWNLOADS */}
-      <section id="download" className="py-16 bg-white">
+      <section id="download" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between gap-4 flex-wrap mb-10">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">Download Production Portal</h2>
-              <p className="mt-2 text-gray-600 max-w-2xl">
+              <h2 className="text-3xl font-bold">Download Production Portal</h2>
+              <p className="mt-2 text-white/80 max-w-2xl">
                 Choose your operating system. If you need help installing, watch the walkthrough below.
               </p>
             </div>
-            <Link
-              to="/contact"
-              className="inline-flex items-center text-gray-900 font-semibold hover:underline"
-            >
+
+            <Link to="/contact" className="inline-flex items-center text-white font-semibold hover:underline">
               Need onboarding? Contact us <ArrowRight className="ml-1" size={16} />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {downloads.map((d) => (
-              <div key={d.os} className="rounded-lg border border-gray-100 p-6 shadow-sm">
-                <div className="flex items-center gap-2 text-gray-900 font-semibold">
+              <div
+                key={d.os}
+                className="rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm p-6"
+              >
+                <div className="flex items-center gap-2 font-semibold">
                   {d.icon}
                   {d.os}
                 </div>
@@ -152,7 +160,7 @@ const ProductionPortal = () => {
                 <div className="mt-4 flex flex-col gap-3">
                   <a
                     href={d.primary.href}
-                    className="inline-flex items-center justify-center bg-gray-900 text-white px-4 py-3 rounded-sm font-semibold hover:bg-gray-800 transition-colors"
+                    className="inline-flex items-center justify-center bg-white text-[#000c38] px-4 py-3 rounded-sm font-semibold hover:bg-white/90 transition-colors"
                   >
                     <Download className="mr-2" size={16} />
                     {d.primary.label}
@@ -161,35 +169,37 @@ const ProductionPortal = () => {
                   {d.secondary && (
                     <a
                       href={d.secondary.href}
-                      className="inline-flex items-center justify-center border border-gray-300 text-gray-900 px-4 py-3 rounded-sm font-semibold hover:bg-gray-50 transition-colors"
+                      className="inline-flex items-center justify-center border border-white/30 text-white px-4 py-3 rounded-sm font-semibold hover:bg-white/10 transition-colors"
                     >
                       {d.secondary.label}
                     </a>
                   )}
 
-                  {d.note && <div className="text-sm text-gray-500">{d.note}</div>}
+                  {d.note && <div className="text-sm text-white/70">{d.note}</div>}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 text-sm text-gray-500">
-            Tip: If downloads don’t start, your browser may be blocking popups or redirects.
+          <div className="mt-8 text-sm text-white/70">
+            Tip: If downloads don’t start, your browser may be blocking redirects.
           </div>
         </div>
       </section>
 
       {/* VIDEO */}
-      <section id="video" className="py-16 bg-gray-50">
+      <section id="video" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900">Walkthrough video</h2>
-            <p className="mt-2 text-gray-600">Installation + how to use the core features in under 5 minutes.</p>
+            <h2 className="text-3xl font-bold">Walkthrough video</h2>
+            <p className="mt-2 text-white/80">Installation + core features in under 5 minutes.</p>
           </div>
 
-          {/* Replace the src with your YouTube/Vimeo embed link */}
-          <div className="relative w-full overflow-hidden rounded-xl shadow-sm border border-gray-100 bg-black"
-               style={{ paddingTop: '56.25%' }}>
+          {/* Replace src with your YouTube/Vimeo/Loom embed URL */}
+          <div
+            className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-black/40"
+            style={{ paddingTop: '56.25%' }}
+          >
             <iframe
               className="absolute inset-0 w-full h-full"
               src="https://www.youtube.com/embed/VIDEO_ID_HERE"
@@ -202,11 +212,11 @@ const ProductionPortal = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gray-900 text-white">
+      <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold">Want a guided setup for your factory?</h2>
-          <p className="mt-3 text-gray-300">
-            We can onboard your team, customize workflows, and help you get consistent daily reporting.
+          <p className="mt-3 text-white/80">
+            We can onboard your team, customize workflows, and get consistent daily reporting live.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -217,7 +227,7 @@ const ProductionPortal = () => {
             </Link>
             <a
               href="#download"
-              className="border-2 border-white text-white px-8 py-3 rounded-sm font-semibold hover:bg-white hover:text-gray-900 transition-colors duration-300"
+              className="border-2 border-white text-white px-8 py-3 rounded-sm font-semibold hover:bg-white hover:text-[#000c38] transition-colors duration-300"
             >
               Download now
             </a>
