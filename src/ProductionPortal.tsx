@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, Monitor, Apple, Terminal, PlayCircle, ArrowRight } from 'lucide-react';
+import { Download, Monitor, Apple, Terminal, PlayCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 type DownloadItem = {
@@ -47,43 +47,40 @@ const ProductionPortal = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              {/* Brand row: Logo on the left + Title */}
+              {/* Brand row: Bigger icon + Title + Slogan UNDER title */}
               <motion.div
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="flex items-center gap-4"
+                className="flex items-start gap-5"
               >
                 <img
                   src="/images/app-icon.svg"
                   alt="Production Portal logo"
-                  className="h-12 w-12 sm:h-14 sm:w-14 object-contain"
+                  className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28 object-contain"
                   loading="eager"
                   decoding="async"
                 />
-                <h1 className="text-4xl sm:text-5xl font-bold leading-tight">
-                  Production Portal
-                </h1>
+
+                <div className="pt-1">
+                  <h1 className="text-4xl sm:text-5xl font-bold leading-tight">
+                    Production Portal
+                  </h1>
+
+                  <div className="mt-3 text-lg sm:text-xl font-semibold text-[#ffb905]">
+                    Every Order. Every Line. Under Control.
+                  </div>
+                </div>
               </motion.div>
 
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="mt-5 text-lg text-white/80 max-w-xl"
+                className="mt-6 text-lg text-white/80 max-w-xl"
               >
                 Real-time visibility across production lines—updates, blockers, output, and accountability in one place.
                 Built for factories and brands that need speed, clarity, and control.
-              </motion.p>
-
-              {/* Slogan */}
-              <motion.p
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15 }}
-                className="mt-4 text-xl sm:text-2xl font-semibold tracking-tight text-white"
-              >
-                Every Order. Every Line. Under Control.
               </motion.p>
 
               <motion.div
@@ -146,6 +143,71 @@ const ProductionPortal = () => {
                 <div className="mt-2 text-white/80">{b.text}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NEW: LARGE INFO CARD + LAPTOP IMAGE HUGGING RIGHT WALL */}
+      {/* Make sure laptop.svg is in /public/images/laptop.svg */}
+      <section className="py-16 relative overflow-hidden">
+        {/* Laptop image hugs the right wall on large screens */}
+        <img
+          src="/images/laptop.svg"
+          alt="Production Portal on laptop"
+          className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 h-[520px] w-auto max-w-none pointer-events-none select-none"
+          loading="lazy"
+          decoding="async"
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 sm:p-10 lg:p-12 lg:max-w-4xl">
+            <div className="flex items-start justify-between gap-6 flex-wrap">
+              <div>
+                <h2 className="text-3xl sm:text-4xl font-bold">
+                  One dashboard for daily production control
+                </h2>
+                <p className="mt-4 text-white/80 text-lg max-w-2xl">
+                  Production Portal is built to make daily reporting effortless—so managers see what’s happening
+                  across lines in real time, without waiting for manual updates.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                'Live output vs target by line',
+                'Blockers + escalation tracking',
+                'Daily summaries & accountability',
+                'Cleaner communication across teams',
+              ].map((t) => (
+                <div key={t} className="flex items-start gap-3">
+                  <CheckCircle2 className="text-[#ffb905]" size={20} />
+                  <div className="text-white/90">{t}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 flex flex-col sm:flex-row gap-3">
+              <a
+                href="#download"
+                className="inline-flex items-center justify-center bg-white text-[#000c38] px-6 py-3 rounded-sm font-semibold hover:bg-white/90 transition-colors"
+              >
+                <Download className="mr-2" size={18} />
+                Download Production Portal
+              </a>
+
+              <a
+                href="#video"
+                className="inline-flex items-center justify-center border border-white/30 text-white px-6 py-3 rounded-sm font-semibold hover:bg-white/10 transition-colors"
+              >
+                <PlayCircle className="mr-2" size={18} />
+                Watch the walkthrough
+              </a>
+            </div>
+
+            <div className="mt-4 text-sm text-white/60">
+              Tip: If you want us to onboard your team, we can set up roles, workflows, and daily reporting in a single session.
+            </div>
           </div>
         </div>
       </section>
