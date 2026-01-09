@@ -189,16 +189,37 @@ const ProductionPortal = () => {
                   Watch walkthrough
                 </a>
               </motion.div>
-<div className="mt-4 text-sm text-white/70">
-  Official site:{' '}
-  <a
-    href="https://productionportal.co"
-    target="_blank"
-    rel="noreferrer"
-    className="text-[#ffb905] font-semibold hover:underline"
-  >
-    productionportal.co
-  </a>
+{/* Web version (primary access) */}
+<div className="mt-8">
+  <div className="inline-flex items-center gap-3 px-5 py-4 rounded-2xl border border-white/15 bg-white/8 backdrop-blur-sm shadow-[0_18px_70px_rgba(0,0,0,0.25)]">
+    <div className="h-11 w-11 rounded-xl border border-white/15 bg-white/10 flex items-center justify-center">
+      <Globe size={20} className="text-[#ffb905]" />
+    </div>
+
+    <div className="leading-tight">
+      <div className="text-xs uppercase tracking-wider text-white/60">Web Version</div>
+      <a
+        href="https://productionportal.co"
+        target="_blank"
+        rel="noreferrer"
+        className="text-lg sm:text-xl font-bold text-[#ffb905] hover:underline"
+      >
+        productionportal.co
+      </a>
+      <div className="text-sm text-white/70 mt-1">
+        Access the platform instantly in your browser.
+      </div>
+    </div>
+
+    <a
+      href="https://productionportal.co"
+      target="_blank"
+      rel="noreferrer"
+      className="ml-4 inline-flex items-center justify-center bg-white text-[#000c38] px-4 py-2.5 rounded-full font-semibold hover:bg-white/90 transition-colors"
+    >
+      Open Web App <span className="ml-2">→</span>
+    </a>
+  </div>
 </div>
 
               <motion.div {...fadeUp(0.34)} className="mt-4 text-sm text-white/60">
