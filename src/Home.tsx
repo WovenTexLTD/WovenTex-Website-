@@ -92,21 +92,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Production Portal Hero (RIGHT under the screenshot/hero) */}
-      <section className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <img
-            src="/images/pphero.svg"
-            alt="Production Portal"
-            className="w-full h-auto"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </section>
-
       {/* Stats Section */}
-      <section className="py-16 bg-white">
+      <section className="pt-16 pb-6 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
@@ -127,6 +114,17 @@ const Home = () => {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Production Portal Hero (FULL WIDTH, under Stats) */}
+      <section className="w-full bg-white">
+        <img
+          src="/images/pphero.svg"
+          alt="Production Portal"
+          className="block w-full h-auto -mt-px"
+          loading="lazy"
+          decoding="async"
+        />
       </section>
 
       {/* Why Choose WovenTex */}
@@ -233,7 +231,9 @@ const Home = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Streamlined Production Process</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              Streamlined Production Process
+            </h2>
             <p className="text-lg text-gray-600">
               From concept to delivery, our proven process ensures quality and efficiency at every step.
             </p>
