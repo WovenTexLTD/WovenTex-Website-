@@ -14,6 +14,11 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on route change (prevents menu staying open after navigation)
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
@@ -25,12 +30,8 @@ const Header = () => {
     { path: '/blog', label: 'WovenTex Blog' },
   ];
 
-  const isActive = (path: string) => {
-    // Exact match for most routes; also handle nested routes if you add them later
-    return location.pathname === path || location.pathname.startsWith(path + '/');
-  };
-
-  const closeMobile = () => setIsMobileMenuOpen(false);
+  const isActive = (path) =>
+    location.pathname === path || location.pathname.startsWith(path + '/');
 
   return (
     <header
@@ -40,7 +41,7 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
-          <Link to="/" className="flex items-center space-x-2" onClick={closeMobile}>
+          <Link to="/" className="flex items-center space-x-2">
             <img
               src="/images/logoblack.png"
               alt="WovenTex Logo"
@@ -100,7 +101,6 @@ const Header = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    onClick={closeMobile}
                     className={`block px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                       isActive(item.path)
                         ? 'text-gray-900 bg-yellow-50'
@@ -113,7 +113,6 @@ const Header = () => {
 
                 <Link
                   to="/contact"
-                  onClick={closeMobile}
                   className="mx-4 bg-yellow-500 text-black px-6 py-3 rounded-sm font-medium hover:bg-yellow-400 transition-colors duration-200 text-center block"
                 >
                   Let&apos;s Talk Production
