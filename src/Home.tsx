@@ -129,10 +129,20 @@ const Home = () => {
     />
 
     {/* Button OVER the SVG (centered, under the 3 points) */}
-  <div className="absolute right-[15%] bottom-[12%] sm:bottom-[13%] md:bottom-[14%] lg:bottom-[15%]">
+<div className="absolute right-[14%] bottom-[12%] sm:bottom-[13%] md:bottom-[14%] lg:bottom-[15%]">
   <Link
     to="/production-portal"
-    className="inline-flex items-center justify-center bg-gray-900 text-white px-10 py-3 rounded-sm font-semibold hover:bg-gray-800 transition-colors duration-300 shadow-lg"
+    className="
+      inline-flex items-center justify-center
+      bg-white/95 text-[#ffb905]
+      px-10 py-3.5 rounded-full font-semibold
+      border border-white/60
+      shadow-[0_18px_50px_rgba(0,0,0,0.35)]
+      hover:bg-white hover:shadow-[0_22px_70px_rgba(0,0,0,0.45)]
+      hover:-translate-y-[1px]
+      transition-all duration-300
+      backdrop-blur-sm
+    "
   >
     Explore Production Portal
   </Link>
