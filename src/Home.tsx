@@ -127,6 +127,15 @@ const Home = () => {
         />
       </section>
 
+      <div className="w-full flex justify-center py-10 bg-gradient-to-b from-white to-gray-100">
+  <Link
+    to="/production-portal"
+    className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-3 rounded-sm font-semibold hover:bg-gray-800 transition-colors duration-300"
+  >
+    Explore Production Portal
+  </Link>
+</div>
+
       {/* Why Choose WovenTex */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
