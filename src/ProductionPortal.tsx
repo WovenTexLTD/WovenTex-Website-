@@ -59,11 +59,6 @@ const downloads: DownloadItem[] = [
         href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/${RELEASE_TAG}/Production.Portal_1.0.39_universal.dmg`,
         variant: 'primary',
       },
-      {
-        label: 'App bundle (.tar.gz)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/${RELEASE_TAG}/Production.Portal.app.tar.gz`,
-        variant: 'secondary',
-      },
     ],
     note: 'Universal build (Apple Silicon + Intel).',
   },
@@ -157,7 +152,7 @@ const ProductionPortal = () => {
                 {...fadeUp(0.16)}
                 className="mt-7 text-lg sm:text-xl text-white/80 max-w-xl leading-relaxed"
               >
-                Real-time visibility across production lines—updates, blockers, output, and accountability in one place.
+                Real-time visibility across production lines. Updates, blockers, output, and accountability in one place.
                 Built for factories and brands that need speed, clarity, and control.
               </motion.p>
 
@@ -284,7 +279,7 @@ const ProductionPortal = () => {
               </h2>
 
               <p className="mt-4 text-white/80 text-lg leading-relaxed max-w-2xl">
-                Production Portal turns factory reporting into a real-time operating system—so managers can
+                Production Portal turns factory reporting into a real-time operating system. Managers can
                 see line performance, bottlenecks, and priorities instantly.
               </p>
 
