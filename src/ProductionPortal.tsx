@@ -436,16 +436,14 @@ const ProductionPortal = () => {
           <div className="rounded-3xl border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_26px_100px_rgba(0,0,0,0.45)] overflow-hidden">
             <div className="relative w-full bg-black/40" style={{ paddingTop: '56.25%' }}>
               <iframe
-                className="absolute inset-0 w-full h-full"
-                src="src="https://www.youtube.com/embed/cHSR_1I-IkQ"
-                title="Introducing Production Portal"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+              <iframe
+  className="absolute inset-0 w-full h-full"
+  src="https://www.youtube.com/embed/cHSR_1I-IkQ"
+  title="Introducing Production Portal"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen
+/>
+
 
       {/* CTA */}
       <section className="py-16">
