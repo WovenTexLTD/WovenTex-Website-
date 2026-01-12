@@ -219,7 +219,7 @@ const ProductionPortal = () => {
                   className="inline-flex items-center justify-center border border-white/25 text-white px-7 py-3.5 rounded-md font-semibold hover:bg-white/10 transition-colors"
                 >
                   <PlayCircle className="mr-2" size={18} />
-                  Watch walkthrough
+                  Watch Introdcution
                 </a>
               </motion.div>
 
