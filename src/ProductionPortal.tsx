@@ -437,7 +437,7 @@ const ProductionPortal = () => {
             <div className="relative w-full bg-black/40" style={{ paddingTop: '56.25%' }}>
               <iframe
                 className="absolute inset-0 w-full h-full"
-                src="https://youtu.be/cHSR_1I-IkQ"
+                src="src="https://www.youtube.com/embed/cHSR_1I-IkQ"
                 title="Introducing Production Portal"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
