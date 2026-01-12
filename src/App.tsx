@@ -102,6 +102,7 @@ function App() {
             <Route path="/sustainability" element={<Sustainability />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
         </main>
 
