@@ -447,7 +447,28 @@ const ProductionPortal = () => {
   </div>
 </section>
 
+  {/* VIDEO */}
+<section id="video" className="py-16">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-10">
+      <h2 className="text-3xl font-bold">Walkthrough video</h2>
+      <p className="mt-2 text-white/80">Installation + core features in under 5 minutes.</p>
+    </div>
 
+    <div className="rounded-3xl border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_26px_100px_rgba(0,0,0,0.45)] overflow-hidden">
+      <div className="relative w-full bg-black/40" style={{ paddingTop: '56.25%' }}>
+        <iframe
+          className="absolute inset-0 w-full h-full"
+          src="https://www.youtube.com/embed/videoseries?list=PLlD7KVUUzTsB3-tFbyMdDUBLG_nV765BD"
+          title="Introducing Production Portal"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+    </div>
+  </div>
+</section>
+      
       {/* CTA */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
