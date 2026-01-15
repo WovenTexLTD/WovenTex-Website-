@@ -31,8 +31,8 @@ const Blog: React.FC = () => {
             </div>
             <div className="blog-content">
               <h2 className="blog-title">
-How Ethical Compliance Became a Dealbreaker for Global Buyers              </h2>
-              <p className="blog-meta">Posted on 22 December 2025</p>
+Blockchain & Supply Chain Transparency: Building Trust in Textiles            </h2>
+              <p className="blog-meta">Posted on 15 January 2026</p>
               <a href="/blog/Blockchain.html" className="blog-button">
               View Article
               </a>
