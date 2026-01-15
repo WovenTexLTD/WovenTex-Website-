@@ -10,7 +10,7 @@ const Blog: React.FC = () => {
           <div className="blog-hero-content">
             <h1>WT Blog</h1>
             <p>
-              Perspective from the factory floor to the boardroom – sourcing,
+              Perspective from the factory floor to the boardroom, sourcing,
               manufacturing, and supply chain strategy for modern brands.
             </p>
           </div>
@@ -33,7 +33,7 @@ const Blog: React.FC = () => {
               <h2 className="blog-title">
 How Ethical Compliance Became a Dealbreaker for Global Buyers              </h2>
               <p className="blog-meta">Posted on 22 December 2025</p>
-              <a href="/images/Blockchain.html" className="blog-button">
+              <a href="/public/blog/Blockchain.html" className="blog-button">
               View Article
               </a>
             </div>
@@ -42,7 +42,7 @@ How Ethical Compliance Became a Dealbreaker for Global Buyers              </h2>
           <article className="blog-card">
             <div className="blog-image-wrapper">
               <img
-                src="/images/ethicalcomp.jpg"
+                src="/images/fibers.jpg"
                 alt="Garment production line in a factory"
               />
             </div>
@@ -98,7 +98,7 @@ How Ethical Compliance Became a Dealbreaker for Global Buyers              </h2>
           <article className="blog-card">
             <div className="blog-image-wrapper">
               <img
-                src="/images/fibers.jpg"
+                src="images/ethicalcomp.jpg"
                 alt="Garment factories in Bangladesh"
               />
             </div>
