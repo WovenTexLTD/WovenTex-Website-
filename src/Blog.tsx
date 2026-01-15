@@ -20,6 +20,24 @@ const Blog: React.FC = () => {
       {/* BLOG GRID SECTION */}
       <main className="blog-section">
         <div className="blog-grid">
+          
+             {/* BLOG CARD 5 */}
+          <article className="blog-card">
+            <div className="blog-image-wrapper">
+              <img
+                src="/images/Linkedin Post 29122025.png"
+                alt="Blockchain & Supply Chain Transparency: Building Trust in Textiles"
+              />
+            </div>
+            <div className="blog-content">
+              <h2 className="blog-title">
+How Ethical Compliance Became a Dealbreaker for Global Buyers              </h2>
+              <p className="blog-meta">Posted on 22 December 2025</p>
+              <a href="/images/Blockchain.html" className="blog-button">
+              View Article
+              </a>
+            </div>
+          </article>
             {/* BLOG CARD 4 */}
           <article className="blog-card">
             <div className="blog-image-wrapper">
