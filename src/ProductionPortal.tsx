@@ -40,12 +40,12 @@ const downloads: DownloadItem[] = [
     buttons: [
       {
         label: 'Download (MSI)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.43/Production.Portal_1.0.43_x64_en-US.msi`,
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production.Portal_1.0.39_x64_en-US.msi`,
         variant: 'primary',
       },
       {
         label: 'Alternative (EXE)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.43/Production.Portal_1.0.43_x64-setup.exe`,
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production.Portal_1.0.39_x64-setup.exe`,
         variant: 'secondary',
       },
     ],
@@ -57,7 +57,7 @@ const downloads: DownloadItem[] = [
     buttons: [
       {
         label: 'Download (DMG)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.43/Production.Portal_1.0.43_universal.dmg`,
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production_Portal_universal.dmg`,
         variant: 'primary',
       },
     ],
@@ -69,17 +69,17 @@ const downloads: DownloadItem[] = [
     buttons: [
       {
         label: 'Download (AppImage)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.43/Production.Portal_1.0.43_amd64.AppImage`,
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production.Portal_1.0.39_amd64.AppImage`,
         variant: 'primary',
       },
       {
         label: 'Ubuntu/Debian (.deb)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.43/Production.Portal_1.0.43_amd64.deb`,
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production.Portal_1.0.39_amd64.deb`,
         variant: 'secondary',
       },
       {
         label: 'Fedora/RHEL (.rpm)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.43/Production.Portal-1.0.43-1.x86_64.rpm`,
+        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production.Portal-1.0.39-1.x86_64.rpm`,
         variant: 'secondary',
       },
     ],
