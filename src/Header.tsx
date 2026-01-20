@@ -21,7 +21,6 @@ const Header = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
-    { path: '/production-portal', label: 'Production Portal' },
     { path: '/about', label: 'About' },
     { path: '/capabilities', label: 'Capabilities' },
     { path: '/certifications', label: 'Certifications' },
@@ -56,18 +55,23 @@ const Header = () => {
                 key={item.path}
                 to={item.path}
                 className={`text-sm font-medium transition-colors duration-200 ${
-  location.pathname === item.path
-    ? item.path === '/production-portal'
-      ? 'text-[#000a68] border-b-2 border-yellow-500'
-      : 'text-gray-900 border-b-2 border-yellow-500'
-    : item.path === '/production-portal'
-      ? 'text-[#000a68] hover:text-[#000c38]'
-      : 'text-gray-700 hover:text-gray-900'
-}`}
+                  location.pathname === item.path
+                    ? 'text-gray-900 border-b-2 border-yellow-500'
+                    : 'text-gray-700 hover:text-gray-900'
+                }`}
               >
                 {item.label}
               </Link>
             ))}
+
+            <a
+              href="https://productionportal.co"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-[#000a68] hover:text-[#000c38] transition-colors duration-200"
+            >
+              Production Portal
+            </a>
 
             <Link
               to="/contact"
@@ -102,19 +106,24 @@ const Header = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-               className={`block px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-  location.pathname === item.path
-    ? item.path === '/production-portal'
-      ? 'text-[#000a68] bg-yellow-50'
-      : 'text-gray-900 bg-yellow-50'
-    : item.path === '/production-portal'
-      ? 'text-[#000a68] hover:text-[#000c38] hover:bg-gray-50'
-      : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
-}`}
+                    className={`block px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                      location.pathname === item.path
+                        ? 'text-gray-900 bg-yellow-50'
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
                   >
                     {item.label}
                   </Link>
                 ))}
+
+                <a
+                  href="https://productionportal.co"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-4 py-2 text-sm font-medium text-[#000a68] hover:text-[#000c38] hover:bg-gray-50 transition-colors duration-200"
+                >
+                  Production Portal
+                </a>
 
                 <Link
                   to="/contact"
