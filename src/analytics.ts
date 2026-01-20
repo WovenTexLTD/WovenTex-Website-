@@ -1,4 +1,12 @@
-import { getConsent } from "./components/CookieConsent";
+import { getConsent } from "./utils/cookieConsent";
+
+// Type definitions for gtag
+interface GtagWindow extends Window {
+  dataLayer?: unknown[];
+  gtag?: (...args: unknown[]) => void;
+}
+
+declare const window: GtagWindow;
 
 export function initAnalytics() {
   const consent = getConsent();
@@ -6,9 +14,9 @@ export function initAnalytics() {
 
   // Example: Google Analytics (gtag)
   if (!window.dataLayer) {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    function gtag(){ (window as any).dataLayer.push(arguments); }
-    (window as any).gtag = gtag;
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args: unknown[]){ window.dataLayer?.push(args); }
+    window.gtag = gtag;
 
     const s = document.createElement("script");
     s.async = true;

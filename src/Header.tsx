@@ -30,9 +30,6 @@ const Header = () => {
     { path: '/blog', label: 'WovenTex Blog' },
   ];
 
-  const isActive = (path) =>
-    location.pathname === path || location.pathname.startsWith(path + '/');
-
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-300 ${

@@ -69,7 +69,7 @@ const Footer = () => {
           </div>
         </div>
 <button
-  onClick={() => (window as any).openCookiePreferences?.()}
+  onClick={() => (window as Window & { openCookiePreferences?: () => void }).openCookiePreferences?.()}
   className="text-sm text-gray-500 hover:underline"
 >
   Cookie settings

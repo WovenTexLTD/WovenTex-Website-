@@ -1,27 +1,5 @@
 import React, { useEffect, useState } from "react";
-
-type ConsentState = {
-  necessary: true;       // always true
-  analytics: boolean;
-  marketing: boolean;
-  timestamp?: string;
-};
-
-const STORAGE_KEY = "cookie-consent-v1";
-
-function readConsent(): ConsentState | null {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  try { return raw ? JSON.parse(raw) : null; } catch { return null; }
-}
-
-function saveConsent(c: ConsentState) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...c, timestamp: new Date().toISOString() }));
-}
-
-/** Public helper you can import elsewhere */
-export function getConsent(): ConsentState | null {
-  return readConsent();
-}
+import { type ConsentState, readConsent, saveConsent } from "../utils/cookieConsent";
 
 export default function CookieConsent() {
   const [open, setOpen] = useState(false);
@@ -63,13 +41,15 @@ export default function CookieConsent() {
     window.dispatchEvent(new Event("cookie-consent-updated"));
   };
 
-  // Small “Manage cookies” button you can show in the footer later
-  (window as any).openCookiePreferences = () => {
-    const existing = readConsent();
-    setAnalytics(!!existing?.analytics);
-    setMarketing(!!existing?.marketing);
-    setPrefsOpen(true);
-  };
+  // Small "Manage cookies" button you can show in the footer later
+  useEffect(() => {
+    (window as Window & { openCookiePreferences?: () => void }).openCookiePreferences = () => {
+      const existing = readConsent();
+      setAnalytics(!!existing?.analytics);
+      setMarketing(!!existing?.marketing);
+      setPrefsOpen(true);
+    };
+  }, []);
 
   return (
     <>
