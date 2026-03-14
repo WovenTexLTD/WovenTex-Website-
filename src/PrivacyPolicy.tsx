@@ -1,8 +1,15 @@
 import React from 'react';
+import SEO from './SEO';
 
 const PrivacyPolicy = () => {
   return (
-    <div className="pt-16 lg:pt-20 bg-white">
+    <>
+    <SEO
+      title="Privacy Policy"
+      description="WovenTex LTD privacy policy — how we collect, use, and protect your personal information across the WovenTex website and ProductionPortal platform."
+      canonical="/privacy-policy"
+    />
+    <div className="pt-16 lg:pt-20 wave-bg-white">
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-gray-900">Privacy Policy</h1>
@@ -200,6 +207,7 @@ const PrivacyPolicy = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

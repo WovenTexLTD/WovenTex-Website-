@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import SEO from './SEO';
 
 const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,6 +38,12 @@ const Contact: React.FC = () => {
   }
 
   return (
+    <>
+    <SEO
+      title="Contact Us"
+      description="Get in touch with WovenTex LTD. Request a quote, discuss your apparel manufacturing requirements, or start a partnership with our team in London."
+      canonical="/contact"
+    />
     <div className="pt-16 lg:pt-20">
       {/* Hero */}
       <section className="relative py-20 bg-gray-900 text-white overflow-hidden">
@@ -71,7 +78,7 @@ const Contact: React.FC = () => {
       </section>
 
       {/* Content */}
-      <section className="py-20 bg-white">
+      <section className="py-20 wave-bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Left: contact info */}
           <motion.div
@@ -268,6 +275,7 @@ const Contact: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

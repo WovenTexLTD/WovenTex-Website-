@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Award, Leaf, Users, Globe, CheckCircle } from 'lucide-react';
+import SEO from './SEO';
 
 const Certifications = () => {
   const certifications = [
@@ -124,6 +125,12 @@ const Certifications = () => {
   };
 
   return (
+    <>
+    <SEO
+      title="Certifications & Compliance"
+      description="WovenTex factory partners hold 15+ industry certifications including GOTS, OEKO-TEX, ISO 9001, BSCI, and more. Verified ethical and quality standards for every order."
+      canonical="/certifications"
+    />
     <div className="pt-16 lg:pt-20">
       {/* Hero Section */}
       <section className="relative py-20 bg-gray-900 text-white overflow-hidden">
@@ -160,7 +167,7 @@ const Certifications = () => {
       </section>
 
       {/* Certifications Grid */}
-      <section className="py-20 bg-white">
+      <section className="py-20 wave-bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
@@ -197,7 +204,7 @@ const Certifications = () => {
       </section>
 
       {/* Compliance Areas */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 wave-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
@@ -236,7 +243,7 @@ const Certifications = () => {
       </section>
 
       {/* Continuous Compliance */}
-      <section className="py-20 bg-white">
+      <section className="py-20 wave-bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -293,6 +300,7 @@ const Certifications = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

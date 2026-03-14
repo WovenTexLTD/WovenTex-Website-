@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import SEO from './SEO';
 
 const Clients = () => {
   // quick fade/slide helpers
@@ -28,7 +29,7 @@ const Clients = () => {
     {
       name: 'Pull & Bear',
       partnership: 'Young fashion brand',
-      logo: '/images/pull%26bearlogo.png', // URL-encoded '&'
+      logo: '/images/pull&bearlogo.png',
       logoAlt: 'Pull & Bear logo',
     },
     {
@@ -46,7 +47,7 @@ const Clients = () => {
     {
       name: 'C&A',
       partnership: 'European fashion',
-      logo: '/images/c%26alogo.png', // URL-encoded '&'
+      logo: '/images/c&alogo.png',
       logoAlt: 'C&A logo',
     },
     {
@@ -70,9 +71,15 @@ const Clients = () => {
   ];
 
   return (
+    <>
+    <SEO
+      title="Our Clients"
+      description="WovenTex manufactures for globally recognised fashion brands including Hugo Boss, Polo Ralph Lauren, DKNY, Pull & Bear, C&A, LIDL, Giant Tiger and Inditex."
+      canonical="/clients"
+    />
     <div className="pt-16 lg:pt-20">
       {/* Hero / Intro */}
-      <section className="relative py-20 bg-white">
+      <section className="relative py-20 wave-bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.h1
@@ -111,7 +118,7 @@ const Clients = () => {
       </section>
 
       {/* Major Clients Grid */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 wave-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -184,6 +191,7 @@ const Clients = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

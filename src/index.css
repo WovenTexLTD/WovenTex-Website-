@@ -1,3 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  ::selection {
+    background-color: #ffb905;
+    color: #000;
+  }
+}
+
+@layer components {
+  .section-divider {
+    @apply w-12 h-1 bg-yellow-500 mx-auto rounded-full mb-6;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent;
+  }
+
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-md border border-white/10;
+  }
+
+  .card-gold-top {
+    @apply relative overflow-hidden rounded-xl border border-gray-100 bg-white p-8
+      shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1;
+  }
+
+  .card-gold-top::before {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-0.5;
+    background: linear-gradient(90deg, #ffb905, #d97706, #ffb905);
+    background-size: 200% 100%;
+    /* Only animate on hover — saves CPU on idle cards */
+    transition: opacity 0.3s;
+  }
+
+  .card-gold-top:hover::before {
+    animation: shimmer 1.5s linear infinite;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center bg-yellow-500 text-black px-8 py-4 rounded-sm font-semibold
+      text-base hover:bg-yellow-400 transition-all duration-300 hover:scale-105
+      hover:shadow-[0_0_30px_rgba(255,185,5,0.5)];
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center border-2 border-white/80 text-white px-8 py-4 rounded-sm
+      font-semibold text-base hover:bg-white hover:text-gray-900 transition-all duration-300;
+  }
+
+  .stat-number {
+    @apply text-4xl lg:text-5xl font-black text-white leading-none;
+  }
+
+  .process-step-line::after {
+    content: '';
+    @apply absolute top-8 left-full w-full h-px bg-gradient-to-r from-yellow-500/60 to-transparent hidden lg:block;
+  }
+}
+
+@layer utilities {
+  .glow-gold {
+    box-shadow: 0 0 30px rgba(255, 185, 5, 0.4);
+  }
+
+  .glow-gold-lg {
+    box-shadow: 0 0 60px rgba(255, 185, 5, 0.25);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Marquee scroll track */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Shimmer animation used by card-gold-top */
+@keyframes shimmer {
+  0% { background-position: -400% 0; }
+  100% { background-position: 400% 0; }
+}
+
+/* Production Portal section — CSS animated gradient (replaces WebGL shader) */
+.pp-section-bg {
+  background-color: #0a0f1e;
+  background-image:
+    radial-gradient(ellipse at 15% 50%, rgba(30, 64, 175, 0.55) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 20%, rgba(26, 58, 143, 0.4) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 90%, rgba(13, 31, 74, 0.5) 0%, transparent 50%);
+  animation: ppBgShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes ppBgShift {
+  0%   { background-position: 0% 50%, 100% 20%, 50% 90%; }
+  50%  { background-position: 20% 30%, 80% 50%, 60% 70%; }
+  100% { background-position: 10% 60%, 90% 10%, 40% 80%; }
+}
+
+/* Disable heavy animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .pp-section-bg,
+  .card-gold-top:hover::before {
+    animation: none !important;
+  }
+}
+
+/* Flowing wave texture for light sections */
+.wave-bg {
+  position: relative;
+  background-color: #f9fafb;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 600' preserveAspectRatio='none'%3E%3Cpath fill='rgba(0%2C0%2C0%2C0.035)' d='M-100%2C180 C200%2C60 520%2C320 820%2C170 C1100%2C30 1280%2C220 1540%2C130 C1540%2C230 1280%2C330 1100%2C270 C800%2C270 480%2C430 180%2C270 Z'/%3E%3Cpath fill='rgba(0%2C0%2C0%2C0.025)' d='M-100%2C340 C200%2C220 500%2C460 800%2C330 C1060%2C210 1280%2C390 1540%2C300 C1540%2C400 1280%2C490 1060%2C430 C760%2C430 460%2C580 180%2C430 Z'/%3E%3Cpath fill='rgba(0%2C0%2C0%2C0.02)' d='M-100%2C480 C180%2C370 480%2C550 760%2C460 C1020%2C370 1260%2C510 1540%2C440 C1540%2C540 1260%2C600 1020%2C560 C740%2C560 440%2C620 180%2C560 Z'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center top;
+}
+
+.wave-bg-white {
+  position: relative;
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 600' preserveAspectRatio='none'%3E%3Cpath fill='rgba(0%2C0%2C0%2C0.03)' d='M-100%2C180 C200%2C60 520%2C320 820%2C170 C1100%2C30 1280%2C220 1540%2C130 C1540%2C230 1280%2C330 1100%2C270 C800%2C270 480%2C430 180%2C270 Z'/%3E%3Cpath fill='rgba(0%2C0%2C0%2C0.02)' d='M-100%2C340 C200%2C220 500%2C460 800%2C330 C1060%2C210 1280%2C390 1540%2C300 C1540%2C400 1280%2C490 1060%2C430 C760%2C430 460%2C580 180%2C430 Z'/%3E%3Cpath fill='rgba(0%2C0%2C0%2C0.015)' d='M-100%2C480 C180%2C370 480%2C550 760%2C460 C1020%2C370 1260%2C510 1540%2C440 C1540%2C540 1260%2C600 1020%2C560 C740%2C560 440%2C620 180%2C560 Z'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center top;
+}
+
+/* Noise texture overlay */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}

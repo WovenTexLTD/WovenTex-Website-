@@ -1,6 +1,11 @@
 /* Push page below fixed header */
 .blog-page {
   padding-top: 96px;
+  background-color: #f9fafb;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 600' preserveAspectRatio='none'%3E%3Cpath fill='rgba(0%2C0%2C0%2C0.035)' d='M-100%2C180 C200%2C60 520%2C320 820%2C170 C1100%2C30 1280%2C220 1540%2C130 C1540%2C230 1280%2C330 1100%2C270 C800%2C270 480%2C430 180%2C270 Z'/%3E%3Cpath fill='rgba(0%2C0%2C0%2C0.025)' d='M-100%2C340 C200%2C220 500%2C460 800%2C330 C1060%2C210 1280%2C390 1540%2C300 C1540%2C400 1280%2C490 1060%2C430 C760%2C430 460%2C580 180%2C430 Z'/%3E%3Cpath fill='rgba(0%2C0%2C0%2C0.02)' d='M-100%2C480 C180%2C370 480%2C550 760%2C460 C1020%2C370 1260%2C510 1540%2C440 C1540%2C540 1260%2C600 1020%2C560 C740%2C560 440%2C620 180%2C560 Z'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
 }
 
 /* ---------- HERO ---------- */

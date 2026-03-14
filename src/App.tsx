@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -85,6 +86,7 @@ function CookieConsent() {
 /* ------------------------ App ------------------------ */
 function App() {
   return (
+    <HelmetProvider>
     <Router>
       <ScrollToTop />
 
@@ -113,6 +115,7 @@ function App() {
       {/* Cookie banner overlays the page bottom */}
       <CookieConsent />
     </Router>
+    </HelmetProvider>
   );
 }
 

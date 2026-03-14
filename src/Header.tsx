@@ -9,15 +9,18 @@ const Header = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 80);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change (prevents menu staying open after navigation)
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
+
+  const isHome = location.pathname === '/';
+  // Transparent mode: only on home page before scrolling
+  const transparent = isHome && !isScrolled;
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -26,65 +29,102 @@ const Header = () => {
     { path: '/certifications', label: 'Certifications' },
     { path: '/clients', label: 'Clients' },
     { path: '/sustainability', label: 'Sustainability' },
-    { path: '/blog', label: 'WovenTex Blog' },
+    { path: '/blog', label: 'Blog' },
   ];
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        transparent
+          ? 'bg-transparent'
+          : 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
-          <Link to="/" className="flex items-center space-x-2">
+
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2.5">
             <img
-              src="/images/logoblack.png"
+              src="/images/Untitled design (2) (1).png"
               alt="WovenTex Logo"
-              className="h-8 w-auto"
+              className={`w-auto transition-all duration-300 ${
+                transparent
+                  ? 'h-12 [filter:invert(1)] [mix-blend-mode:screen]'
+                  : 'h-8 [mix-blend-mode:multiply]'
+              }`}
               loading="eager"
             />
-            <span className="text-xl lg:text-2xl font-bold text-gray-900">WovenTex</span>
-            <span className="text-sm text-gray-600 hidden sm:block">LTD</span>
+            <div className="flex items-baseline gap-1.5">
+              <span className={`text-xl lg:text-2xl font-black tracking-tight transition-colors duration-300 ${
+                transparent ? 'text-white' : 'text-gray-900'
+              }`}>
+                WovenTex
+              </span>
+              <span className={`text-xs font-semibold hidden sm:block transition-colors duration-300 ${
+                transparent ? 'text-white/50' : 'text-gray-400'
+              }`}>
+                LTD
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  location.pathname === item.path
-                    ? 'text-gray-900 border-b-2 border-yellow-500'
-                    : 'text-gray-700 hover:text-gray-900'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <nav className="hidden lg:flex items-center gap-1">
+            {navItems.map((item) => {
+              const active = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`relative px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+                    active
+                      ? transparent ? 'text-white' : 'text-gray-900'
+                      : transparent
+                        ? 'text-white/70 hover:text-white hover:bg-white/10'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  {item.label}
+                  {active && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute inset-x-3 -bottom-0.5 h-0.5 bg-yellow-400 rounded-full"
+                    />
+                  )}
+                </Link>
+              );
+            })}
 
             <a
               href="https://productionportal.co"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-[#000a68] hover:text-[#000c38] transition-colors duration-200"
+              className={`px-3 py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${
+                transparent
+                  ? 'text-blue-300 hover:text-blue-200 hover:bg-white/10'
+                  : 'text-[#000a68] hover:text-[#000c38] hover:bg-gray-50'
+              }`}
             >
-              Production Portal
+              Portal ↗
             </a>
 
             <Link
               to="/contact"
-              className="bg-yellow-500 text-black px-6 py-2 rounded-sm font-medium hover:bg-yellow-400 transition-colors duration-200"
+              className="ml-2 bg-yellow-500 text-black px-5 py-2 rounded-sm text-sm font-bold
+                hover:bg-yellow-400 transition-all duration-200 hover:shadow-[0_0_20px_rgba(255,185,5,0.4)]
+                hover:scale-105"
             >
               Get in Touch
             </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen((v) => !v)}
-            className="lg:hidden p-2"
+            className={`lg:hidden p-2 rounded-lg transition-colors duration-200 ${
+              transparent ? 'text-white hover:bg-white/10' : 'text-gray-700 hover:bg-gray-100'
+            }`}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
           >
@@ -99,19 +139,23 @@ const Header = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden border-t border-gray-200 bg-white"
+              transition={{ duration: 0.25 }}
+              className="lg:hidden border-t border-white/10 bg-black/60 backdrop-blur-lg"
             >
-              <div className="py-4 space-y-4">
+              <div className="py-4 space-y-1">
                 {navItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`block px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                    className={`flex items-center px-4 py-2.5 text-sm font-medium rounded-lg mx-2 transition-colors duration-150 ${
                       location.pathname === item.path
-                        ? 'text-gray-900 bg-yellow-50'
-                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+                        ? 'text-white bg-white/10 font-semibold'
+                        : 'text-white/70 hover:text-white hover:bg-white/10'
                     }`}
                   >
+                    {location.pathname === item.path && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 mr-2.5" />
+                    )}
                     {item.label}
                   </Link>
                 ))}
@@ -120,17 +164,20 @@ const Header = () => {
                   href="https://productionportal.co"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-4 py-2 text-sm font-medium text-[#000a68] hover:text-[#000c38] hover:bg-gray-50 transition-colors duration-200"
+                  className="flex items-center px-4 py-2.5 mx-2 text-sm font-semibold text-blue-300 hover:bg-white/10 rounded-lg transition-colors duration-150"
                 >
-                  Production Portal
+                  Production Portal ↗
                 </a>
 
-                <Link
-                  to="/contact"
-                  className="mx-4 bg-yellow-500 text-black px-6 py-3 rounded-sm font-medium hover:bg-yellow-400 transition-colors duration-200 text-center block"
-                >
-                  Let&apos;s Talk Production
-                </Link>
+                <div className="px-2 pt-2">
+                  <Link
+                    to="/contact"
+                    className="block bg-yellow-500 text-black px-6 py-3 rounded-sm font-bold text-sm
+                      text-center hover:bg-yellow-400 transition-colors duration-200"
+                  >
+                    Get in Touch
+                  </Link>
+                </div>
               </div>
             </motion.nav>
           )}

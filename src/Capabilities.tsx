@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Package, Truck, Globe, Award } from 'lucide-react';
+import SEO from './SEO';
 
 const Capabilities = () => {
   const products = [
@@ -70,6 +71,12 @@ const Capabilities = () => {
   ];
 
   return (
+    <>
+    <SEO
+      title="Manufacturing Capabilities"
+      description="Explore WovenTex's full apparel manufacturing capabilities — denim, knitwear, outerwear, sportswear, woven garments and more. 500,000+ unit monthly capacity with certified factory partners."
+      canonical="/capabilities"
+    />
     <div className="pt-16 lg:pt-20">
       {/* Hero Section */}
       <section className="relative py-20 bg-gray-900 text-white overflow-hidden">
@@ -106,7 +113,7 @@ const Capabilities = () => {
       </section>
 
       {/* Core Capabilities */}
-      <section className="py-20 bg-white">
+      <section className="py-20 wave-bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
@@ -140,7 +147,7 @@ const Capabilities = () => {
       </section>
 
       {/* Product Categories */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 wave-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
@@ -180,7 +187,7 @@ const Capabilities = () => {
       </section>
 
       {/* Technical Specifications */}
-      <section className="py-20 bg-white">
+      <section className="py-20 wave-bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -237,6 +244,7 @@ const Capabilities = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

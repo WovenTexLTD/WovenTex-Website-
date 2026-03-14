@@ -1,8 +1,15 @@
 import React from "react";
 import "./Blog.css";
+import SEO from './SEO';
 
 const Blog: React.FC = () => {
   return (
+    <>
+    <SEO
+      title="Blog — Insights on Apparel Manufacturing & Supply Chain"
+      description="Perspectives from the factory floor to the boardroom. WovenTex explores sourcing strategy, sustainability, ethical compliance, and supply chain innovation for modern fashion brands."
+      canonical="/blog"
+    />
     <div className="blog-page">
       {/* HERO SECTION */}
       <section className="blog-hero">
@@ -115,6 +122,7 @@ How Ethical Compliance Became a Dealbreaker for Global Buyers              </h2>
         </div>
       </main>
     </div>
+    </>
   );
 };
 
