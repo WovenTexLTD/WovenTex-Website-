@@ -55,16 +55,16 @@ const About = () => {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl lg:text-6xl font-bold mb-6"
+            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            className="text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04]"
           >
-            About <span className="text-yellow-400">WovenTex</span>
+            About <span className="gradient-text">WovenTex</span>
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto"
+            className="text-lg lg:text-xl text-gray-300/90 max-w-2xl mx-auto leading-relaxed"
           >
             UK-based apparel sourcing agency with direct access to one of Bangladesh&apos;s largest
             certified garment manufacturers.
@@ -82,7 +82,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="space-y-6 max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-3xl font-bold text-gray-900">Our Story</h2>
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 tracking-tight">Our Story</h2>
             <p className="text-gray-600">
               WovenTex LTD was founded to bridge the gap between international fashion brands and
               world-class manufacturing facilities. As a UK-based agency, we coordinate production
@@ -107,8 +107,8 @@ const About = () => {
       <section className="py-20 wave-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              Why Choose WovenTex
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">
+              Why Choose <span className="gradient-text">WovenTex</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               What sets WovenTex apart isn’t just what we offer—it’s how we deliver it.
@@ -123,13 +123,13 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.08 }}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                className="card-gold-top"
               >
-                <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                  <value.icon className="text-yellow-700" size={24} />
+                <div className="w-12 h-12 bg-yellow-50 rounded-xl flex items-center justify-center mb-5">
+                  <value.icon className="text-yellow-600" size={22} />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
+                <h3 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-widest">{value.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
           </div>

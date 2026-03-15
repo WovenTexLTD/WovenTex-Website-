@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Award, Globe, Users, Truck, Zap, Shield } from 'lucide-react';
+import { ArrowRight, Award, Globe, Users, Truck, Zap, Shield, Bell, BarChart3 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import SEO from './SEO';
 
@@ -165,59 +165,74 @@ const Home = () => {
       </section>
 
       {/* ===== STATS ===== */}
-      <section className="bg-gray-950 py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,185,5,0.05)_0%,transparent_70%)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="bg-gray-950 relative overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-white/10"
+            className="grid grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-white/[0.07]"
           >
             {stats.map((s) => (
-              <motion.div key={s.label} variants={staggerItem} className="text-center lg:px-8">
-                <div className="text-4xl lg:text-5xl font-black gradient-text mb-1 leading-none">{s.value}</div>
-                <div className="text-white font-semibold text-base mb-0.5">{s.label}</div>
-                <div className="text-gray-500 text-sm">{s.sub}</div>
+              <motion.div key={s.label} variants={staggerItem} className="py-14 px-6 lg:px-10 text-center">
+                <div className="text-5xl sm:text-6xl lg:text-7xl font-black gradient-text mb-3 leading-none tabular-nums">{s.value}</div>
+                <div className="text-white/60 font-semibold text-[0.65rem] uppercase tracking-[0.18em] mb-1.5">{s.label}</div>
+                <div className="text-gray-600 text-xs">{s.sub}</div>
               </motion.div>
             ))}
           </motion.div>
         </div>
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
       </section>
 
       {/* ===== WHY WOVEN TEX ===== */}
-      <section className="py-24 wave-bg">
+      <section className="py-28 wave-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeUp} className="text-center mb-16">
-            <div className="section-divider" />
-            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-5 tracking-tight">
-              Why Global Brands{' '}
-              <span className="gradient-text">Choose WovenTex</span>
-            </h2>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              Our unique position as a UK-based agency with direct factory access delivers
-              unmatched quality, reliability, and transparency.
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-5 gap-16 xl:gap-24 items-start">
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {whyCards.map((card) => (
-              <motion.div key={card.title} variants={staggerItem} className="card-gold-top">
-                <div className="w-14 h-14 bg-yellow-50 rounded-xl flex items-center justify-center mb-6">
-                  <card.icon className="text-yellow-500" size={26} />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{card.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{card.text}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+            {/* Left: sticky editorial heading */}
+            <motion.div {...fadeUp} className="lg:col-span-2 lg:sticky lg:top-32">
+              <div className="w-10 h-px mb-8" style={{ background: 'linear-gradient(90deg, #C9961E, #D4AF37 50%, transparent)' }} />
+              <h2 className="text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-black text-gray-900 mb-6 leading-[1.04] tracking-tight">
+                Why Global Brands{' '}
+                <span className="gradient-text">Choose</span>
+                {' '}WovenTex
+              </h2>
+              <p className="text-gray-500 leading-relaxed mb-8 text-base max-w-sm">
+                A UK-based agency with direct factory access — delivering quality,
+                reliability, and complete transparency at every stage.
+              </p>
+              <Link to="/about" className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-yellow-600 transition-colors duration-200 group">
+                About WovenTex
+                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={14} />
+              </Link>
+            </motion.div>
+
+            {/* Right: feature list with separator lines */}
+            <div className="lg:col-span-3">
+              {whyCards.map((card, i) => (
+                <motion.div
+                  key={card.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  className="group flex gap-5 py-7 border-b border-gray-100 last:border-0"
+                >
+                  <div className="w-10 h-10 bg-yellow-50 rounded-xl flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-yellow-100 transition-colors duration-300">
+                    <card.icon className="text-yellow-600" size={18} />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold text-gray-900 mb-2 uppercase tracking-widest">{card.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{card.text}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -255,10 +270,10 @@ const Home = () => {
       </section>
 
       {/* ===== PROCESS ===== */}
-      <section className="py-24 bg-gray-950 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,185,5,0.04)_0%,transparent_70%)]" />
+      <section className="py-28 bg-gray-950 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(201,150,30,0.04)_0%,transparent_70%)]" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div {...fadeUp} className="text-center mb-16">
+          <motion.div {...fadeUp} className="text-center mb-20">
             <div className="section-divider" />
             <h2 className="text-4xl lg:text-5xl font-black mb-4 tracking-tight">
               Streamlined{' '}
@@ -274,20 +289,21 @@ const Home = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]"
           >
-            {processSteps.map((p, i) => (
-              <motion.div key={p.step} variants={staggerItem} className="relative text-center group">
-                {i < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-10 left-[calc(50%+2.5rem)] right-0 h-px bg-gradient-to-r from-yellow-500/40 to-transparent" />
-                )}
-                <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-full
-                  bg-gray-900 border-2 border-yellow-500/30 group-hover:border-yellow-500
-                  transition-colors duration-300 mb-6 mx-auto">
-                  <span className="text-2xl font-black gradient-text">{p.step}</span>
+            {processSteps.map((p) => (
+              <motion.div key={p.step} variants={staggerItem} className="relative p-8 lg:p-10 overflow-hidden">
+                {/* Ghost number backdrop */}
+                <div className="absolute -top-4 right-2 text-[7rem] font-black leading-none select-none pointer-events-none"
+                  style={{ color: 'rgba(255,255,255,0.035)' }}>
+                  {p.step}
                 </div>
-                <h3 className="text-lg font-bold text-white mb-3">{p.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{p.description}</p>
+                <div className="text-[0.65rem] font-bold tracking-[0.22em] uppercase mb-5 relative z-10"
+                  style={{ color: '#D4AF37' }}>
+                  Step {p.step}
+                </div>
+                <h3 className="text-lg font-bold text-white mb-3 relative z-10">{p.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed relative z-10">{p.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -406,7 +422,7 @@ const Home = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div {...fadeUp}>
             <div className="section-divider" />
-            <h2 className="text-4xl lg:text-6xl font-black text-gray-900 mb-6 tracking-tight text-balance">
+            <h2 className="text-5xl lg:text-7xl font-black text-gray-900 mb-6 tracking-tight leading-[1.04] text-balance">
               Ready to Start Your{' '}
               <span className="gradient-text">Next Production?</span>
             </h2>
@@ -462,12 +478,12 @@ const Home = () => {
                 className="space-y-3 mb-10"
               >
                 {[
-                  { icon: '⚡', text: 'Real-time production status across every line' },
-                  { icon: '🔔', text: 'Fewer delays, fewer surprises' },
-                  { icon: '📊', text: 'One source of truth for brands and factories' },
+                  { Icon: Zap, text: 'Real-time production status across every line' },
+                  { Icon: Bell, text: 'Fewer delays, fewer surprises' },
+                  { Icon: BarChart3, text: 'One source of truth for brands and factories' },
                 ].map((f) => (
-                  <motion.div key={f.text} variants={staggerItem} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3">
-                    <span className="text-lg">{f.icon}</span>
+                  <motion.div key={f.text} variants={staggerItem} className="flex items-center gap-3 bg-white/[0.05] border border-white/[0.08] rounded-xl px-4 py-3">
+                    <f.Icon className="text-blue-400 shrink-0" size={15} />
                     <span className="text-gray-300 text-sm font-medium">{f.text}</span>
                   </motion.div>
                 ))}
