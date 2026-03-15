@@ -149,7 +149,7 @@ const Certifications = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04]"
+              className="text-4xl sm:text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04]"
             >
               <span className="gradient-text">Certifications</span> & Compliance
             </motion.h1>
@@ -178,7 +178,7 @@ const Certifications = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {certifications.map((cert, index) => (
               <motion.div
                 key={index}
@@ -292,7 +292,7 @@ const Certifications = () => {
               <img
                 src="/images/worker4.jpg"
                 alt="Quality inspection of finished garments"
-                className="w-full h-96 object-cover shadow-lg"
+                className="w-full h-64 md:h-96 object-cover shadow-lg"
               />
             </motion.div>
           </div>

@@ -124,7 +124,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-5xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-[1.05] tracking-tight"
+            className="text-4xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-[1.05] tracking-tight"
           >
             Your Direct Link to
             <br />
@@ -175,8 +175,8 @@ const Home = () => {
             className="grid grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-white/[0.07]"
           >
             {stats.map((s) => (
-              <motion.div key={s.label} variants={staggerItem} className="py-14 px-6 lg:px-10 text-center">
-                <div className="text-5xl sm:text-6xl lg:text-7xl font-black gradient-text mb-3 leading-none tabular-nums">{s.value}</div>
+              <motion.div key={s.label} variants={staggerItem} className="py-8 sm:py-14 px-3 sm:px-6 lg:px-10 text-center">
+                <div className="text-4xl sm:text-6xl lg:text-7xl font-black gradient-text mb-3 leading-none tabular-nums">{s.value}</div>
                 <div className="text-white/60 font-semibold text-[0.65rem] uppercase tracking-[0.18em] mb-1.5">{s.label}</div>
                 <div className="text-gray-600 text-xs">{s.sub}</div>
               </motion.div>
@@ -206,7 +206,7 @@ const Home = () => {
         <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center relative z-10">
           <motion.div {...fadeUp}>
             <p className="text-[0.6rem] font-bold tracking-[0.35em] uppercase text-gray-500 mb-10">The WovenTex Approach</p>
-            <blockquote className="font-display italic text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white/90 leading-[1.15] mb-10">
+            <blockquote className="font-display italic text-2xl sm:text-4xl lg:text-6xl xl:text-7xl text-white/90 leading-[1.15] mb-10">
               &ldquo;Where global fashion brands<br className="hidden md:block" />
               {' '}meet world-class{' '}
               <span className="gradient-text not-italic font-black">manufacturing.&rdquo;</span>
@@ -241,85 +241,109 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true, margin: '-60px' }}
-            className="space-y-2"
           >
-            {/* Top row: hero + 2 stacked */}
-            <div className="grid grid-cols-5 gap-2 h-[420px]">
-              {/* Hero image */}
-              <div className="col-span-3 relative overflow-hidden group">
-                <img
-                  src="/images/worker5.jpg"
-                  alt="Workers finishing garments"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  loading="lazy"
-                  decoding="async"
-                  width={900}
-                  height={600}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-5">
-                  <span className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-white/50">Finishing & QC</span>
-                </div>
-              </div>
-
-              {/* Right: 2 stacked */}
-              <div className="col-span-2 grid grid-rows-2 gap-2">
-                <div className="relative overflow-hidden group">
-                  <img
-                    src="/images/worker4.jpg"
-                    alt="Worker inspecting garments"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                    decoding="async"
-                    width={600}
-                    height={300}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <div className="absolute bottom-3 left-4">
-                    <span className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-white/50">Quality Inspection</span>
-                  </div>
-                </div>
-                <div className="relative overflow-hidden group">
-                  <img
-                    src="/images/worker6.jpg"
-                    alt="Denim pressing machine"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                    decoding="async"
-                    width={600}
-                    height={300}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <div className="absolute bottom-3 left-4">
-                    <span className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-white/50">Industrial Pressing</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom row: 3 equal */}
-            <div className="grid grid-cols-3 gap-2 h-[260px]">
+            {/* ── Mobile: simple 2-col grid ── */}
+            <div className="grid grid-cols-2 gap-2 md:hidden">
               {[
-                { src: '/images/worker2.jpg', label: 'Fabric Spreading', w: 600, h: 400 },
-                { src: '/images/worker1.jpg', label: 'Pattern Cutting', w: 600, h: 400 },
-                { src: '/images/worker3.jpg', label: 'Industrial Processing', w: 600, h: 400 },
+                { src: '/images/worker5.jpg', label: 'Finishing & QC' },
+                { src: '/images/worker4.jpg', label: 'Quality Inspection' },
+                { src: '/images/worker6.jpg', label: 'Industrial Pressing' },
+                { src: '/images/worker2.jpg', label: 'Fabric Spreading' },
+                { src: '/images/worker1.jpg', label: 'Pattern Cutting' },
+                { src: '/images/worker3.jpg', label: 'Processing' },
               ].map((img) => (
-                <div key={img.src} className="relative overflow-hidden group">
+                <div key={img.src + '-mob'} className="relative overflow-hidden h-36">
                   <img
                     src={img.src}
                     alt={img.label}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover"
                     loading="lazy"
                     decoding="async"
-                    width={img.w}
-                    height={img.h}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-3 left-4">
-                    <span className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-white/50">{img.label}</span>
+                  <div className="absolute bottom-2 left-3">
+                    <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-white/50">{img.label}</span>
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* ── Desktop: bento layout ── */}
+            <div className="hidden md:block space-y-2">
+              {/* Top row: hero + 2 stacked */}
+              <div className="grid grid-cols-5 gap-2 h-[420px]">
+                <div className="col-span-3 relative overflow-hidden group">
+                  <img
+                    src="/images/worker5.jpg"
+                    alt="Workers finishing garments"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                    decoding="async"
+                    width={900}
+                    height={600}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-5">
+                    <span className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-white/50">Finishing & QC</span>
+                  </div>
+                </div>
+                <div className="col-span-2 grid grid-rows-2 gap-2">
+                  <div className="relative overflow-hidden group">
+                    <img
+                      src="/images/worker4.jpg"
+                      alt="Worker inspecting garments"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                      decoding="async"
+                      width={600}
+                      height={300}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <div className="absolute bottom-3 left-4">
+                      <span className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-white/50">Quality Inspection</span>
+                    </div>
+                  </div>
+                  <div className="relative overflow-hidden group">
+                    <img
+                      src="/images/worker6.jpg"
+                      alt="Denim pressing machine"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                      decoding="async"
+                      width={600}
+                      height={300}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <div className="absolute bottom-3 left-4">
+                      <span className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-white/50">Industrial Pressing</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Bottom row: 3 equal */}
+              <div className="grid grid-cols-3 gap-2 h-[260px]">
+                {[
+                  { src: '/images/worker2.jpg', label: 'Fabric Spreading' },
+                  { src: '/images/worker1.jpg', label: 'Pattern Cutting' },
+                  { src: '/images/worker3.jpg', label: 'Industrial Processing' },
+                ].map((img) => (
+                  <div key={img.src} className="relative overflow-hidden group">
+                    <img
+                      src={img.src}
+                      alt={img.label}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                      decoding="async"
+                      width={600}
+                      height={400}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-3 left-4">
+                      <span className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-white/50">{img.label}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
 
@@ -396,7 +420,7 @@ const Home = () => {
             <div className="marquee-track">
               {clients.map((client, i) => (
                 <div key={i} className="px-12 py-4 flex items-center shrink-0">
-                  <span className="text-2xl lg:text-3xl font-black text-gray-400 hover:text-yellow-500 transition-colors duration-300 cursor-default tracking-tight whitespace-nowrap">
+                  <span className="text-xl lg:text-3xl font-black text-gray-400 hover:text-yellow-500 transition-colors duration-300 cursor-default tracking-tight whitespace-nowrap">
                     {client}
                   </span>
                   <span className="w-1.5 h-1.5 rounded-full bg-yellow-500/30 ml-12" />
@@ -432,7 +456,7 @@ const Home = () => {
             {processSteps.map((p) => (
               <motion.div key={p.step} variants={staggerItem} className="relative p-8 lg:p-10 overflow-hidden">
                 <div
-                  className="absolute -top-4 right-2 text-[7rem] font-black leading-none select-none pointer-events-none"
+                  className="absolute -top-4 right-2 text-[4rem] md:text-[7rem] font-black leading-none select-none pointer-events-none"
                   style={{ color: 'rgba(255,255,255,0.035)' }}
                 >
                   {p.step}
@@ -638,7 +662,7 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, margin: '-80px' }}
-              className="relative flex justify-center items-end -mx-8 lg:-mx-16"
+              className="relative flex justify-center items-end lg:-mx-16"
             >
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-blue-600/15 blur-3xl rounded-full pointer-events-none" />
               <img

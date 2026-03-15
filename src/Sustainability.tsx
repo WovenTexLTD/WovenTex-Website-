@@ -102,7 +102,7 @@ const Sustainability = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04]"
+              className="text-4xl sm:text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04]"
             >
               <span className="gradient-text">Sustainability</span> & Ethics
             </motion.h1>
@@ -170,7 +170,7 @@ const Sustainability = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {metrics.map((metric, index) => (
               <motion.div
                 key={index}

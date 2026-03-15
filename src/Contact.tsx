@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl lg:text-7xl font-black text-white mb-6 tracking-tight leading-[1.04]"
+            className="text-4xl sm:text-5xl lg:text-7xl font-black text-white mb-6 tracking-tight leading-[1.04]"
           >
             Let’s Start Your <span className="gradient-text">Production Journey</span>
           </motion.h1>
@@ -79,7 +79,7 @@ const Contact: React.FC = () => {
 
       {/* Content */}
       <section className="py-20 wave-bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Left: contact info */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

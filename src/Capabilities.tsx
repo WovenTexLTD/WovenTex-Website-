@@ -95,7 +95,7 @@ const Capabilities = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04]"
+              className="text-4xl sm:text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04]"
             >
               Manufacturing <span className="gradient-text">Capabilities</span>
             </motion.h1>
@@ -240,7 +240,7 @@ const Capabilities = () => {
               <img
                 src="/images/worker3.jpg"
                 alt="Skilled operator at industrial sewing machine"
-                className="w-full h-96 object-cover shadow-lg"
+                className="w-full h-64 md:h-96 object-cover shadow-lg"
               />
             </motion.div>
           </div>
