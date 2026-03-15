@@ -61,9 +61,9 @@ const Contact: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl lg:text-6xl font-bold text-white mb-6"
+            className="text-5xl lg:text-7xl font-black text-white mb-6 tracking-tight leading-[1.04]"
           >
-            Let’s Start Your <span className="text-yellow-400">Production Journey</span>
+            Let’s Start Your <span className="gradient-text">Production Journey</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -87,7 +87,7 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <h2 className="text-3xl font-bold text-gray-900">Get in touch</h2>
+            <h2 className="text-3xl font-black text-gray-900 tracking-tight">Get in touch</h2>
             <p className="text-gray-600">
               We typically respond within a few business hours. Provide as much detail as possible
               for the most accurate quote.
@@ -95,7 +95,7 @@ const Contact: React.FC = () => {
 
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <Mail size={20} className="mt-1 text-gray-700" />
+                <Mail size={20} className="mt-1 text-yellow-500" />
                 <div>
                   <div className="font-medium text-gray-900">Email</div>
                   <a className="text-gray-600 hover:underline" href="mailto:contact@woventex.co">
@@ -105,7 +105,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <Phone size={20} className="mt-1 text-gray-700" />
+                <Phone size={20} className="mt-1 text-yellow-500" />
                 <div>
                   <div className="font-medium text-gray-900">Phone</div>
                   <a className="text-gray-600 hover:underline" href="tel:+447933291037">
@@ -115,7 +115,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <MapPin size={30} className="mt-1 text-gray-700" />
+                <MapPin size={30} className="mt-1 text-yellow-500" />
                 <div>
                   <div className="font-medium text-gray-900">Office</div>
                   <div className="text-gray-600">167-169 Great Portland Street, 5th Floor, London, England, W1W 5PF</div>
@@ -123,7 +123,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <Clock size={20} className="mt-1 text-gray-700" />
+                <Clock size={20} className="mt-1 text-yellow-500" />
                 <div>
                   <div className="font-medium text-gray-900">Hours</div>
                   <div className="text-gray-600">Mon–Fri · 09:00–18:00 (UK)</div>
@@ -139,7 +139,7 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="lg:col-span-2"
           >
-            <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
+            <div className="bg-white p-8 border border-gray-100 shadow-sm" style={{ borderTop: '2px solid #D4AF37' }}>
               {isSubmitted ? (
                 <div className="flex items-start gap-3 p-4 bg-green-50 border border-green-200 rounded-md">
                   <CheckCircle className="text-green-600 mt-0.5" size={20} />
@@ -257,7 +257,7 @@ const Contact: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold bg-gray-900 text-white hover:bg-gray-800 transition disabled:opacity-60"
+                    className="btn-primary disabled:opacity-60"
                   >
                     {isSubmitting ? (
                       'Sending…'

@@ -56,7 +56,7 @@ const About = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04]"
+            className="text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04] text-white"
           >
             About <span className="gradient-text">WovenTex</span>
           </motion.h1>
@@ -183,23 +183,23 @@ const About = () => {
               className="grid grid-cols-2 gap-4"
             >
               <img
-                src="/images/cutting.jpg"
-                alt="Fabric cutting process"
+                src="/images/worker2.jpg"
+                alt="Fabric spreading and cutting process"
                 className="w-full h-48 object-cover rounded-lg shadow-md"
               />
               <img
-                src="/images/man.jpg"
-                alt="Operator inspecting garment"
+                src="/images/worker4.jpg"
+                alt="Operator inspecting finished garments"
                 className="w-full h-48 object-cover rounded-lg shadow-md mt-8"
               />
               <img
-                src="/images/machine.jpg"
-                alt="Industrial sewing machine"
+                src="/images/worker3.jpg"
+                alt="Industrial sewing machine operator"
                 className="w-full h-48 object-cover rounded-lg shadow-md -mt-8"
               />
               <img
-                src="/images/guys.jpg"
-                alt="Production team on the floor"
+                src="/images/worker6.jpg"
+                alt="Precision pressing and finishing"
                 className="w-full h-48 object-cover rounded-lg shadow-md"
               />
             </motion.div>

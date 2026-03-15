@@ -136,7 +136,7 @@ const Certifications = () => {
       <section className="relative py-20 bg-gray-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.pexels.com/photos/7180655/pexels-photo-7180655.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+            src="/images/worker6.jpg"
             alt="Quality certification and compliance"
             className="w-full h-full object-cover"
           />
@@ -149,9 +149,9 @@ const Certifications = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl lg:text-6xl font-bold mb-6"
+              className="text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04]"
             >
-              <span className="text-yellow-400">Certifications</span> & Compliance
+              <span className="gradient-text">Certifications</span> & Compliance
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -170,7 +170,7 @@ const Certifications = () => {
       <section className="py-20 wave-bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">
               International Certifications
             </h2>
             <p className="text-lg text-gray-600">
@@ -185,17 +185,16 @@ const Certifications = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gray-50 p-6 rounded-lg hover:shadow-lg transition-all duration-300"
+                className="card-gold-top"
               >
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${getColorClasses(cert.color)}`}>
-                  <cert.icon size={24} />
+                <div className="w-12 h-12 bg-yellow-50 rounded-xl flex items-center justify-center mb-5">
+                  <cert.icon className="text-yellow-600" size={22} />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{cert.name}</h3>
-                <h4 className="text-sm font-medium text-gray-700 mb-3">{cert.fullName}</h4>
-                <p className="text-gray-600 mb-4 text-sm">{cert.description}</p>
-                <div className="space-y-2 text-xs text-gray-500">
-                  <div><strong>Scope:</strong> {cert.scope}</div>
-                  <div><strong>Certificate:</strong> {cert.certNumber}</div>
+                <h3 className="text-sm font-black text-gray-900 mb-0.5 uppercase tracking-widest">{cert.name}</h3>
+                <h4 className="text-xs font-medium text-yellow-700 mb-3 tracking-wide">{cert.fullName}</h4>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4">{cert.description}</p>
+                <div className="space-y-1 text-xs text-gray-400 border-t border-gray-100 pt-3">
+                  <div><span className="font-semibold text-gray-600">Scope:</span> {cert.scope}</div>
                 </div>
               </motion.div>
             ))}
@@ -207,7 +206,7 @@ const Certifications = () => {
       <section className="py-20 wave-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">
               Compliance Areas
             </h2>
             <p className="text-lg text-gray-600">
@@ -222,15 +221,15 @@ const Certifications = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-6 rounded-lg shadow-md"
+                className="card-gold-top"
               >
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{area.title}</h3>
-                <p className="text-gray-600 mb-4">{area.description}</p>
+                <h3 className="text-sm font-black text-gray-900 mb-2 uppercase tracking-widest">{area.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4">{area.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {area.certifications.map((cert, certIndex) => (
                     <span
                       key={certIndex}
-                      className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
+                      className="px-3 py-1 bg-yellow-50 text-yellow-800 text-xs font-semibold border border-yellow-200"
                     >
                       {cert}
                     </span>
@@ -251,7 +250,7 @@ const Certifications = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">
                 Continuous Compliance Monitoring
               </h2>
               <div className="space-y-6">
@@ -291,9 +290,9 @@ const Certifications = () => {
               transition={{ duration: 0.8 }}
             >
               <img
-                src="/images/hands.jpg"
-                alt="Compliance monitoring and documentation systems"
-                className="w-full h-96 object-cover rounded-lg shadow-lg"
+                src="/images/worker4.jpg"
+                alt="Quality inspection of finished garments"
+                className="w-full h-96 object-cover shadow-lg"
               />
             </motion.div>
           </div>

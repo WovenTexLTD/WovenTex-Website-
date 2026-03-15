@@ -86,34 +86,34 @@ const Sustainability = () => {
     />
     <div className="pt-16 lg:pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-green-900 to-green-700 text-white overflow-hidden">
+      <section className="relative py-20 bg-gray-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.pexels.com/photos/7180715/pexels-photo-7180715.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+            src="/images/worker5.jpg"
             alt="Sustainable manufacturing practices"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-green-900/90 to-green-700/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 to-black/65" />
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative z-10 text-center">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-4xl lg:text-6xl font-bold mb-6"
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              className="text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04]"
             >
-              <span className="text-green-300">Sustainability</span> & Ethics
+              <span className="gradient-text">Sustainability</span> & Ethics
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg lg:text-xl text-green-100 max-w-3xl mx-auto"
+              className="text-lg lg:text-xl text-gray-300/90 max-w-2xl mx-auto leading-relaxed"
             >
-              Manufacturing with integrity through ethical labor practices, environmental 
-              responsibility, and sustainable material choices
+              Manufacturing with integrity through ethical labor practices, environmental
+              responsibility, and sustainable material choices.
             </motion.p>
           </div>
         </div>
@@ -123,7 +123,7 @@ const Sustainability = () => {
       <section className="py-20 wave-bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">
               Our Sustainability Initiatives
             </h2>
             <p className="text-lg text-gray-600">
@@ -138,18 +138,18 @@ const Sustainability = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gray-50 p-6 rounded-lg hover:shadow-lg transition-all duration-300"
+                className="card-gold-top"
               >
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${getColorClasses(initiative.color)}`}>
-                  <initiative.icon size={24} />
+                <div className="w-12 h-12 bg-yellow-50 rounded-xl flex items-center justify-center mb-5">
+                  <initiative.icon className="text-yellow-600" size={22} />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-widest">
                   {initiative.title}
                 </h3>
-                <p className="text-gray-600 mb-4">{initiative.description}</p>
-                <div className="bg-white p-3 rounded border-l-4 border-green-500">
-                  <span className="text-sm font-medium text-green-700">
-                    Impact: {initiative.impact}
+                <p className="text-gray-500 text-sm leading-relaxed mb-4">{initiative.description}</p>
+                <div className="border-t border-yellow-500/20 pt-3">
+                  <span className="text-xs font-semibold text-yellow-700 uppercase tracking-wider">
+                    {initiative.impact}
                   </span>
                 </div>
               </motion.div>
@@ -162,7 +162,7 @@ const Sustainability = () => {
       <section className="py-20 wave-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">
               Environmental Performance
             </h2>
             <p className="text-lg text-gray-600">
@@ -177,17 +177,13 @@ const Sustainability = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-6 rounded-lg shadow-md text-center"
+                className="card-gold-top text-center"
               >
-                <div className={`text-3xl font-bold mb-2 ${
-                  metric.trend === 'down' ? 'text-yellow-500' : 'text-gray-900'
-                }`}>
+                <div className="text-4xl font-black mb-2 gradient-text">
                   {metric.value}
                 </div>
-                <div className="text-sm text-gray-600 mb-2">{metric.label}</div>
-                <div className={`text-xs font-medium ${
-                  metric.trend === 'down' ? 'text-yellow-500' : 'text-gray-700'
-                }`}>
+                <div className="text-sm text-gray-600 mb-2 leading-snug">{metric.label}</div>
+                <div className="text-xs font-semibold text-yellow-700 uppercase tracking-wider">
                   {metric.trend === 'down' ? '↓ Reduced' : '↑ Improved'}
                 </div>
               </motion.div>
@@ -206,7 +202,7 @@ const Sustainability = () => {
               transition={{ duration: 0.8 }}
               className="space-y-6 text-center"
             >
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-8">
+              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-8 tracking-tight">
                 Sustainable Manufacturing Facility
               </h2>
               <div className="space-y-6">
@@ -248,7 +244,7 @@ const Sustainability = () => {
       <section className="py-20 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+            <h2 className="text-4xl lg:text-5xl font-black mb-6 tracking-tight">
               UN Sustainable Development Goals
             </h2>
             <p className="text-lg text-gray-300">
@@ -263,15 +259,15 @@ const Sustainability = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gray-800 p-6 rounded-lg"
+                className="relative overflow-hidden bg-white/5 border border-white/10 p-6 hover:bg-white/8 transition-colors duration-300"
               >
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-black font-bold">{goal.number}</span>
+                  <div className="w-10 h-10 bg-yellow-500 flex items-center justify-center mr-4 shrink-0">
+                    <span className="text-black font-black text-sm">{goal.number}</span>
                   </div>
-                  <h3 className="text-lg font-semibold">{goal.title}</h3>
+                  <h3 className="text-sm font-bold uppercase tracking-widest text-white">{goal.title}</h3>
                 </div>
-                <p className="text-gray-300 text-sm">{goal.description}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{goal.description}</p>
               </motion.div>
             ))}
           </div>

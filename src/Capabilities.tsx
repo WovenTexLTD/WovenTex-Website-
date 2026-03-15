@@ -82,7 +82,7 @@ const Capabilities = () => {
       <section className="relative py-20 bg-gray-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.pexels.com/photos/7180657/pexels-photo-7180657.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+            src="/images/worker2.jpg"
             alt="Manufacturing equipment"
             className="w-full h-full object-cover"
           />
@@ -95,9 +95,9 @@ const Capabilities = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl lg:text-6xl font-bold mb-6"
+              className="text-5xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.04]"
             >
-              Manufacturing <span className="text-yellow-400">Capabilities</span>
+              Manufacturing <span className="gradient-text">Capabilities</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -116,7 +116,7 @@ const Capabilities = () => {
       <section className="py-20 wave-bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">
               Core Capabilities
             </h2>
             <p className="text-lg text-gray-600">
@@ -131,15 +131,15 @@ const Capabilities = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-lg transition-all duration-300"
+                className="card-gold-top text-center"
               >
-               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                 <capability.icon className="text-gray-900" size={28} />
+               <div className="w-12 h-12 bg-yellow-50 rounded-xl flex items-center justify-center mx-auto mb-5">
+                 <capability.icon className="text-yellow-600" size={22} />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-widest">
                   {capability.title}
                 </h3>
-                <p className="text-gray-600">{capability.details}</p>
+                <p className="text-gray-500 text-sm leading-relaxed">{capability.details}</p>
               </motion.div>
             ))}
           </div>
@@ -150,7 +150,7 @@ const Capabilities = () => {
       <section className="py-20 wave-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">
               Product Categories
             </h2>
             <p className="text-lg text-gray-600">
@@ -158,27 +158,30 @@ const Capabilities = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {products.map((product, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="group relative overflow-hidden bg-gray-900 cursor-default"
+                style={{ aspectRatio: '3/4' }}
               >
-                <div className="aspect-w-16 aspect-h-12 overflow-hidden flex-shrink-0">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className={`w-full h-48 object-cover ${product.title === 'Denim' ? 'object-[center_10%]' : product.title === 'T-shirts & Basics' ? 'object-top' : product.title === 'Workwear' ? 'object-[center_10%]' : product.title === 'Swimwear' ? 'object-[center_20%]' : 'object-top'} group-hover:scale-110 transition-transform duration-300`}
-                  />
-                </div>
-                <div className="p-6 flex-grow flex flex-col justify-between text-center">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className={`absolute inset-0 w-full h-full object-cover ${product.title === 'Denim' ? 'object-[center_10%]' : product.title === 'T-shirts & Basics' ? 'object-top' : product.title === 'Workwear' ? 'object-[center_10%]' : product.title === 'Swimwear' ? 'object-[center_20%]' : 'object-top'} group-hover:scale-105 transition-transform duration-700`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <div className="text-[10px] font-bold text-yellow-500 tracking-[0.2em] uppercase mb-1">
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+                  <h3 className="text-base font-black text-white tracking-tight leading-tight mb-1">
                     {product.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{product.description}</p>
+                  <p className="text-gray-300 text-xs leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2">{product.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -195,7 +198,7 @@ const Capabilities = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">
                 Technical Excellence
               </h2>
               <div className="space-y-6">
@@ -235,9 +238,9 @@ const Capabilities = () => {
               transition={{ duration: 0.8 }}
             >
               <img
-                src="/images/factory.png"
-                alt="London headquarters with experienced leadership"
-                className="w-full h-96 object-cover rounded-lg shadow-lg"
+                src="/images/worker3.jpg"
+                alt="Skilled operator at industrial sewing machine"
+                className="w-full h-96 object-cover shadow-lg"
               />
             </motion.div>
           </div>
