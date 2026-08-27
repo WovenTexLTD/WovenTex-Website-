@@ -36,7 +36,7 @@ export default function PageHero({
             className="h-full w-full object-cover brightness-[0.78] contrast-[1.06] saturate-[0.85]"
             style={{ objectPosition: imagePosition }}
             loading="eager"
-            fetchPriority="high"
+            {...{ fetchpriority: 'high' }}
           />
           {/* Scrim weighted to the left, where the type sits — the photograph
               keeps its detail on the open side of the frame */}
@@ -44,7 +44,6 @@ export default function PageHero({
           <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/25 to-ink/45" />
         </div>
       )}
-      <div className="absolute inset-0 woven woven-dark opacity-40" aria-hidden />
 
       <div className="shell relative pb-16 pt-32 lg:pb-20 lg:pt-44">
         <Enter delay={0.1} y={12} className="flex flex-wrap items-center gap-x-4 gap-y-2">

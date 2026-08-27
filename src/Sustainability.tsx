@@ -118,7 +118,7 @@ export default function Sustainability() {
       </Section>
 
       {/* ========================================================= METRICS */}
-      <Section tone="ink" texture className="py-24 lg:py-32">
+      <Section tone="ink" className="py-24 lg:py-32">
         <div className="shell">
           <SectionHead
             index="02 / 04"

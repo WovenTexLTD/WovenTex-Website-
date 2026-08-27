@@ -95,7 +95,6 @@ export default function ProductionPortal() {
           }}
           aria-hidden
         />
-        <div className="absolute inset-0 woven woven-dark opacity-50" aria-hidden />
 
         <div className="shell relative grid items-end gap-14 pb-16 pt-32 lg:grid-cols-[1fr_0.9fr] lg:pb-20 lg:pt-40">
           <div>

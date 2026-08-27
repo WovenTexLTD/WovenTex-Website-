@@ -150,7 +150,7 @@ export default function Header() {
             transition={{ duration: 0.6, ease: EASE }}
             className="fixed inset-0 z-40 overflow-y-auto bg-ink text-paper xl:hidden"
           >
-            <div className="woven woven-dark min-h-full pb-16 pt-28">
+            <div className="min-h-full pb-16 pt-28">
               <nav className="shell">
                 {navItems.map((item, i) => (
                   <motion.div

@@ -135,7 +135,7 @@ export default function Capabilities() {
       </Section>
 
       {/* ========================================================= PRODUCTS */}
-      <Section tone="paper-2" texture className="py-24 lg:py-32">
+      <Section tone="paper-2" className="py-24 lg:py-32">
         <div className="shell">
           <SectionHead
             index="02 / 03"

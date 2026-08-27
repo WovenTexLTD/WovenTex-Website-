@@ -129,7 +129,7 @@ export default function Blog() {
       </Section>
 
       {/* ========================================================= ARCHIVE */}
-      <Section tone="paper-2" texture className="py-20 lg:py-28">
+      <Section tone="paper-2" className="py-20 lg:py-28">
         <div className="shell">
           <div className="flex items-center gap-4 border-t border-ink/15 pt-4">
             <span className="mono-label text-ink-400">More articles</span>

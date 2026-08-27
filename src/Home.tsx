@@ -138,12 +138,11 @@ export default function Home() {
             alt="Hands guiding fabric through an industrial sewing machine"
             className="h-[118%] w-full object-cover object-[70%_center] opacity-100 contrast-[1.05] brightness-[0.92] animate-slow-zoom"
             loading="eager"
-            fetchPriority="high"
+            {...{ fetchpriority: 'high' }}
           />
           {/* Legibility scrim — heaviest at the baseline where the type sits */}
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/10" />
           <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/45 to-ink/5" />
-          <div className="absolute inset-0 woven woven-dark opacity-40" />
         </motion.div>
 
         <motion.div
@@ -230,7 +229,7 @@ export default function Home() {
       </Section>
 
       {/* ========================================================== PILLARS */}
-      <Section tone="paper-2" texture className="py-24 lg:py-32">
+      <Section tone="paper-2" className="py-24 lg:py-32">
         <div className="shell">
           <SectionHead
             index="01 / 05"

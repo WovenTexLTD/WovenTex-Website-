@@ -72,7 +72,7 @@ export default function ProcessLine({
 
   if (reduce) {
     return (
-      <section className="woven woven-dark grain relative bg-ink py-24 text-paper lg:py-32">
+      <section className="grain relative bg-ink py-24 text-paper lg:py-32">
         <div className="shell relative">
           {head}
           {StaticGrid}
@@ -84,7 +84,7 @@ export default function ProcessLine({
   return (
     <>
       {/* Small screens keep the plain grid */}
-      <section className="woven woven-dark grain relative bg-ink py-24 text-paper lg:hidden">
+      <section className="grain relative bg-ink py-24 text-paper lg:hidden">
         <div className="shell relative">
           {head}
           {StaticGrid}
@@ -97,7 +97,7 @@ export default function ProcessLine({
         className="relative hidden lg:block"
         style={{ height: `${steps.length * 72}vh` }}
       >
-        <div className="woven woven-dark grain sticky top-0 flex h-screen flex-col justify-center overflow-hidden bg-ink text-paper">
+        <div className="grain sticky top-0 flex h-screen flex-col justify-center overflow-hidden bg-ink text-paper">
           <div className="shell relative w-full">{pinnedHead}</div>
 
           <div className="relative mt-14 w-full">

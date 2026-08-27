@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   motion,
@@ -13,6 +13,22 @@ import { EASE, rise, stagger } from './motion';
 /* ====================================================================== *
  *  Motion presets — one vocabulary, used everywhere
  * ====================================================================== */
+
+/* ---------------------------------------------------------------------- *
+ * Calling motion.create() during render produces a new component type on
+ * every pass, which makes React unmount and remount the subtree each time.
+ * Cache them per tag instead.
+ * -------------------------------------------------------------------- */
+const motionCache = new Map<string, React.ElementType>();
+
+function motionTag(tag: React.ElementType): React.ElementType {
+  if (typeof tag !== 'string') return motion.create(tag as React.ComponentType);
+  const hit = motionCache.get(tag);
+  if (hit) return hit;
+  const made = motion.create(tag as keyof JSX.IntrinsicElements);
+  motionCache.set(tag, made);
+  return made;
+}
 
 /** Scroll-triggered container. Children using `rise` animate in sequence. */
 export function Reveal({
@@ -31,7 +47,7 @@ export function Reveal({
   amount?: number;
 }) {
   const reduce = useReducedMotion();
-  const MotionAs = motion(As as 'div');
+  const MotionAs = motionTag(As);
   if (reduce) return <As className={className}>{children}</As>;
   return (
     <MotionAs
@@ -57,7 +73,7 @@ export function RevealItem({
   as?: React.ElementType;
 }) {
   const reduce = useReducedMotion();
-  const MotionAs = motion(As as 'div');
+  const MotionAs = motionTag(As);
   if (reduce) return <As className={className}>{children}</As>;
   return (
     <MotionAs className={className} variants={rise}>
@@ -137,7 +153,7 @@ export function Enter({
   as?: React.ElementType;
 }) {
   const reduce = useReducedMotion();
-  const MotionAs = motion(As as 'div');
+  const MotionAs = motionTag(As);
   if (reduce) return <As className={className}>{children}</As>;
   return (
     <MotionAs
@@ -160,13 +176,11 @@ export function Section({
   className = '',
   tone = 'paper',
   id,
-  texture = false,
 }: {
   children: React.ReactNode;
   className?: string;
   tone?: 'paper' | 'paper-2' | 'ink' | 'none';
   id?: string;
-  texture?: boolean;
 }) {
   const tones: Record<string, string> = {
     paper: 'bg-paper text-ink',
@@ -175,12 +189,7 @@ export function Section({
     none: '',
   };
   return (
-    <section
-      id={id}
-      className={`relative ${tones[tone]} ${
-        texture ? `woven ${tone === 'ink' ? 'woven-dark' : ''}` : ''
-      } ${className}`}
-    >
+    <section id={id} className={`relative ${tones[tone]} ${className}`}>
       {children}
     </section>
   );
@@ -322,46 +331,75 @@ export function Counter({
   duration?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const inView = useInView(ref, { once: true, amount: 0.4 });
   const reduce = useReducedMotion();
 
-  // Split "500,000+" into prefix / number / suffix so only digits animate
-  const match = value.match(/^([^\d]*)([\d.,]+)(.*)$/);
-  const [prefix, digits, suffix] = match ? [match[1], match[2], match[3]] : ['', '', value];
-  const target = Number(digits.replace(/,/g, ''));
-  const hasDecimal = digits.includes('.');
+  /* Split "500,000+" into prefix / number / suffix so only the digits animate.
+     Memoised deliberately: the regex result is a fresh array each render, and
+     if it reaches the effect's dependency list every setShown restarts the
+     animation, which leaves the figure stuck near zero forever. */
+  const parsed = useMemo(() => {
+    const m = value.match(/^([^\d]*)([\d.,]+)(.*)$/);
+    if (!m) return { numeric: false, prefix: '', digits: '', suffix: value, target: 0, decimals: 0 };
+    const digits = m[2];
+    const target = Number(digits.replace(/,/g, ''));
+    const dot = digits.indexOf('.');
+    return {
+      numeric: !Number.isNaN(target),
+      prefix: m[1],
+      digits,
+      suffix: m[3],
+      target,
+      decimals: dot === -1 ? 0 : digits.length - dot - 1,
+    };
+  }, [value]);
 
-  const [shown, setShown] = useState(match ? '0' : value);
+  const { numeric, prefix, digits, suffix, target, decimals } = parsed;
+
+  const format = useCallback(
+    (n: number) =>
+      n.toLocaleString('en-GB', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      }),
+    [decimals],
+  );
+
+  const [shown, setShown] = useState(() => (numeric ? format(0) : ''));
 
   useEffect(() => {
-    if (!match || Number.isNaN(target)) return;
-    if (reduce || !inView) {
-      if (inView) setShown(digits);
+    if (!numeric) return;
+
+    if (reduce) {
+      setShown(digits);
       return;
     }
-    const controls = { raf: 0, start: 0 };
+    if (!inView) return;
+
+    let raf = 0;
+    let start = 0;
+    const ms = duration * 1000;
+
     const tick = (t: number) => {
-      if (!controls.start) controls.start = t;
-      const p = Math.min((t - controls.start) / (duration * 1000), 1);
-      // ease-out-expo so it decelerates into the final figure
+      if (!start) start = t;
+      const p = Math.min((t - start) / ms, 1);
+      // ease-out-expo, so it decelerates into the final figure
       const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-      const current = target * eased;
-      setShown(
-        hasDecimal
-          ? current.toFixed(1)
-          : Math.round(current).toLocaleString('en-GB'),
-      );
-      if (p < 1) controls.raf = requestAnimationFrame(tick);
+      setShown(format(target * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
     };
-    controls.raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(controls.raf);
-  }, [inView, target, duration, reduce, match, digits, hasDecimal]);
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // Every dependency here is a primitive or a stable callback, so the
+    // animation runs once through rather than restarting on each frame.
+  }, [numeric, inView, reduce, target, digits, duration, format]);
 
   return (
     <span ref={ref} className={className}>
       {prefix}
-      {match ? shown : ''}
-      {suffix}
+      {numeric ? shown : suffix}
+      {numeric ? suffix : ''}
     </span>
   );
 }

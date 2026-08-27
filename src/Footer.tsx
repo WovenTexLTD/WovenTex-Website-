@@ -28,7 +28,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="woven woven-dark relative overflow-hidden bg-ink text-paper">
+    <footer className="relative overflow-hidden bg-ink text-paper">
       <div className="shell relative pt-20 lg:pt-28">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Identity */}
