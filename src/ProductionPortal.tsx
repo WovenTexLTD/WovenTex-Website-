@@ -1,499 +1,386 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import {
-  Download,
-  Monitor,
-  Apple,
-  Terminal,
-  PlayCircle,
-  ArrowRight,
-  CheckCircle2,
-  Sparkles,
-  ShieldCheck,
-  Zap,
-  LineChart,
-  Layers,
-  Package,
-  Globe,
-} from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Apple, Monitor, Terminal } from 'lucide-react';
+import { Enter, Reveal, RevealItem, WipeHeading } from './brand/ui';
 
-type DownloadButton = {
-  label: string;
-  href: string;
-  variant: 'primary' | 'secondary';
-};
+const RELEASE = 'v1.0.39';
+const RELEASE_BASE =
+  'https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97';
 
+type DownloadButton = { label: string; href: string; primary?: boolean };
 type DownloadItem = {
   os: string;
   icon: React.ReactNode;
   buttons: DownloadButton[];
-  note?: string;
+  note: string;
 };
-
-const RELEASE_TAG = 'desktop-v1.0.39';
 
 const downloads: DownloadItem[] = [
   {
     os: 'Windows',
-    icon: <Monitor size={22} />,
+    icon: <Monitor size={20} />,
     buttons: [
-      {
-        label: 'Download (MSI)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production.Portal_1.0.39_x64_en-US.msi`,
-        variant: 'primary',
-      },
-      {
-        label: 'Alternative (EXE)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production.Portal_1.0.39_x64-setup.exe`,
-        variant: 'secondary',
-      },
+      { label: 'Download (MSI)', href: `${RELEASE_BASE}/Production.Portal_1.0.39_x64_en-US.msi`, primary: true },
+      { label: 'Alternative (EXE)', href: `${RELEASE_BASE}/Production.Portal_1.0.39_x64-setup.exe` },
     ],
-    note: 'Recommended: MSI for most Windows environments.',
+    note: 'MSI is recommended for most Windows environments.',
   },
   {
     os: 'macOS',
-    icon: <Apple size={22} />,
+    icon: <Apple size={20} />,
     buttons: [
-      {
-        label: 'Download (DMG)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production_Portal_universal.dmg`,
-        variant: 'primary',
-      },
+      { label: 'Download (DMG)', href: `${RELEASE_BASE}/Production_Portal_universal.dmg`, primary: true },
     ],
-    note: 'Universal build (Apple Silicon + Intel).',
+    note: 'Universal build — Apple Silicon and Intel.',
   },
   {
     os: 'Linux',
-    icon: <Terminal size={22} />,
+    icon: <Terminal size={20} />,
     buttons: [
-      {
-        label: 'Download (AppImage)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production.Portal_1.0.39_amd64.AppImage`,
-        variant: 'primary',
-      },
-      {
-        label: 'Ubuntu/Debian (.deb)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production.Portal_1.0.39_amd64.deb`,
-        variant: 'secondary',
-      },
-      {
-        label: 'Fedora/RHEL (.rpm)',
-        href: `https://github.com/WovenTexLTD/line-lead-hub/releases/download/desktop-v1.0.97/Production.Portal-1.0.39-1.x86_64.rpm`,
-        variant: 'secondary',
-      },
+      { label: 'Download (AppImage)', href: `${RELEASE_BASE}/Production.Portal_1.0.39_amd64.AppImage`, primary: true },
+      { label: 'Ubuntu / Debian (.deb)', href: `${RELEASE_BASE}/Production.Portal_1.0.39_amd64.deb` },
+      { label: 'Fedora / RHEL (.rpm)', href: `${RELEASE_BASE}/Production.Portal-1.0.39-1.x86_64.rpm` },
     ],
-    note: 'AppImage works on most distros. Use DEB/RPM for system installs.',
+    note: 'AppImage works on most distributions; use DEB/RPM for system installs.',
   },
 ];
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 18 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay },
-});
+const pillars = [
+  {
+    n: '01',
+    title: 'One source of truth',
+    text: 'Operators, merchandisers and management aligned on the same live production data — no parallel spreadsheets.',
+  },
+  {
+    n: '02',
+    title: 'Fewer delays, fewer surprises',
+    text: 'Blockers surface the day they appear, so they get resolved before they cost lead time.',
+  },
+  {
+    n: '03',
+    title: 'Accountability by design',
+    text: 'Daily ownership, clear status and structured reporting your team will actually keep up with.',
+  },
+];
 
-const ProductionPortal = () => {
+const dashboardFeatures = [
+  'Live output against target, by line',
+  'Blocker logging and escalation tracking',
+  'Daily summaries with named ownership',
+  'Cleaner communication across teams',
+];
+
+/* Portal-navy variants of the house button */
+const portalBtn =
+  'group/btn inline-flex items-center justify-center gap-3 px-7 py-4 text-sm font-semibold uppercase tracking-label transition-colors duration-300 ease-brand';
+
+export default function ProductionPortal() {
   return (
-    <div
-      className="pt-16 lg:pt-20 text-white min-h-screen relative overflow-hidden"
-      style={{
-        background: 'radial-gradient(circle at 50% 50%, #000a68, #000c38)',
-      }}
-    >
-      {/* Premium background glows */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#ffb905]/15 blur-[90px]" />
-        <div className="absolute top-24 -right-52 h-[620px] w-[620px] rounded-full bg-white/10 blur-[110px]" />
-        <div className="absolute bottom-[-220px] left-1/3 h-[520px] w-[520px] rounded-full bg-[#ffb905]/10 blur-[120px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.06),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(255,185,5,0.08),transparent_40%),radial-gradient(circle_at_50%_90%,rgba(255,255,255,0.05),transparent_45%)]" />
-      </div>
+    <div className="bg-portal text-paper">
+      {/* ============================================================ HERO */}
+      <section className="relative flex min-h-[80svh] flex-col justify-end overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-70"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 80% 12%, rgba(255,255,255,0.35), transparent 52%), radial-gradient(circle at 8% 88%, rgba(255,185,5,0.22), transparent 48%)',
+          }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 woven woven-dark opacity-50" aria-hidden />
 
-      {/* HERO */}
-      <section className="relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* LEFT */}
-            <div>
-              <motion.div
-                {...fadeUp(0)}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm"
-              >
-                <Sparkles size={16} className="text-[#ffb905]" />
-                <span className="text-sm text-white/80">
-                  Production Portal • Release {RELEASE_TAG.replace('desktop-', '')}
-                </span>
-              </motion.div>
+        <div className="shell relative grid items-end gap-14 pb-16 pt-32 lg:grid-cols-[1fr_0.9fr] lg:pb-20 lg:pt-40">
+          <div>
+            <Enter delay={0.1} y={12} className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              <span className="h-[1px] w-10 bg-signal" />
+              <span className="mono-label text-signal">Production Portal · Release {RELEASE}</span>
+            </Enter>
 
-              {/* Logo + Title + Slogan */}
-              <motion.div {...fadeUp(0.08)} className="mt-7 flex items-start gap-6">
-                <div className="relative shrink-0">
-                  <div className="absolute inset-0 rounded-[28px] bg-[#ffb905]/20 blur-2xl" />
-                  <img
-                    src="/images/app-icon.svg"
-                    alt="Production Portal logo"
-                    className="relative h-24 w-24 sm:h-28 sm:w-28 lg:h-32 lg:w-32 object-contain drop-shadow-[0_18px_40px_rgba(0,0,0,0.45)]"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </div>
-
-                <div className="pt-1">
-                  <h1 className="text-4xl sm:text-5xl font-bold leading-tight tracking-tight">
-                    Production Portal
-                  </h1>
-                  <div className="mt-3 text-lg sm:text-xl font-semibold text-[#ffb905]">
-                    Every Order. Every Line. Under Control.
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.p
-                {...fadeUp(0.16)}
-                className="mt-7 text-lg sm:text-xl text-white/80 max-w-xl leading-relaxed"
-              >
-                Real-time visibility across production lines—updates, blockers, output, and accountability in one place.
-                Built for factories and brands that need speed, clarity, and control.
-              </motion.p>
-
-              {/* Web version (important CTA) */}
-              <motion.div {...fadeUp(0.2)} className="mt-8">
-                <div className="inline-flex items-center gap-3 px-5 py-4 rounded-2xl border border-white/15 bg-white/8 backdrop-blur-sm shadow-[0_18px_70px_rgba(0,0,0,0.25)]">
-                  <div className="h-11 w-11 rounded-xl border border-white/15 bg-white/10 flex items-center justify-center">
-                    <Globe size={20} className="text-[#ffb905]" />
-                  </div>
-
-                  <div className="leading-tight">
-                    <div className="text-xs uppercase tracking-wider text-white/60">Web Version</div>
-                    <a
-                      href="https://productionportal.co"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-lg sm:text-xl font-bold text-[#ffb905] hover:underline"
-                    >
-                      productionportal.co
-                    </a>
-                    <div className="text-sm text-white/70 mt-1">
-                      Access the platform instantly in your browser.
-                    </div>
-                  </div>
-
-                  <a
-                    href="https://productionportal.co"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="ml-4 inline-flex items-center justify-center bg-white text-[#000c38] px-5 py-2.5 rounded-full font-semibold hover:bg-white/90 transition-colors whitespace-nowrap gap-2"
-                  >
-                  Open Web App <span className="text-lg leading-none">→</span>
-                  </a>
-                </div>
-              </motion.div>
-
-              <motion.div {...fadeUp(0.24)} className="mt-8 flex flex-wrap gap-3">
-                {[
-                  { icon: <Zap size={16} className="text-[#ffb905]" />, text: 'Faster daily decisions' },
-                  { icon: <ShieldCheck size={16} className="text-[#ffb905]" />, text: 'Single source of truth' },
-                  { icon: <LineChart size={16} className="text-[#ffb905]" />, text: 'Live line performance' },
-                ].map((p) => (
-                  <div
-                    key={p.text}
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-sm text-white/85"
-                  >
-                    {p.icon}
-                    {p.text}
-                  </div>
-                ))}
-              </motion.div>
-
-              <motion.div {...fadeUp(0.28)} className="mt-10 flex flex-col sm:flex-row gap-3">
-                <a
-                  href="#download"
-                  className="inline-flex items-center justify-center bg-white text-[#000c38] px-7 py-3.5 rounded-md font-semibold hover:bg-white/90 transition-colors shadow-[0_14px_50px_rgba(0,0,0,0.35)]"
-                >
-                  <Download className="mr-2" size={18} />
-                  Download
-                </a>
-
-                <a
-                  href="#video"
-                  className="inline-flex items-center justify-center border border-white/25 text-white px-7 py-3.5 rounded-md font-semibold hover:bg-white/10 transition-colors"
-                >
-                  <PlayCircle className="mr-2" size={18} />
-                  Watch Introdcution
-                </a>
-              </motion.div>
-
-              <motion.div {...fadeUp(0.34)} className="mt-5 text-sm text-white/70">
-                Want onboarding? We can set up roles, workflows, and reporting in one session.
-              </motion.div>
-            </div>
-
-            {/* RIGHT: preview frame */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="relative"
-            >
-              <div className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-4 shadow-[0_20px_80px_rgba(0,0,0,0.45)]">
-                <div className="rounded-xl overflow-hidden border border-white/10 bg-black/20">
-                  <img
-                    src="/images/pp.svg"
-                    alt="Production Portal preview"
-                    className="w-full h-auto"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
+            <Enter delay={0.2} className="mt-8 flex items-center gap-5">
+              <img
+                src="/images/app-icon.svg"
+                alt=""
+                aria-hidden
+                className="h-16 w-16 shrink-0 sm:h-20 sm:w-20"
+                loading="eager"
+              />
+              <div>
+                <h1 className="w-condensed text-3xl font-black uppercase leading-none sm:text-4xl">
+                  Production Portal
+                </h1>
+                <p className="mono-label mt-3 text-paper/60">Powered by WovenTex</p>
               </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+            </Enter>
 
-      {/* FEATURE GRID */}
-      <section className="relative py-10 lg:py-14">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeUp(0)} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: <Layers className="text-[#ffb905]" size={22} />,
-                title: 'One source of truth',
-                text: 'Operators, merchandisers, and management aligned on the same live production data.',
-              },
-              {
-                icon: <Zap className="text-[#ffb905]" size={22} />,
-                title: 'Fewer delays, fewer surprises',
-                text: 'Surface blockers early and resolve them before they cost lead time.',
-              },
-              {
-                icon: <ShieldCheck className="text-[#ffb905]" size={22} />,
-                title: 'Accountability by design',
-                text: 'Daily ownership, clear status, and structured reporting your team actually uses.',
-              },
-            ].map((b) => (
-              <div
-                key={b.title}
-                className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-6 shadow-[0_18px_70px_rgba(0,0,0,0.25)]"
+            <WipeHeading
+              as="p"
+              immediate
+              delay={0.35}
+              className="mt-10 w-condensed text-display-sm font-black uppercase"
+              lines={['Every order. Every line.', <span key="uc" className="text-signal">Under control.</span>]}
+            />
+
+            <Enter as="p" delay={0.6} className="mt-7 max-w-xl text-lg leading-relaxed text-paper/75">
+              Real-time visibility across production lines — updates, blockers, output and
+              accountability in one place. Built for factories and brands that need speed, clarity
+              and control.
+            </Enter>
+
+            <Enter delay={0.75} className="mt-10 flex flex-wrap gap-3">
+              <a href="#download" className={`${portalBtn} bg-signal text-ink hover:bg-paper`}>
+                Download
+                <span className="transition-transform duration-300 ease-brand group-hover/btn:translate-y-0.5">
+                  ↓
+                </span>
+              </a>
+              <a
+                href="https://productionportal.co"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${portalBtn} border border-paper/30 text-paper hover:bg-paper hover:text-portal`}
               >
-                <div className="h-11 w-11 rounded-xl border border-white/15 bg-white/10 flex items-center justify-center">
-                  {b.icon}
-                </div>
-                <div className="mt-4 text-lg font-semibold">{b.title}</div>
-                <div className="mt-2 text-white/75 leading-relaxed">{b.text}</div>
+                Open web app
+                <span className="transition-transform duration-300 ease-brand group-hover/btn:translate-x-1">
+                  ↗
+                </span>
+              </a>
+            </Enter>
+          </div>
+
+          <Enter delay={0.5} className="relative">
+            <img
+              src="/images/portal-app.jpg"
+              alt="Production Portal dashboard on desktop and mobile"
+              className="w-full shadow-[0_40px_100px_-20px_rgba(0,0,0,0.65)]"
+              loading="eager"
+              decoding="async"
+            />
+          </Enter>
+        </div>
+
+        {/* Spec strip */}
+        <Enter delay={0.9} y={0} className="relative border-t border-paper/15 bg-ink/25 backdrop-blur-md">
+          <dl className="shell grid grid-cols-2 divide-paper/10 py-5 sm:grid-cols-4 sm:divide-x">
+            {[
+              { k: 'Platforms', v: 'Windows · macOS · Linux' },
+              { k: 'Web app', v: 'productionportal.co' },
+              { k: 'Release', v: RELEASE },
+              { k: 'Onboarding', v: 'One session' },
+            ].map((s, i) => (
+              <div key={s.k} className={`py-2 sm:px-6 ${i === 0 ? 'sm:pl-0' : ''}`}>
+                <dt className="mono-label text-paper/45">{s.k}</dt>
+                <dd className="mt-1.5 text-sm font-semibold sm:text-base">{s.v}</dd>
               </div>
             ))}
-          </motion.div>
+          </dl>
+        </Enter>
+      </section>
+
+      {/* ========================================================= PILLARS */}
+      <section className="relative py-24 lg:py-32">
+        <div className="shell">
+          <Reveal className="grid gap-px border border-paper/15 bg-paper/15 md:grid-cols-3" each={0.08}>
+            {pillars.map((p) => (
+              <RevealItem key={p.n} className="flex flex-col bg-portal p-8 lg:p-10">
+                <span className="mono-label text-signal">{p.n}</span>
+                <h2 className="mt-6 w-condensed text-2xl font-bold uppercase leading-tight">
+                  {p.title}
+                </h2>
+                <p className="mt-4 text-[15px] leading-relaxed text-paper/70">{p.text}</p>
+              </RevealItem>
+            ))}
+          </Reveal>
         </div>
       </section>
 
-      {/* BIG INFO CARD + LAPTOP OVER (NOT BEHIND) */}
-      <section className="relative py-16 lg:py-20 overflow-hidden">
-        {/* Laptop hugs the right wall and sits ABOVE the translucent card */}
-        <img
-          src="/images/laptop.svg"
-          alt="Production Portal on laptop"
-          className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 h-[700px] w-auto max-w-none pointer-events-none select-none z-30"
-          loading="lazy"
-          decoding="async"
-        />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_26px_100px_rgba(0,0,0,0.45)] overflow-hidden">
-            <div className="p-8 sm:p-10 lg:p-12 lg:pr-[22rem]">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5">
-                <CheckCircle2 size={16} className="text-[#ffb905]" />
-                <span className="text-sm text-white/80">Designed for daily execution</span>
+      {/* ======================================================= DASHBOARD */}
+      <section className="relative border-y border-paper/15 py-24 lg:py-32">
+        <div className="shell grid gap-14 lg:grid-cols-2 lg:gap-20">
+          <Reveal>
+            <RevealItem>
+              <div className="flex items-center gap-4 border-t border-paper/25 pt-4">
+                <span className="mono-label text-signal">Daily execution</span>
               </div>
-
-              <h2 className="mt-5 text-3xl sm:text-4xl font-bold leading-tight">
+            </RevealItem>
+            <RevealItem>
+              <h2 className="mt-6 w-condensed text-display-sm font-black uppercase leading-none">
                 One dashboard for daily production control
               </h2>
-
-              <p className="mt-4 text-white/80 text-lg leading-relaxed max-w-2xl">
-                Production Portal turns factory reporting into a real-time operating system—so managers can
-                see line performance, bottlenecks, and priorities instantly.
+            </RevealItem>
+            <RevealItem>
+              <p className="mt-7 max-w-lg text-lg leading-relaxed text-paper/75">
+                Production Portal turns factory reporting into a real-time operating system, so
+                managers can see line performance, bottlenecks and priorities the moment they matter.
               </p>
-
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  'Live output vs target by line',
-                  'Blockers + escalation tracking',
-                  'Daily summaries & accountability',
-                  'Cleaner communication across teams',
-                ].map((t) => (
-                  <div key={t} className="flex items-start gap-3">
-                    <CheckCircle2 className="text-[#ffb905]" size={20} />
-                    <div className="text-white/90">{t}</div>
-                  </div>
+            </RevealItem>
+            <RevealItem>
+              <ul className="mt-9 space-y-px">
+                {dashboardFeatures.map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-center gap-4 border-t border-paper/15 py-4 text-[15px]"
+                  >
+                    <span className="h-1.5 w-1.5 shrink-0 bg-signal" aria-hidden />
+                    {f}
+                  </li>
                 ))}
+              </ul>
+            </RevealItem>
+          </Reveal>
+
+          <Reveal>
+            <RevealItem>
+              <div className="ticked overflow-hidden border border-paper/15">
+                <div className="relative w-full bg-ink/40" style={{ paddingTop: '56.25%' }}>
+                  <iframe
+                    className="absolute inset-0 h-full w-full"
+                    src="https://www.youtube.com/embed/cHSR_1I-IkQ"
+                    title="Introducing Production Portal"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
               </div>
-
-              <div className="mt-10 flex flex-col sm:flex-row gap-3">
-                <a
-                  href="#download"
-                  className="inline-flex items-center justify-center bg-white text-[#000c38] px-7 py-3.5 rounded-md font-semibold hover:bg-white/90 transition-colors shadow-[0_14px_50px_rgba(0,0,0,0.35)]"
-                >
-                  <Download className="mr-2" size={18} />
-                  Download Production Portal
-                </a>
-
-                <a
-                  href="#video"
-                  className="inline-flex items-center justify-center border border-white/25 text-white px-7 py-3.5 rounded-md font-semibold hover:bg-white/10 transition-colors"
-                >
-                  <PlayCircle className="mr-2" size={18} />
-                  Watch walkthrough
-                </a>
-              </div>
-
-              <div className="mt-4 text-sm text-white/60">
-                Tip: Want this deployed to your factory? We can onboard teams and workflows quickly.
-              </div>
-            </div>
-
-            <div className="h-1 w-full bg-gradient-to-r from-transparent via-[#ffb905]/60 to-transparent" />
-          </div>
+              <p className="mono-label mt-4 text-paper/50">
+                Introduction — core features in three minutes
+              </p>
+            </RevealItem>
+          </Reveal>
         </div>
       </section>
 
-      {/* DOWNLOADS */}
-      <section id="download" className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between gap-4 flex-wrap mb-10">
-            <div>
-              <h2 className="text-3xl font-bold">Download Production Portal</h2>
-              <p className="mt-2 text-white/80 max-w-2xl">
-                Choose your operating system. These links download the official installers from GitHub Releases.
-              </p>
-            </div>
+      {/* ======================================================== DOWNLOADS */}
+      <section id="download" className="relative scroll-mt-28 py-24 lg:py-32">
+        <div className="shell">
+          <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+            <Reveal className="max-w-2xl">
+              <RevealItem>
+                <div className="border-t border-paper/25 pt-4">
+                  <span className="mono-label text-signal">Get the app</span>
+                </div>
+              </RevealItem>
+              <RevealItem>
+                <h2 className="mt-6 w-condensed text-display-sm font-black uppercase leading-none">
+                  Download Production Portal
+                </h2>
+              </RevealItem>
+              <RevealItem>
+                <p className="mt-6 text-lg leading-relaxed text-paper/70">
+                  Official installers, served from GitHub Releases. Pick your operating system.
+                </p>
+              </RevealItem>
+            </Reveal>
 
-            <Link to="/contact" className="inline-flex items-center text-white font-semibold hover:underline">
-              Need onboarding? Contact us <ArrowRight className="ml-1" size={16} />
-            </Link>
+            <Reveal>
+              <RevealItem>
+                <Link
+                  to="/contact"
+                  className="link-swipe mono-label whitespace-nowrap text-paper hover:text-signal"
+                >
+                  Need onboarding? Contact us →
+                </Link>
+              </RevealItem>
+            </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Reveal className="mt-14 grid gap-px border border-paper/15 bg-paper/15 md:grid-cols-3" each={0.08}>
             {downloads.map((d) => (
-              <div
-                key={d.os}
-                className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-6 shadow-[0_18px_70px_rgba(0,0,0,0.25)]"
-              >
-                <div className="flex items-center gap-3 font-semibold text-white">
-                  <span className="h-11 w-11 rounded-xl border border-white/15 bg-white/10 flex items-center justify-center">
+              <RevealItem key={d.os} className="flex flex-col bg-portal p-8">
+                <div className="flex items-center gap-4 border-b border-paper/15 pb-6">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center border border-paper/25 text-signal">
                     {d.icon}
                   </span>
                   <div>
-                    <div className="text-lg">{d.os}</div>
-                    <div className="text-xs text-white/60 flex items-center gap-1">
-                      <Package size={14} className="text-[#ffb905]" />
-                      Release {RELEASE_TAG.replace('desktop-', '')}
-                    </div>
+                    <div className="w-condensed text-xl font-bold uppercase leading-none">{d.os}</div>
+                    <div className="mono-label mt-2 text-paper/45">Release {RELEASE}</div>
                   </div>
                 </div>
 
-                <div className="mt-5 flex flex-col gap-3">
-                  {d.buttons.map((btn) => {
-                    const isPrimary = btn.variant === 'primary';
-                    return (
-                      <a
-                        key={btn.label}
-                        href={btn.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={
-                          isPrimary
-                            ? 'inline-flex items-center justify-center bg-white text-[#000c38] px-4 py-3 rounded-md font-semibold hover:bg-white/90 transition-colors'
-                            : 'inline-flex items-center justify-center border border-white/25 text-white px-4 py-3 rounded-md font-semibold hover:bg-white/10 transition-colors'
-                        }
-                      >
-                        <Download className="mr-2" size={16} />
-                        {btn.label}
-                      </a>
-                    );
-                  })}
+                <div className="mt-6 flex flex-col gap-2.5">
+                  {d.buttons.map((b) => (
+                    <a
+                      key={b.label}
+                      href={b.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center justify-between gap-3 px-5 py-3.5 text-[13px] font-semibold uppercase tracking-label transition-colors duration-300 ${
+                        b.primary
+                          ? 'bg-signal text-ink hover:bg-paper'
+                          : 'border border-paper/25 text-paper hover:bg-paper hover:text-portal'
+                      }`}
+                    >
+                      {b.label}
+                      <span aria-hidden>↓</span>
+                    </a>
+                  ))}
                 </div>
 
-                {d.note && <div className="mt-4 text-sm text-white/70">{d.note}</div>}
-              </div>
+                <p className="mono-label mt-auto pt-6 text-paper/45">{d.note}</p>
+              </RevealItem>
             ))}
-          </div>
+          </Reveal>
 
-          <div className="mt-8 text-sm text-white/60">
-            Tip: If downloads don’t start, your browser may be blocking redirects.
-          </div>
+          <p className="mono-label mt-8 text-paper/45">
+            If a download doesn’t start, your browser may be blocking the redirect.
+          </p>
         </div>
       </section>
 
-  {/* VIDEO */}
-<section id="video" className="py-16">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-10">
-      <h2 className="text-3xl font-bold">Introducing Production Portal</h2>
-      <p className="mt-2 text-white/80"> Learn about our core features in 3 minutes.</p>
-    </div>
+      {/* ======================================================= WALKTHROUGH */}
+      <section className="relative border-t border-paper/15 py-24 lg:py-32">
+        <div className="shell">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <RevealItem>
+              <span className="mono-label text-signal">Walkthrough playlist</span>
+            </RevealItem>
+            <RevealItem>
+              <h2 className="mt-6 w-condensed text-display-sm font-black uppercase leading-none">
+                A step-by-step guide
+              </h2>
+            </RevealItem>
+          </Reveal>
 
-    <div className="rounded-3xl border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_26px_100px_rgba(0,0,0,0.45)] overflow-hidden">
-      <div className="relative w-full bg-black/40" style={{ paddingTop: '56.25%' }}>
-        <iframe
-          className="absolute inset-0 w-full h-full"
-          src="https://www.youtube.com/embed/cHSR_1I-IkQ"
-          title="Introducing Production Portal"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        />
-      </div>
-    </div>
-  </div>
-</section>
+          <Reveal className="mt-14">
+            <RevealItem>
+              <div className="ticked overflow-hidden border border-paper/15">
+                <div className="relative w-full bg-ink/40" style={{ paddingTop: '56.25%' }}>
+                  <iframe
+                    className="absolute inset-0 h-full w-full"
+                    src="https://www.youtube.com/embed/videoseries?list=PLlD7KVUUzTsB3-tFbyMdDUBLG_nV765BD"
+                    title="Production Portal walkthrough playlist"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            </RevealItem>
+          </Reveal>
+        </div>
+      </section>
 
-  {/* VIDEO */}
-<section id="video" className="py-16">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-10">
-      <h2 className="text-3xl font-bold">Walkthrough Playlist</h2>
-      <p className="mt-2 text-white/80">A step-by-step guide on the Production Portal</p>
-    </div>
-
-    <div className="rounded-3xl border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_26px_100px_rgba(0,0,0,0.45)] overflow-hidden">
-      <div className="relative w-full bg-black/40" style={{ paddingTop: '56.25%' }}>
-        <iframe
-          className="absolute inset-0 w-full h-full"
-          src="https://www.youtube.com/embed/videoseries?list=PLlD7KVUUzTsB3-tFbyMdDUBLG_nV765BD"
-          title="Introducing Production Portal"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        />
-      </div>
-    </div>
-  </div>
-</section>
-      
-      {/* CTA */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold">Want a guided setup for your factory?</h2>
-          <p className="mt-3 text-white/80">
-            We can onboard your team, customize workflows, and get consistent daily reporting live.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/contact"
-              className="bg-[#ffb905] text-black px-8 py-3 rounded-md font-semibold hover:bg-[#ffb905]/90 transition-colors duration-300 shadow-[0_14px_50px_rgba(0,0,0,0.35)]"
-            >
+      {/* ============================================================== CTA */}
+      <section className="relative border-t border-paper/15 py-20 lg:py-24">
+        <div className="shell flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
+          <h2 className="w-condensed max-w-xl text-display-sm font-black uppercase leading-none">
+            Want a guided setup for your factory?
+          </h2>
+          <div className="flex flex-wrap gap-3">
+            <Link to="/contact" className={`${portalBtn} bg-signal text-ink hover:bg-paper`}>
               Request onboarding
+              <span className="transition-transform duration-300 ease-brand group-hover/btn:translate-x-1">
+                →
+              </span>
             </Link>
             <a
               href="#download"
-              className="border border-white/25 text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-[#000c38] transition-colors duration-300"
+              className={`${portalBtn} border border-paper/30 text-paper hover:bg-paper hover:text-portal`}
             >
               Download now
+              <span aria-hidden>↓</span>
             </a>
           </div>
         </div>
       </section>
     </div>
   );
-};
-
-export default ProductionPortal;
+}
