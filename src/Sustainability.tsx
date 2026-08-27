@@ -200,8 +200,10 @@ export default function Sustainability() {
           <Reveal className="mt-16 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2 lg:grid-cols-3" each={0.05}>
             {sdgGoals.map((g) => (
               <RevealItem key={g.number} className="flex gap-5 bg-paper p-8">
-                <span className="w-condensed shrink-0 text-4xl font-black leading-none text-signal">
-                  {String(g.number).padStart(2, '0')}
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-signal">
+                  <span className="w-condensed text-xl font-black leading-none text-ink">
+                    {String(g.number).padStart(2, '0')}
+                  </span>
                 </span>
                 <div>
                   <h3 className="w-condensed text-lg font-bold uppercase leading-tight">
