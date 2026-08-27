@@ -18,8 +18,9 @@ const PrivacyPolicy = () => {
         lede="How WovenTex LTD collects, uses and protects personal information across our website and the Production Portal."
       />
       <section className="bg-paper py-20 lg:py-28">
-        <div className="shell max-w-3xl">
-          <div className="space-y-12 leading-relaxed text-ink-500">
+        <div className="shell">
+          {/* Legal copy wants a short measure — cap it inside the shell */}
+          <div className="max-w-3xl space-y-12 leading-relaxed text-ink-500">
             {/* Intro */}
             <section>
               <h2 className="w-condensed border-t border-ink/15 pt-5 text-2xl font-bold uppercase leading-tight text-ink">1. Who this policy applies to</h2>

@@ -171,7 +171,7 @@ export function Section({
   const tones: Record<string, string> = {
     paper: 'bg-paper text-ink',
     'paper-2': 'bg-paper-200 text-ink',
-    ink: 'bg-ink text-paper',
+    ink: 'bg-ink text-paper grain',
     none: '',
   };
   return (
@@ -198,6 +198,7 @@ export function SectionHead({
   align = 'left',
   tone = 'light',
   className = '',
+  immediate = false,
 }: {
   index?: string;
   label: string;
@@ -206,6 +207,9 @@ export function SectionHead({
   align?: 'left' | 'center';
   tone?: 'light' | 'dark';
   className?: string;
+  /** For heads inside a sticky/pinned container, where scroll-triggering
+      the wipe is unreliable — play it on mount instead. */
+  immediate?: boolean;
 }) {
   const dark = tone === 'dark';
   return (
@@ -227,6 +231,7 @@ export function SectionHead({
           as="h2"
           lines={title}
           delay={0.05}
+          immediate={immediate}
           className="mt-6 font-black w-condensed text-display-sm uppercase"
         />
         {lede && (

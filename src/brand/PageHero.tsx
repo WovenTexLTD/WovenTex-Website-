@@ -27,7 +27,7 @@ export default function PageHero({
   tone?: 'photo' | 'plain';
 }) {
   return (
-    <section className="relative flex min-h-[64svh] flex-col justify-end overflow-hidden bg-ink text-paper">
+    <section className="grain relative flex min-h-[64svh] flex-col justify-end overflow-hidden bg-ink text-paper">
       {tone === 'photo' && image && (
         <div className="absolute inset-0">
           <img

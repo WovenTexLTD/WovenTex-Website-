@@ -98,7 +98,7 @@ export default function Clients() {
       </Section>
 
       {/* ============================================================== CTA */}
-      <section className="relative overflow-hidden bg-ink text-paper">
+      <section className="grain relative overflow-hidden bg-ink text-paper">
         <img
           src="/images/cutting.jpg"
           alt=""

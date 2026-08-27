@@ -86,7 +86,7 @@ export default function ProductionPortal() {
   return (
     <div className="bg-portal text-paper">
       {/* ============================================================ HERO */}
-      <section className="relative flex min-h-[80svh] flex-col justify-end overflow-hidden">
+      <section className="grain relative flex min-h-[80svh] flex-col justify-end overflow-hidden">
         <div
           className="absolute inset-0 opacity-70"
           style={{

@@ -14,6 +14,7 @@ import {
 } from './brand/ui';
 import { EASE } from './brand/motion';
 import useMeta from './brand/useMeta';
+import ProcessLine from './brand/ProcessLine';
 
 /* ---------------------------------------------------------------- data --- */
 
@@ -127,7 +128,7 @@ export default function Home() {
   return (
     <>
       {/* ============================================================ HERO */}
-      <section ref={heroRef} className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink">
+      <section ref={heroRef} className="grain relative flex min-h-[100svh] flex-col overflow-hidden bg-ink">
         <motion.div
           className="absolute inset-0"
           style={reduce ? undefined : { y: heroY }}
@@ -261,7 +262,7 @@ export default function Home() {
       </Section>
 
       {/* =================================================== PRODUCTION PORTAL */}
-      <section className="relative overflow-hidden bg-portal text-paper">
+      <section className="grain relative overflow-hidden bg-portal text-paper">
         <div
           className="absolute inset-0 opacity-[0.18]"
           style={{
@@ -346,34 +347,13 @@ export default function Home() {
       </section>
 
       {/* ========================================================== PROCESS */}
-      <Section tone="ink" texture className="py-24 lg:py-32">
-        <div className="shell">
-          <SectionHead
-            index="03 / 05"
-            label="How it runs"
-            tone="dark"
-            title={['From tech pack', 'to container']}
-            lede="A twelve-week rhythm, with a written approval gate at every handover. You always know which stage your order is in."
-          />
-
-          <Reveal className="mt-16 grid gap-px bg-paper/15 sm:grid-cols-2 lg:grid-cols-4" each={0.09}>
-            {process.map((p) => (
-              <RevealItem key={p.step} className="group relative bg-ink p-8 lg:p-9">
-                <div className="flex items-baseline justify-between">
-                  <span className="w-condensed text-7xl font-black leading-none text-paper/20 transition-colors duration-500 group-hover:text-signal lg:text-8xl">
-                    {p.step}
-                  </span>
-                  <span className="mono-label text-paper/35">{p.meta}</span>
-                </div>
-                <h3 className="mt-8 w-condensed text-xl font-bold uppercase leading-tight text-paper">
-                  {p.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-paper/55">{p.text}</p>
-              </RevealItem>
-            ))}
-          </Reveal>
-        </div>
-      </Section>
+      <ProcessLine
+        steps={process}
+        index="03 / 05"
+        label="How it runs"
+        title={['From tech pack', 'to container']}
+        lede="A twelve-week rhythm, with a written approval gate at every handover. You always know which stage your order is in."
+      />
 
       {/* ======================================================= CATEGORIES */}
       <Section tone="paper" className="py-24 lg:py-32">
@@ -444,7 +424,7 @@ export default function Home() {
       </Section>
 
       {/* ============================================================== CTA */}
-      <section className="relative overflow-hidden bg-ink text-paper">
+      <section className="grain relative overflow-hidden bg-ink text-paper">
         <img
           src="/images/factory.jpg"
           alt=""
