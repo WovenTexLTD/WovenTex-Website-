@@ -1,206 +1,209 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Users, Globe, Award, Handshake } from 'lucide-react';
+import PageHero from './brand/PageHero';
+import {
+  Button,
+  Reveal,
+  RevealItem,
+  Section,
+  SectionHead,
+  SpecRow,
+  Stat,
+} from './brand/ui';
 
-const About = () => {
-  const values = [
-    {
-      icon: Users,
-      title: 'Expert Leadership',
-      description:
-        'Our team brings decades of experience in global apparel manufacturing and quality control.',
-    },
-    {
-      icon: Globe,
-      title: 'Global Reach',
-      description:
-        'Direct factory access with worldwide shipping capabilities and local market knowledge.',
-    },
-    {
-      icon: Award,
-      title: 'Quality Assurance',
-      description:
-        'Advanced QC systems and certifications ensure every piece meets international standards.',
-    },
-    {
-      icon: Handshake,
-      title: 'Trusted Partnerships',
-      description:
-        'Building long-term relationships with brands through transparency and reliability.',
-    },
-  ];
+const values = [
+  {
+    n: '01',
+    title: 'Expert leadership',
+    text: 'Decades inside global apparel manufacturing and quality control — people who have run lines, not just read reports.',
+  },
+  {
+    n: '02',
+    title: 'Global reach',
+    text: 'Direct factory access with worldwide shipping and the local market knowledge to route each programme correctly.',
+  },
+  {
+    n: '03',
+    title: 'Quality assurance',
+    text: 'Advanced QC systems and certifications that hold every piece to international standard, not to a claim.',
+  },
+  {
+    n: '04',
+    title: 'Trusted partnerships',
+    text: 'Long-term relationships built on transparency and reliability — the reason brands stay through repeat seasons.',
+  },
+];
 
+const gallery = [
+  { src: '/images/cutting.jpg', alt: 'Operators laying and cutting fabric', span: 'row-span-2' },
+  { src: '/images/machine.jpg', alt: 'Industrial finishing machinery on the floor', span: '' },
+  { src: '/images/guys.jpg', alt: 'Production team working a line', span: '' },
+];
+
+export default function About() {
   return (
-    <div className="pt-16 lg:pt-20">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gray-900 text-white overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          {/* no /public in the path */}
-          <img
-            src="/images/factory.png"
-            alt="Professional manufacturing facility"
-            className="w-full h-full object-cover"
+    <>
+      <PageHero
+        eyebrow="About WovenTex LTD"
+        title={['A London agency', 'with its hands', 'inside the factory']}
+        lede="WovenTex LTD exists to close the distance between an international brand and the floor where its garments are actually made."
+        image="/images/factory.jpg"
+        imageAlt="Sewing floor of a partner garment factory"
+        imagePosition="60% center"
+        specs={[
+          { k: 'Founded', v: 'London, UK' },
+          { k: 'Network', v: 'Bangladesh + partners' },
+          { k: 'Capacity', v: '500,000 pcs / month' },
+          { k: 'Experience', v: '25+ years' },
+        ]}
+      />
+
+      {/* ============================================================ STORY */}
+      <Section tone="paper" className="py-24 lg:py-32">
+        <div className="shell grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+          <SectionHead
+            index="01 / 03"
+            label="Our story"
+            title={['Built to bridge', 'a gap']}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
-        </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl lg:text-6xl font-bold mb-6"
-          >
-            About <span className="text-yellow-400">WovenTex</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto"
-          >
-            UK-based apparel sourcing agency with direct access to one of Bangladesh&apos;s largest
-            certified garment manufacturers.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* Our Story */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6 max-w-4xl mx-auto text-center"
-          >
-            <h2 className="text-3xl font-bold text-gray-900">Our Story</h2>
-            <p className="text-gray-600">
+          <Reveal className="space-y-6 text-lg leading-relaxed text-ink-500">
+            <RevealItem as="p">
               WovenTex LTD was founded to bridge the gap between international fashion brands and
               world-class manufacturing facilities. As a UK-based agency, we coordinate production
-              through our network of factories, ensuring reliable capacity, certified processes, and
+              through our network of factories, ensuring reliable capacity, certified processes and
               transparent communication.
-            </p>
-            <p className="text-gray-600">
+            </RevealItem>
+            <RevealItem as="p">
               Our leadership team’s direct access to production, combined with extensive industry
-              experience, enables us to deliver exceptional quality, competitive pricing, and
-              reliable delivery schedules for brands worldwide.
-            </p>
-            <p className="text-gray-600">
-              From our London headquarters, we coordinate with global clients while maintaining
-              hands-on oversight of production processes, ensuring every garment meets the highest
-              international standards.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+              experience, lets us deliver exceptional quality, competitive pricing and reliable
+              delivery schedules for brands worldwide.
+            </RevealItem>
+            <RevealItem as="p">
+              From our London headquarters we coordinate with global clients while keeping hands-on
+              oversight of production, so every garment meets the highest international standards.
+            </RevealItem>
 
-      {/* Values */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              Why Choose WovenTex
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              What sets WovenTex apart isn’t just what we offer—it’s how we deliver it.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.08 }}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                  <value.icon className="text-yellow-700" size={24} />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Factory Overview */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6"
-            >
-              <h2 className="text-3xl font-bold text-gray-900">Our Network of Factories</h2>
-              <p className="text-gray-600">
-                Our connected facilities provide large-scale capacity with rigorous compliance and
-                quality control. We align factory strengths to each program to ensure efficiency,
-                consistency, and on-time delivery.
-              </p>
-
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <div className="text-2xl font-bold text-gray-900">500,000+</div>
-                  <div className="text-sm text-gray-600">Monthly Capacity</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-900">15+</div>
-                  <div className="text-sm text-gray-600">Certifications</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-900">50+</div>
-                  <div className="text-sm text-gray-600">Global Clients</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-900">25+</div>
-                  <div className="text-sm text-gray-600">Years Experience</div>
-                </div>
+            <RevealItem>
+              <div className="pt-4">
+                <Button to="/contact" tone="ghost">
+                  Talk to the team
+                </Button>
               </div>
-            </motion.div>
+            </RevealItem>
+          </Reveal>
+        </div>
+      </Section>
 
-            {/* Image Grid — specified images */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="grid grid-cols-2 gap-4"
-            >
-              <img
-                src="/images/cutting.jpg"
-                alt="Fabric cutting process"
-                className="w-full h-48 object-cover rounded-lg shadow-md"
-              />
-              <img
-                src="/images/man.jpg"
-                alt="Operator inspecting garment"
-                className="w-full h-48 object-cover rounded-lg shadow-md mt-8"
-              />
-              <img
-                src="/images/machine.jpg"
-                alt="Industrial sewing machine"
-                className="w-full h-48 object-cover rounded-lg shadow-md -mt-8"
-              />
-              <img
-                src="/images/guys.jpg"
-                alt="Production team on the floor"
-                className="w-full h-48 object-cover rounded-lg shadow-md"
-              />
-            </motion.div>
+      {/* =========================================================== VALUES */}
+      <Section tone="paper-2" texture className="py-24 lg:py-32">
+        <div className="shell">
+          <SectionHead
+            index="02 / 03"
+            label="What sets us apart"
+            title={['Why brands', 'choose WovenTex']}
+            lede="What sets WovenTex apart isn’t only what we offer — it’s how we deliver it."
+          />
+
+          <Reveal className="mt-16 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2 lg:grid-cols-4" each={0.07}>
+            {values.map((v) => (
+              <RevealItem
+                key={v.n}
+                className="group flex flex-col bg-paper p-8 transition-colors duration-500 ease-brand hover:bg-ink"
+              >
+                <span className="mono-label text-signal-700 transition-colors duration-500 group-hover:text-signal">
+                  {v.n}
+                </span>
+                <h3 className="mt-6 w-condensed text-xl font-bold uppercase leading-tight transition-colors duration-500 group-hover:text-paper">
+                  {v.title}
+                </h3>
+                <p className="mt-4 text-[15px] leading-relaxed text-ink-400 transition-colors duration-500 group-hover:text-paper/70">
+                  {v.text}
+                </p>
+                <span className="mt-auto block h-[2px] w-10 origin-left bg-signal pt-8 transition-transform duration-500 ease-brand group-hover:scale-x-[2.4]" />
+              </RevealItem>
+            ))}
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* ========================================================== NETWORK */}
+      <Section tone="ink" className="py-24 lg:py-32">
+        <div className="shell grid gap-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <SectionHead
+              index="03 / 03"
+              label="The network"
+              tone="dark"
+              title={['Our network', 'of factories']}
+              lede="Connected facilities give us large-scale capacity with rigorous compliance. We align factory strengths to each programme so efficiency, consistency and delivery hold together."
+            />
+
+            <Reveal className="mt-12 grid grid-cols-2 gap-x-10 gap-y-10">
+              <RevealItem>
+                <Stat value="500,000+" label="Monthly capacity" tone="dark" />
+              </RevealItem>
+              <RevealItem>
+                <Stat value="15+" label="Certifications" tone="dark" />
+              </RevealItem>
+              <RevealItem>
+                <Stat value="50+" label="Global clients" tone="dark" />
+              </RevealItem>
+              <RevealItem>
+                <Stat value="25+" label="Years experience" tone="dark" />
+              </RevealItem>
+            </Reveal>
+
+            <Reveal className="mt-14">
+              <RevealItem>
+                <dl>
+                  <SpecRow term="Lead time" tone="dark">
+                    45–60 days woven · 30–45 days knits · rush schedules on request
+                  </SpecRow>
+                  <SpecRow term="MOQ" tone="dark">
+                    2,000 to 50,000+ pieces per style
+                  </SpecRow>
+                  <SpecRow term="Fabric sourcing" tone="dark">
+                    China, India, Pakistan and local mills
+                  </SpecRow>
+                </dl>
+              </RevealItem>
+            </Reveal>
+          </div>
+
+          <Reveal className="grid grid-cols-2 gap-3 lg:gap-4" each={0.1}>
+            {gallery.map((g) => (
+              <RevealItem key={g.src} className={g.span}>
+                <div className="ticked h-full overflow-hidden">
+                  <img
+                    src={g.src}
+                    alt={g.alt}
+                    className="h-full min-h-[13rem] w-full object-cover transition-transform duration-[900ms] ease-brand hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </RevealItem>
+            ))}
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* ============================================================== CTA */}
+      <Section tone="paper" className="border-t border-ink/10 py-20 lg:py-24">
+        <div className="shell flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
+          <h2 className="w-condensed max-w-xl text-display-sm font-black uppercase leading-none">
+            Want to see what we could make for you?
+          </h2>
+          <div className="flex flex-wrap gap-3">
+            <Button to="/capabilities" tone="ink">
+              View capabilities
+            </Button>
+            <Button to="/contact" tone="signal">
+              Request a quote
+            </Button>
           </div>
         </div>
-      </section>
-    </div>
+      </Section>
+    </>
   );
-};
-
-export default About;
+}

@@ -1,277 +1,228 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Leaf, Users, Droplets, Recycle, Heart, Shield } from 'lucide-react';
+import PageHero from './brand/PageHero';
+import { Button, Counter, Reveal, RevealItem, Section, SectionHead, SpecRow } from './brand/ui';
 
-const Sustainability = () => {
-  const initiatives = [
-    {
-      icon: Leaf,
-      title: 'Organic Materials',
-      description: 'GOTS certified organic cotton and natural fiber sourcing with traceability',
-      impact: '60% organic content across product lines',
-      color: 'green'
-    },
-    {
-      icon: Recycle,
-      title: 'Recycled Content',
-      description: 'GRS and RCS certified recycled polyester and regenerated fiber programs',
-      impact: '40% recycled materials integration',
-      color: 'blue'
-    },
-    {
-      icon: Droplets,
-      title: 'Water Conservation',
-      description: 'Advanced water treatment and recycling systems reducing consumption by 50%',
-      impact: '2.5M liters saved annually',
-      color: 'cyan'
-    },
-    {
-      icon: Users,
-      title: 'Fair Labor',
-      description: 'BSCI and Sedex verified ethical working conditions and fair wage standards',
-      impact: '5,000+ workers benefited',
-      color: 'orange'
-    },
-    {
-      icon: Heart,
-      title: 'Worker Welfare',
-      description: 'Healthcare, education, and skill development programs for all employees',
-      impact: '100% healthcare coverage',
-      color: 'pink'
-    },
-    {
-      icon: Shield,
-      title: 'Chemical Safety',
-      description: 'OEKO-TEX certified chemical management and worker safety protocols',
-      impact: 'Zero harmful chemicals',
-      color: 'purple'
-    }
-  ];
+const initiatives = [
+  {
+    n: '01',
+    title: 'Organic materials',
+    text: 'GOTS certified organic cotton and natural fibre sourcing with full traceability.',
+    impact: '60% organic content across product lines',
+  },
+  {
+    n: '02',
+    title: 'Recycled content',
+    text: 'GRS and RCS certified recycled polyester and regenerated fibre programmes.',
+    impact: '40% recycled materials integration',
+  },
+  {
+    n: '03',
+    title: 'Water conservation',
+    text: 'Advanced treatment and recycling systems cutting consumption by half.',
+    impact: '2.5M litres saved annually',
+  },
+  {
+    n: '04',
+    title: 'Fair labour',
+    text: 'BSCI and Sedex verified working conditions and fair wage standards.',
+    impact: '5,000+ workers benefited',
+  },
+  {
+    n: '05',
+    title: 'Worker welfare',
+    text: 'Healthcare, education and skill development programmes for all employees.',
+    impact: '100% healthcare coverage',
+  },
+  {
+    n: '06',
+    title: 'Chemical safety',
+    text: 'OEKO-TEX certified chemical management and worker safety protocols.',
+    impact: 'Zero harmful chemicals',
+  },
+];
 
-  const metrics = [
-    { label: 'Carbon Footprint Reduction', value: '35%', trend: 'down' },
-    { label: 'Renewable Energy Usage', value: '80%', trend: 'up' },
-    { label: 'Waste Diversion Rate', value: '95%', trend: 'up' },
-    { label: 'Water Usage Efficiency', value: '50%', trend: 'down' }
-  ];
+const metrics = [
+  { label: 'Carbon footprint reduction', value: '35%', dir: 'down' as const },
+  { label: 'Renewable energy usage', value: '80%', dir: 'up' as const },
+  { label: 'Waste diversion rate', value: '95%', dir: 'up' as const },
+  { label: 'Water usage efficiency', value: '50%', dir: 'down' as const },
+];
 
-  const sdgGoals = [
-    { number: 3, title: 'Good Health and Well-being', description: 'Safe working conditions and healthcare access' },
-    { number: 6, title: 'Clean Water and Sanitation', description: 'Water treatment and conservation systems' },
-    { number: 8, title: 'Decent Work and Economic Growth', description: 'Fair wages and skill development programs' },
-    { number: 12, title: 'Responsible Consumption', description: 'Sustainable materials and circular economy practices' },
-    { number: 13, title: 'Climate Action', description: 'Carbon reduction and renewable energy initiatives' },
-    { number: 15, title: 'Life on Land', description: 'Organic farming support and biodiversity protection' }
-  ];
+const sdgGoals = [
+  { number: 3, title: 'Good health and well-being', description: 'Safe working conditions and healthcare access.' },
+  { number: 6, title: 'Clean water and sanitation', description: 'Water treatment and conservation systems.' },
+  { number: 8, title: 'Decent work and growth', description: 'Fair wages and skill development programmes.' },
+  { number: 12, title: 'Responsible consumption', description: 'Sustainable materials and circular practices.' },
+  { number: 13, title: 'Climate action', description: 'Carbon reduction and renewable energy initiatives.' },
+  { number: 15, title: 'Life on land', description: 'Organic farming support and biodiversity protection.' },
+];
 
-  const getColorClasses = (color: string) => {
-    const colors = {
-      green: 'bg-gray-100 text-gray-600',
-      blue: 'bg-gray-100 text-gray-600',
-      cyan: 'bg-gray-100 text-gray-600',
-      orange: 'bg-gray-100 text-gray-600',
-      pink: 'bg-gray-100 text-gray-600',
-      purple: 'bg-gray-100 text-gray-600'
-    };
-    return colors[color as keyof typeof colors] || colors.green;
-  };
-
+export default function Sustainability() {
   return (
-    <div className="pt-16 lg:pt-20">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-green-900 to-green-700 text-white overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.pexels.com/photos/7180715/pexels-photo-7180715.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-            alt="Sustainable manufacturing practices"
-            className="w-full h-full object-cover opacity-30"
+    <>
+      <PageHero
+        eyebrow="Sustainability & ethics"
+        title={['Made with', 'integrity']}
+        lede="Manufacturing with integrity through ethical labour practices, environmental responsibility and sustainable material choices — measured, audited and published."
+        image="/images/fibers.jpg"
+        imageAlt="Raw natural fibre before spinning"
+        imagePosition="50% 50%"
+        specs={[
+          { k: 'Organic content', v: '60% of lines' },
+          { k: 'Recycled content', v: '40% integration' },
+          { k: 'Renewable energy', v: '80% of usage' },
+          { k: 'Waste diverted', v: '95%' },
+        ]}
+      />
+
+      {/* ===================================================== INITIATIVES */}
+      <Section tone="paper" className="py-24 lg:py-32">
+        <div className="shell">
+          <SectionHead
+            index="01 / 04"
+            label="Initiatives"
+            title={['Programmes with', 'numbers attached']}
+            lede="Six programmes addressing environmental impact, social responsibility and ethical manufacturing — each with a figure we hold ourselves to."
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-green-900/90 to-green-700/80"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative z-10 text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-4xl lg:text-6xl font-bold mb-6"
-            >
-              <span className="text-green-300">Sustainability</span> & Ethics
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg lg:text-xl text-green-100 max-w-3xl mx-auto"
-            >
-              Manufacturing with integrity through ethical labor practices, environmental 
-              responsibility, and sustainable material choices
-            </motion.p>
-          </div>
-        </div>
-      </section>
 
-      {/* Key Initiatives */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              Our Sustainability Initiatives
-            </h2>
-            <p className="text-lg text-gray-600">
-              Comprehensive programs addressing environmental impact, social responsibility, and ethical manufacturing
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {initiatives.map((initiative, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gray-50 p-6 rounded-lg hover:shadow-lg transition-all duration-300"
+          <Reveal className="mt-16 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2 lg:grid-cols-3" each={0.06}>
+            {initiatives.map((i) => (
+              <RevealItem
+                key={i.n}
+                className="group flex flex-col bg-paper p-8 transition-colors duration-500 ease-brand hover:bg-ink lg:p-10"
               >
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${getColorClasses(initiative.color)}`}>
-                  <initiative.icon size={24} />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {initiative.title}
+                <span className="mono-label text-signal-700 transition-colors duration-500 group-hover:text-signal">
+                  {i.n}
+                </span>
+                <h3 className="mt-6 w-condensed text-2xl font-bold uppercase leading-tight transition-colors duration-500 group-hover:text-paper">
+                  {i.title}
                 </h3>
-                <p className="text-gray-600 mb-4">{initiative.description}</p>
-                <div className="bg-white p-3 rounded border-l-4 border-green-500">
-                  <span className="text-sm font-medium text-green-700">
-                    Impact: {initiative.impact}
-                  </span>
-                </div>
-              </motion.div>
+                <p className="mt-4 text-[15px] leading-relaxed text-ink-400 transition-colors duration-500 group-hover:text-paper/70">
+                  {i.text}
+                </p>
+                <p className="mono-label mt-auto border-l-2 border-signal pl-4 pt-8 text-ink-500 transition-colors duration-500 group-hover:text-signal">
+                  {i.impact}
+                </p>
+              </RevealItem>
             ))}
-          </div>
+          </Reveal>
         </div>
-      </section>
+      </Section>
 
-      {/* Environmental Metrics */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              Environmental Performance
-            </h2>
-            <p className="text-lg text-gray-600">
-              Measurable progress toward our sustainability goals
-            </p>
-          </div>
+      {/* ========================================================= METRICS */}
+      <Section tone="ink" texture className="py-24 lg:py-32">
+        <div className="shell">
+          <SectionHead
+            index="02 / 04"
+            label="Environmental performance"
+            tone="dark"
+            title={['Measurable', 'progress']}
+          />
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {metrics.map((metric, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-6 rounded-lg shadow-md text-center"
-              >
-                <div className={`text-3xl font-bold mb-2 ${
-                  metric.trend === 'down' ? 'text-yellow-500' : 'text-gray-900'
-                }`}>
-                  {metric.value}
+          <Reveal className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4" each={0.08}>
+            {metrics.map((m) => (
+              <RevealItem key={m.label} className="border-t border-paper/20 pt-5">
+                <Counter
+                  value={m.value}
+                  className="block w-condensed text-5xl font-black leading-none text-signal lg:text-6xl"
+                />
+                <div className="mono-label mt-4 text-paper/60">{m.label}</div>
+                <div className="mono-label mt-2 text-paper/35">
+                  {m.dir === 'down' ? '↓ Reduced' : '↑ Improved'}
                 </div>
-                <div className="text-sm text-gray-600 mb-2">{metric.label}</div>
-                <div className={`text-xs font-medium ${
-                  metric.trend === 'down' ? 'text-yellow-500' : 'text-gray-700'
-                }`}>
-                  {metric.trend === 'down' ? '↓ Reduced' : '↑ Improved'}
-                </div>
-              </motion.div>
+              </RevealItem>
             ))}
-          </div>
+          </Reveal>
         </div>
-      </section>
+      </Section>
 
-      {/* Facility Features */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6 text-center"
-            >
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-8">
-                Sustainable Manufacturing Facility
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Clean Production Environment
-                  </h3>
-                  <p className="text-gray-600">
-                    State-of-the-art ventilation systems, natural lighting, and ergonomic 
-                    workstations ensure worker comfort and productivity while minimizing 
-                    environmental impact.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Worker Welfare Facilities
-                  </h3>
-                  <p className="text-gray-600">
-                    On-site medical clinic, cafeteria serving nutritious meals, prayer rooms, 
-                    childcare facilities, and recreational areas supporting employee well-being.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Environmental Controls
-                  </h3>
-                  <p className="text-gray-600">
-                    Advanced water treatment systems, solar energy installation, waste 
-                    segregation and recycling programs, and chemical-free processing zones.
-                  </p>
-                </div>
+      {/* ======================================================== FACILITY */}
+      <Section tone="paper-2" className="py-24 lg:py-32">
+        <div className="shell grid gap-14 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <SectionHead
+              index="03 / 04"
+              label="The facility"
+              title={['Built for the', 'people in it']}
+            />
+            <Reveal className="mt-12">
+              <RevealItem>
+                <dl>
+                  <SpecRow term="Production floor">
+                    Ventilation systems, natural lighting and ergonomic workstations that support
+                    comfort and productivity while cutting environmental load.
+                  </SpecRow>
+                  <SpecRow term="Worker welfare">
+                    On-site medical clinic, cafeteria, prayer rooms, childcare and recreation areas.
+                  </SpecRow>
+                  <SpecRow term="Environmental controls">
+                    Water treatment, solar installation, waste segregation and chemical-free
+                    processing zones.
+                  </SpecRow>
+                </dl>
+              </RevealItem>
+            </Reveal>
+          </div>
+
+          <Reveal className="lg:pt-10">
+            <RevealItem>
+              <div className="ticked overflow-hidden">
+                <img
+                  src="/images/machine.jpg"
+                  alt="Clean, well-lit production environment"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
-            </motion.div>
-          </div>
+            </RevealItem>
+          </Reveal>
         </div>
-      </section>
+      </Section>
 
-      {/* UN SDG Alignment */}
-      <section className="py-20 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              UN Sustainable Development Goals
-            </h2>
-            <p className="text-lg text-gray-300">
-              Our initiatives align with key UN SDGs, contributing to global sustainability targets
-            </p>
-          </div>
+      {/* ============================================================= SDG */}
+      <Section tone="paper" className="py-24 lg:py-32">
+        <div className="shell">
+          <SectionHead
+            index="04 / 04"
+            label="UN Sustainable Development Goals"
+            title={['Aligned to six', 'global goals']}
+          />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sdgGoals.map((goal, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gray-800 p-6 rounded-lg"
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-black font-bold">{goal.number}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold">{goal.title}</h3>
+          <Reveal className="mt-16 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2 lg:grid-cols-3" each={0.05}>
+            {sdgGoals.map((g) => (
+              <RevealItem key={g.number} className="flex gap-5 bg-paper p-8">
+                <span className="w-condensed shrink-0 text-4xl font-black leading-none text-signal">
+                  {String(g.number).padStart(2, '0')}
+                </span>
+                <div>
+                  <h3 className="w-condensed text-lg font-bold uppercase leading-tight">
+                    {g.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-400">{g.description}</p>
                 </div>
-                <p className="text-gray-300 text-sm">{goal.description}</p>
-              </motion.div>
+              </RevealItem>
             ))}
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* ============================================================== CTA */}
+      <Section tone="paper-2" className="border-t border-ink/10 py-20 lg:py-24">
+        <div className="shell flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
+          <h2 className="w-condensed max-w-xl text-display-sm font-black uppercase leading-none">
+            Building a responsible supply chain?
+          </h2>
+          <div className="flex flex-wrap gap-3">
+            <Button to="/certifications" tone="ghost">
+              See certifications
+            </Button>
+            <Button to="/contact" tone="signal">
+              Talk to us
+            </Button>
           </div>
         </div>
-      </section>
-    </div>
+      </Section>
+    </>
   );
-};
-
-export default Sustainability;
+}

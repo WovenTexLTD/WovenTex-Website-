@@ -11,8 +11,8 @@ import {
   SectionHead,
   Stat,
   WipeHeading,
-  EASE,
 } from './brand/ui';
+import { EASE } from './brand/motion';
 
 /* ---------------------------------------------------------------- data --- */
 

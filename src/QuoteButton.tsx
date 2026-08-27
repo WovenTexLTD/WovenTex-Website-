@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { EASE } from './brand/ui';
+import { EASE } from './brand/motion';
 
 /**
  * Persistent quote CTA. Shows once the visitor is past the hero, and steps

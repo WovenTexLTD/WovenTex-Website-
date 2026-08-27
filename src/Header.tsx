@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Logo from './brand/Logo';
-import { EASE } from './brand/ui';
+import { EASE } from './brand/motion';
 
 const navItems = [
   { path: '/', label: 'Home' },

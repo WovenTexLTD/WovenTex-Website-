@@ -8,22 +8,11 @@ import {
   useTransform,
   type MotionValue,
 } from 'framer-motion';
+import { EASE, rise, stagger } from './motion';
 
 /* ====================================================================== *
  *  Motion presets — one vocabulary, used everywhere
  * ====================================================================== */
-
-export const EASE = [0.22, 1, 0.36, 1] as const;
-
-export const rise = {
-  hidden: { opacity: 0, y: 26 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.75, ease: EASE } },
-};
-
-export const stagger = (delay = 0, each = 0.08) => ({
-  hidden: {},
-  show: { transition: { staggerChildren: each, delayChildren: delay } },
-});
 
 /** Scroll-triggered container. Children using `rise` animate in sequence. */
 export function Reveal({
