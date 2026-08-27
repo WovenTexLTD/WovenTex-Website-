@@ -4,11 +4,11 @@ import { Button, Marquee, Reveal, RevealItem, Section, SectionHead, Stat } from 
 
 const majorClients = [
   { name: 'Hugo Boss', partnership: 'Luxury menswear', logo: '/images/bosslogo.png' },
-  { name: 'Pull & Bear', partnership: 'Young fashion', logo: '/images/pull%26bearlogo.png' },
+  { name: 'Pull & Bear', partnership: 'Young fashion', logo: '/images/pullbearlogo.png' },
   { name: 'Polo Ralph Lauren', partnership: 'Classic American', logo: '/images/polologo.png' },
   { name: 'LIDL', partnership: 'European retail', logo: '/images/lidllogo.png' },
-  { name: 'C&A', partnership: 'European fashion', logo: '/images/c%26alogo.png' },
-  { name: 'DKNY', partnership: 'Contemporary fashion', logo: '/images/dnkylogo.png' },
+  { name: 'C&A', partnership: 'European fashion', logo: '/images/calogo.png' },
+  { name: 'DKNY', partnership: 'Contemporary fashion', logo: '/images/dknylogo.png' },
   { name: 'Giant Tiger', partnership: 'North American retail', logo: '/images/gianttiger.png' },
   { name: 'Inditex', partnership: 'Global fashion group', logo: '/images/inditexlogo.png' },
 ];
@@ -71,11 +71,11 @@ export default function Clients() {
                 key={c.name}
                 className="group flex flex-col justify-between gap-8 bg-paper p-8 transition-colors duration-500 hover:bg-white"
               >
-                <div className="flex h-16 items-center">
+                <div className="flex h-24 items-center">
                   <img
                     src={c.logo}
                     alt={`${c.name} logo`}
-                    className="max-h-14 w-auto max-w-[9rem] object-contain opacity-70 grayscale transition-all duration-500 ease-brand group-hover:opacity-100 group-hover:grayscale-0"
+                    className="max-h-20 w-auto max-w-full object-contain object-left opacity-80 grayscale transition-all duration-500 ease-brand group-hover:opacity-100 group-hover:grayscale-0"
                     loading="lazy"
                   />
                 </div>
