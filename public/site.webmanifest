@@ -1,0 +1,11 @@
+{
+  "name": "WovenTex LTD",
+  "short_name": "WovenTex",
+  "icons": [
+    { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#0B0B0C",
+  "background_color": "#0B0B0C",
+  "display": "standalone"
+}

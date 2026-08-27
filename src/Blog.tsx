@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHero from './brand/PageHero';
 import { Reveal, RevealItem, Section } from './brand/ui';
+import useMeta from './brand/useMeta';
 
 type Post = {
   title: string;
@@ -66,6 +67,13 @@ const posts: Post[] = [
 ];
 
 export default function Blog() {
+  useMeta({
+    title: 'Journal',
+    description: 'Perspective on sourcing, manufacturing and supply chain strategy for modern apparel brands — traceability, compliance, materials and regulation.',
+    path: '/blog',
+    image: '/images/blogheader.png',
+  });
+
   const [lead, ...rest] = posts;
 
   return (

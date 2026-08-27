@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PageHero from './brand/PageHero';
 import { Reveal, RevealItem, Section } from './brand/ui';
+import useMeta from './brand/useMeta';
 
 const field =
   'w-full border border-ink/20 bg-paper px-4 py-3.5 text-[15px] text-ink transition-colors duration-200 placeholder:text-ink-200 focus:border-ink focus:outline-none focus:ring-2 focus:ring-signal';
@@ -28,6 +29,13 @@ const details = [
 ];
 
 export default function Contact() {
+  useMeta({
+    title: 'Contact',
+    description: 'Send your requirements and receive a costed quotation and production timeline within 24 hours. London office, +44 7933 291037.',
+    path: '/contact',
+    image: '/images/background.jpg',
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);

@@ -9,6 +9,7 @@ import {
   SpecRow,
   Stat,
 } from './brand/ui';
+import useMeta from './brand/useMeta';
 
 const values = [
   {
@@ -40,6 +41,13 @@ const gallery = [
 ];
 
 export default function About() {
+  useMeta({
+    title: 'About',
+    description: 'A London-based apparel sourcing agency with direct access to certified manufacturers in Bangladesh — 25+ years of experience and 500,000 pieces of monthly capacity.',
+    path: '/about',
+    image: '/images/factory.jpg',
+  });
+
   return (
     <>
       <PageHero

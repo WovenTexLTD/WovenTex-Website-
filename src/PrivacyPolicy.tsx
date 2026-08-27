@@ -1,7 +1,14 @@
 import React from 'react';
 import PageHero from './brand/PageHero';
+import useMeta from './brand/useMeta';
 
 const PrivacyPolicy = () => {
+  useMeta({
+    title: 'Privacy Policy',
+    description: 'How WovenTex LTD collects, uses and protects personal information across our website and the Production Portal.',
+    path: '/privacy-policy',
+  });
+
   return (
     <>
       <PageHero

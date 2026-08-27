@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHero from './brand/PageHero';
 import { Button, Marquee, Reveal, RevealItem, Section, SectionHead, Stat } from './brand/ui';
+import useMeta from './brand/useMeta';
 
 const majorClients = [
   { name: 'Hugo Boss', partnership: 'Luxury menswear', logo: '/images/bosslogo.png' },
@@ -14,6 +15,13 @@ const majorClients = [
 ];
 
 export default function Clients() {
+  useMeta({
+    title: 'Clients',
+    description: 'Our factory partners manufacture for Hugo Boss, Inditex, Polo Ralph Lauren, Pull & Bear, DKNY, C&A, LIDL and Giant Tiger.',
+    path: '/clients',
+    image: '/images/guys.jpg',
+  });
+
   return (
     <>
       <PageHero

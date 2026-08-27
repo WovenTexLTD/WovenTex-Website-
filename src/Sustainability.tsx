@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHero from './brand/PageHero';
 import { Button, Counter, Reveal, RevealItem, Section, SectionHead, SpecRow } from './brand/ui';
+import useMeta from './brand/useMeta';
 
 const initiatives = [
   {
@@ -58,6 +59,13 @@ const sdgGoals = [
 ];
 
 export default function Sustainability() {
+  useMeta({
+    title: 'Sustainability & Ethics',
+    description: '60% organic content, 40% recycled materials, 80% renewable energy and 95% waste diversion — measured, audited and aligned to six UN Sustainable Development Goals.',
+    path: '/sustainability',
+    image: '/images/fibers.jpg',
+  });
+
   return (
     <>
       <PageHero

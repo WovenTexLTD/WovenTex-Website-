@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHero from './brand/PageHero';
 import { Button, Reveal, RevealItem, Section, SectionHead, SpecRow, Stat } from './brand/ui';
+import useMeta from './brand/useMeta';
 
 const products = [
   {
@@ -77,6 +78,13 @@ const capabilities = [
 ];
 
 export default function Capabilities() {
+  useMeta({
+    title: 'Manufacturing Capabilities',
+    description: 'Denim, knits, outerwear, puffers, activewear, workwear, courier apparel and swimwear. 500,000 pieces monthly, MOQs from 2,000, 30–60 day lead times.',
+    path: '/capabilities',
+    image: '/images/machine.jpg',
+  });
+
   return (
     <>
       <PageHero

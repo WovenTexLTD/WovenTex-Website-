@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHero from './brand/PageHero';
 import { Button, Reveal, RevealItem, Section, SectionHead, SpecRow } from './brand/ui';
+import useMeta from './brand/useMeta';
 
 type Cert = {
   name: string;
@@ -114,6 +115,13 @@ const complianceAreas = [
 ];
 
 export default function Certifications() {
+  useMeta({
+    title: 'Certifications & Compliance',
+    description: 'GOTS, GRS, RCS, BSCI, Sedex, OEKO-TEX, WRAP, ISO 9001 and ISO 14001 — 15+ international certifications with quarterly third-party audits.',
+    path: '/certifications',
+    image: '/images/hands.jpg',
+  });
+
   return (
     <>
       <PageHero
