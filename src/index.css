@@ -1,3 +1,195 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --shell-x: clamp(1.25rem, 5vw, 4.5rem);
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Header is fixed — anchor targets need clearance */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-signal text-ink;
+  }
+
+  /* Focus rings: visible, on-brand, never on mouse clicks */
+  :focus-visible {
+    outline: 2px solid theme('colors.signal.DEFAULT');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ---------------------------------------------------------------------
+     The WT mark, rendered as a CSS mask so it inherits currentColor.
+     Beats shipping three colour variants of the same PNG.
+  --------------------------------------------------------------------- */
+  .wt-mark,
+  .wt-lockup {
+    display: block;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+  }
+  .wt-mark {
+    -webkit-mask-image: url('/images/logo-mark.png');
+    mask-image: url('/images/logo-mark.png');
+    aspect-ratio: 869 / 372;
+  }
+  .wt-lockup {
+    -webkit-mask-image: url('/images/logo-lockup.png');
+    mask-image: url('/images/logo-lockup.png');
+    aspect-ratio: 869 / 544;
+  }
+
+  /* ---------------------------------------------------------------------
+     Woven texture — warp and weft as crossed hairlines. The house pattern.
+  --------------------------------------------------------------------- */
+  .woven {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        var(--weave-color, rgb(11 11 12 / 0.055)) 0 1px,
+        transparent 1px var(--weave-gap, 13px)
+      ),
+      repeating-linear-gradient(
+        0deg,
+        var(--weave-color, rgb(11 11 12 / 0.055)) 0 1px,
+        transparent 1px var(--weave-gap, 13px)
+      );
+  }
+  .woven-dark {
+    --weave-color: rgb(255 255 255 / 0.06);
+  }
+
+  /* Diagonal hatch — used for "in production" / technical zones */
+  .hatch {
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--hatch-color, rgb(11 11 12 / 0.08)) 0 1px,
+      transparent 1px 7px
+    );
+  }
+
+  /* ---------------------------------------------------------------------
+     Spec-sheet primitives
+  --------------------------------------------------------------------- */
+  .mono-label {
+    @apply font-mono text-[0.6875rem] uppercase tracking-label;
+  }
+
+  .rule {
+    border-top: 1px solid rgb(11 11 12 / 0.12);
+  }
+
+  /* Corner ticks, like a cutting layout or registration mark */
+  .ticked {
+    position: relative;
+  }
+  .ticked::before,
+  .ticked::after {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-color: currentColor;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .ticked::before {
+    top: -1px;
+    left: -1px;
+    border-top-width: 1px;
+    border-left-width: 1px;
+  }
+  .ticked::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
+  }
+
+  /* Underline that draws in on hover — used across nav and inline links */
+  .link-swipe {
+    position: relative;
+  }
+  .link-swipe::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1.5px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-swipe:hover::after,
+  .link-swipe:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Marquee track: duplicate children once, animate -50% */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+}
+
+@layer utilities {
+  .shell {
+    width: 100%;
+    max-width: theme('maxWidth.shell');
+    margin-inline: auto;
+    padding-inline: var(--shell-x);
+  }
+
+  /* Optical width axis on Archivo — condensed for display, normal for text */
+  .w-condensed {
+    font-stretch: 84%;
+    font-variation-settings: 'wdth' 84;
+  }
+  .w-wide {
+    font-stretch: 112%;
+    font-variation-settings: 'wdth' 112;
+  }
+}

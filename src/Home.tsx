@@ -1,412 +1,482 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowRight, Award, Globe, Users, Truck } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import {
+  Button,
+  Enter,
+  Marquee,
+  Reveal,
+  RevealItem,
+  Section,
+  SectionHead,
+  Stat,
+  WipeHeading,
+  EASE,
+} from './brand/ui';
 
-type Stat = { value: string; label: string; icon: LucideIcon };
-type Category = { name: string; image: string; position?: string };
+/* ---------------------------------------------------------------- data --- */
 
-const stats: Stat[] = [
-  { value: '500,000', label: 'pcs/month capacity', icon: Truck },
-  { value: '100%', label: 'CIS Certified', icon: Award },
-  { value: 'Global', label: 'Clients', icon: Globe },
-  { value: 'Guaranteed', label: 'Delivery', icon: Users },
+const heroSpecs = [
+  { k: 'Capacity', v: '500,000 pcs / month' },
+  { k: 'MOQ', v: '2,000 – 50,000+' },
+  { k: 'On-time', v: '98%' },
+  { k: 'HQ', v: 'London, UK' },
 ];
 
 const clients = [
-  'Pull&Bear', 'Boss', 'DKNY', 'Inditex', 'Giant Tiger', 'LIDL', 'Polo Ralph Lauren',
+  'Pull&Bear',
+  'Hugo Boss',
+  'DKNY',
+  'Inditex',
+  'Giant Tiger',
+  'LIDL',
+  'Polo Ralph Lauren',
+  'C&A',
 ];
 
-const certifications = [
-  { name: 'GOTS', desc: 'Global Organic Textile' },
-  { name: 'GRS', desc: 'Global Recycled Standard' },
-  { name: 'RCS', desc: 'Recycled Claim Standard' },
-  { name: 'BSCI', desc: 'Business Social Compliance' },
-  { name: 'Sedex', desc: 'Supplier Ethical Data' },
+const certifications = ['GOTS', 'GRS', 'RCS', 'BSCI', 'Sedex', 'OEKO-TEX', 'ISO 9001', 'WRAP'];
+
+const pillars = [
+  {
+    n: '01',
+    title: 'Direct factory access',
+    text: 'No broker chain. We work inside our partner factories — including one of Bangladesh’s largest certified manufacturers — so pricing, capacity and quality are known quantities, not promises.',
+  },
+  {
+    n: '02',
+    title: 'UK-based management',
+    text: 'A London team on your timezone, your contract law, and your standards. One accountable contact from tech pack to container.',
+  },
+  {
+    n: '03',
+    title: 'Proven at scale',
+    text: 'Our network already produces for Zara, Hugo Boss and Polo Ralph Lauren, holding 98% on-time delivery across programmes.',
+  },
+  {
+    n: '04',
+    title: 'Flexible programmes',
+    text: '500,000+ pieces of monthly capacity per factory, with MOQs from 2,000 — room for emerging labels and established retail alike.',
+  },
+  {
+    n: '05',
+    title: 'Complete transparency',
+    text: 'Live production status, inline QC reports and direct line-level visibility through the Production Portal.',
+  },
+  {
+    n: '06',
+    title: 'Compliance as standard',
+    text: '15+ international certifications spanning organic content, recycled claims, chemical safety and social audit.',
+  },
 ];
 
-// Images must exist at /public/images/...
-const categories: Category[] = [
-  { name: 'Premium Denim', image: '/images/jeans.png', position: 'object-top' },
-  { name: 'Casual Outerwear', image: '/images/jacket.png', position: 'object-top' },
-  { name: 'Contemporary Basics', image: '/images/shirt.png', position: 'object-top' },
-  { name: 'Technical Workwear', image: '/images/construction.png', position: 'object-top' },
+const process = [
+  {
+    step: '01',
+    title: 'Design & consultation',
+    text: 'Tech pack review, fabric selection, costing and factory allocation.',
+    meta: 'Week 1',
+  },
+  {
+    step: '02',
+    title: 'Sample development',
+    text: 'Proto, fit and PP samples with written approval at every gate.',
+    meta: 'Weeks 2–4',
+  },
+  {
+    step: '03',
+    title: 'Production & QC',
+    text: 'Bulk manufacturing with inline inspection and 4-point fabric audit.',
+    meta: 'Weeks 5–10',
+  },
+  {
+    step: '04',
+    title: 'Delivery & support',
+    text: 'Final AQL inspection, packing, documentation and global freight.',
+    meta: 'Weeks 11–12',
+  },
 ];
 
-const Home = () => {
+const categories = [
+  { name: 'Premium Denim', image: '/images/jeans.jpg', spec: 'Rigid · Stretch · Laser wash' },
+  { name: 'Casual Outerwear', image: '/images/jacket.jpg', spec: 'Woven · Padded · Shell' },
+  { name: 'Contemporary Basics', image: '/images/shirt.jpg', spec: 'Jersey · Rib · Fleece' },
+  { name: 'Technical Workwear', image: '/images/construction.jpg', spec: 'EN ISO 20471 · Hi-vis' },
+];
+
+/* ---------------------------------------------------------------- page --- */
+
+export default function Home() {
+  const heroRef = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
+  const heroFade = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+
   return (
-    <div className="pt-16 lg:pt-20">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+    <>
+      {/* ============================================================ HERO */}
+      <section ref={heroRef} className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink">
+        <motion.div
+          className="absolute inset-0"
+          style={reduce ? undefined : { y: heroY }}
+        >
           <img
-            src="/images/background.png"
-            alt="High-end garment manufacturing"
-            className="w-full h-full object-cover"
+            src="/images/background.jpg"
+            alt="Hands guiding fabric through an industrial sewing machine"
+            className="h-[118%] w-full object-cover object-[70%_center] opacity-100 contrast-[1.05] brightness-[0.92] animate-slow-zoom"
             loading="eager"
             fetchPriority="high"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
-        </div>
+          {/* Legibility scrim — heaviest at the baseline where the type sits */}
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/45 to-ink/5" />
+          <div className="absolute inset-0 woven woven-dark opacity-40" />
+        </motion.div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight"
-          >
-            Your Direct Link to
-            <br />
-            <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-              World-Class Apparel
+        <motion.div
+          className="shell relative z-10 flex flex-1 flex-col justify-end pb-12 pt-28"
+          style={reduce ? undefined : { opacity: heroFade }}
+        >
+          {/* Eyebrow */}
+          <Enter delay={0.15} y={12} className="mb-7 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span className="h-[1px] w-10 bg-signal" />
+            <span className="mono-label text-signal">Apparel manufacturing · Managed from London</span>
+          </Enter>
+
+          {/* The headline */}
+          <WipeHeading
+            as="h1"
+            immediate
+            delay={0.25}
+            className="w-condensed text-display-lg font-black uppercase text-paper"
+            lines={[
+              'Your direct link to',
+              'world-class apparel',
+              <span key="mfg" className="text-signal">
+                manufacturing
+              </span>,
+            ]}
+          />
+
+          <Enter as="p" delay={0.7} className="mt-7 max-w-lg text-base leading-relaxed text-paper/70 lg:text-lg">
+            Strategic factory partnerships, transparent production management, and quality
+            standards that hold from first sample to final container.
+          </Enter>
+
+          <Enter delay={0.85} className="mt-9 flex flex-wrap gap-3">
+            <Button to="/contact" tone="signal">
+              Let’s talk production
+            </Button>
+            <Button to="/capabilities" tone="ghost-dark">
+              View capabilities
+            </Button>
+          </Enter>
+        </motion.div>
+
+        {/* Spec strip along the bottom of the hero */}
+        <Enter delay={1} y={0} className="relative z-10 border-t border-paper/15 bg-ink/50 backdrop-blur-md">
+          <dl className="shell grid grid-cols-2 divide-paper/10 py-5 sm:grid-cols-4 sm:divide-x">
+            {heroSpecs.map((s, i) => (
+              <div key={s.k} className={`px-0 py-2 sm:px-6 ${i === 0 ? 'sm:pl-0' : ''}`}>
+                <dt className="mono-label text-paper/40">{s.k}</dt>
+                <dd className="mt-1.5 text-sm font-semibold text-paper sm:text-base">{s.v}</dd>
+              </div>
+            ))}
+          </dl>
+        </Enter>
+      </section>
+
+      {/* ================================================= CLIENT MARQUEE */}
+      <Section tone="paper" className="border-b border-ink/10 py-7">
+        <div className="shell mb-5 flex items-center gap-4">
+          <span className="mono-label text-ink-300">Produced for</span>
+          <span className="h-[1px] flex-1 bg-ink/10" />
+        </div>
+        <Marquee speed={45}>
+          {clients.map((c) => (
+            <span
+              key={c}
+              className="w-condensed px-8 text-2xl font-bold uppercase tracking-tight text-ink-200 lg:text-3xl"
+            >
+              {c}
             </span>
-            <br />
-            Manufacturing
-          </motion.h1>
+          ))}
+        </Marquee>
+      </Section>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg sm:text-xl text-gray-200 mb-8 max-w-3xl mx-auto"
-          >
-            Building strategic factory partnerships, transparent production management, and
-            uncompromising quality standards.
-          </motion.p>
+      {/* ========================================================== FIGURES */}
+      <Section tone="paper" className="py-20 lg:py-28">
+        <div className="shell">
+          <div className="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+            <Stat value="500,000+" label="Pieces / month" note="Per partner factory" />
+            <Stat value="15+" label="Certifications" note="GOTS, GRS, BSCI, Sedex" />
+            <Stat value="98%" label="On-time delivery" note="Across live programmes" />
+            <Stat value="25+" label="Years experience" note="In global apparel" />
+          </div>
+        </div>
+      </Section>
+
+      {/* ========================================================== PILLARS */}
+      <Section tone="paper-2" texture className="py-24 lg:py-32">
+        <div className="shell">
+          <SectionHead
+            index="01 / 05"
+            label="Why WovenTex"
+            title={['Why global brands', 'choose WovenTex']}
+            lede="A UK agency with its hands inside the factory. That combination is what makes quality, price and delivery predictable instead of hopeful."
+          />
+
+          <Reveal className="mt-16 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2 lg:grid-cols-3" each={0.06}>
+            {pillars.map((p) => (
+              <RevealItem
+                key={p.n}
+                className="group relative flex flex-col bg-paper p-8 transition-colors duration-500 ease-brand hover:bg-ink lg:p-10"
+              >
+                <span className="mono-label text-signal-700 transition-colors duration-500 group-hover:text-signal">
+                  {p.n}
+                </span>
+                <h3 className="mt-6 w-condensed text-2xl font-bold uppercase leading-tight transition-colors duration-500 group-hover:text-paper">
+                  {p.title}
+                </h3>
+                <p className="mt-4 text-[15px] leading-relaxed text-ink-400 transition-colors duration-500 group-hover:text-paper/70">
+                  {p.text}
+                </p>
+                <span className="mt-auto pt-8 block h-[2px] w-10 origin-left bg-signal transition-transform duration-500 ease-brand group-hover:scale-x-[2.4]" />
+              </RevealItem>
+            ))}
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* =================================================== PRODUCTION PORTAL */}
+      <section className="relative overflow-hidden bg-portal text-paper">
+        <div
+          className="absolute inset-0 opacity-[0.18]"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 78% 18%, rgba(255,255,255,0.5), transparent 55%)',
+          }}
+          aria-hidden
+        />
+        <div className="shell relative grid items-center gap-14 py-24 lg:grid-cols-2 lg:py-32">
+          <Reveal>
+            <RevealItem>
+              <div className="flex items-center gap-4 border-t border-paper/25 pt-4">
+                <span className="mono-label text-paper/60">02 / 05</span>
+                <span className="mono-label text-paper/60">Production Portal</span>
+              </div>
+            </RevealItem>
+
+            <WipeHeading
+              as="h2"
+              className="mt-6 w-condensed text-display-sm font-black uppercase"
+              lines={['Every order.', 'Every line.', <span key="uc" className="text-signal">Under control.</span>]}
+            />
+
+            <RevealItem>
+              <p className="mt-6 max-w-lg text-lg leading-relaxed text-paper/75">
+                Our own software, built for apparel brands and factories that need real-time
+                visibility across orders, lines and deliveries.
+              </p>
+            </RevealItem>
+
+            <RevealItem>
+              <ul className="mt-8 space-y-px">
+                {[
+                  'Real-time production status',
+                  'Fewer delays, fewer surprises',
+                  'One source of truth for factories',
+                ].map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-center gap-4 border-t border-paper/15 py-4 text-[15px]"
+                  >
+                    <span className="h-1.5 w-1.5 shrink-0 bg-signal" aria-hidden />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </RevealItem>
+
+            <RevealItem>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <Button to="/production-portal" tone="signal">
+                  Explore the portal
+                </Button>
+                <Button
+                  href="https://productionportal.co"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tone="ghost-dark"
+                >
+                  productionportal.co
+                </Button>
+              </div>
+            </RevealItem>
+          </Reveal>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0, scale: 0.94 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1, ease: EASE }}
+            className="relative"
           >
-            <Link
-              to="/contact"
-              className="inline-flex items-center bg-yellow-500 text-black px-8 py-4 rounded-sm font-semibold text-lg hover:bg-yellow-400 transition-all duration-300 hover:scale-105 group"
-            >
-              Let&apos;s Talk Production
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-            </Link>
+            <img
+              src="/images/portal-app.jpg"
+              alt="Production Portal dashboard on desktop and mobile"
+              className="w-full shadow-[0_40px_100px_-20px_rgba(0,0,0,0.6)]"
+              loading="lazy"
+              decoding="async"
+            />
           </motion.div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="pt-16 pb-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-100 rounded-full mb-4">
-                  <stat.icon className="text-gray-900" size={24} />
+      {/* ========================================================== PROCESS */}
+      <Section tone="ink" texture className="py-24 lg:py-32">
+        <div className="shell">
+          <SectionHead
+            index="03 / 05"
+            label="How it runs"
+            tone="dark"
+            title={['From tech pack', 'to container']}
+            lede="A twelve-week rhythm, with a written approval gate at every handover. You always know which stage your order is in."
+          />
+
+          <Reveal className="mt-16 grid gap-px bg-paper/15 sm:grid-cols-2 lg:grid-cols-4" each={0.09}>
+            {process.map((p) => (
+              <RevealItem key={p.step} className="group relative bg-ink p-8 lg:p-9">
+                <div className="flex items-baseline justify-between">
+                  <span className="w-condensed text-7xl font-black leading-none text-paper/20 transition-colors duration-500 group-hover:text-signal lg:text-8xl">
+                    {p.step}
+                  </span>
+                  <span className="mono-label text-paper/35">{p.meta}</span>
                 </div>
-                <div className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
-              </motion.div>
+                <h3 className="mt-8 w-condensed text-xl font-bold uppercase leading-tight text-paper">
+                  {p.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-paper/55">{p.text}</p>
+              </RevealItem>
             ))}
-          </div>
+          </Reveal>
         </div>
-      </section>
+      </Section>
 
-      {/* Production Portal Hero (FULL WIDTH, under Stats) */}
-    {/* Production Portal Hero (FULL WIDTH, under Stats) */}
-<section className="w-full bg-white">
-  <div className="relative w-full">
-    <img
-      src="/images/pphero.svg"
-      alt="Production Portal"
-      className="block w-full h-auto"
-      loading="lazy"
-      decoding="async"
-    />
-
-    {/* Button OVER the SVG (centered, under the 3 points) */}
-<div className="absolute right-[14%] bottom-[12%] sm:bottom-[13%] md:bottom-[14%] lg:bottom-[15%]">
-  <Link
-    to="/production-portal"
-    className="
-      inline-flex items-center justify-center
-      bg-white/95 text-[#ffb905]
-      px-10 py-3.5 rounded-full font-semibold
-      border border-white/60
-      shadow-[0_18px_50px_rgba(0,0,0,0.35)]
-      hover:bg-white hover:shadow-[0_22px_70px_rgba(0,0,0,0.45)]
-      hover:-translate-y-[1px]
-      transition-all duration-300
-      backdrop-blur-sm
-    "
-  >
-    Explore Production Portal
-  </Link>
-</div>
-</div>
-</section>
-      {/* Why Choose WovenTex */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Why Global Brands Choose WovenTex
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Our unique position as a UK-based agency with direct factory access delivers
-              unmatched quality, reliability, and transparency for international fashion brands.
-            </p>
+      {/* ======================================================= CATEGORIES */}
+      <Section tone="paper" className="py-24 lg:py-32">
+        <div className="shell">
+          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+            <SectionHead
+              index="04 / 05"
+              label="What we make"
+              title={['Manufacturing', 'expertise']}
+            />
+            <Reveal>
+              <RevealItem>
+                <Button to="/capabilities" tone="ghost">
+                  All categories
+                </Button>
+              </RevealItem>
+            </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Award className="text-gray-900" size={28} />,
-                title: 'Direct Factory Access',
-                text:
-                  "Direct access to our network of factories including Murad Apparels, one of Bangladesh's largest certified manufacturers, ensuring consistent quality and competitive pricing.",
-              },
-              {
-                icon: <Globe className="text-gray-900" size={28} />,
-                title: 'UK-Based Management',
-                text:
-                  'London headquarters with experienced leadership providing local support, clear communication, and uncompromising professionalism.',
-              },
-              {
-                icon: <Users className="text-gray-900" size={28} />,
-                title: 'Proven Track Record',
-                text:
-                  'Our network manufactures for major brands like Zara, Hugo Boss, and Polo Ralph Lauren with 98% on-time delivery and consistent quality.',
-              },
-              {
-                icon: <Truck className="text-gray-900" size={28} />,
-                title: 'Flexible Production',
-                text:
-                  'Each factory has a 500,000+ pieces monthly capacity. MOQs from 2,000 to 50,000+, accommodating both emerging and established brands.',
-              },
-              {
-                icon: <Award className="text-gray-900" size={28} />,
-                title: 'Complete Transparency',
-                text:
-                  'Real-time production updates, quality reports, and direct communication throughout the process for complete peace of mind.',
-              },
-              {
-                icon: <Globe className="text-gray-900" size={28} />,
-                title: 'Global Compliance',
-                text:
-                  '15+ international certifications including GOTS, BSCI, and Sedex ensuring ethical manufacturing and environmental responsibility.',
-              },
-            ].map((card, i) => (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 * i }}
-                viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mb-6">
-                  {card.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{card.title}</h3>
-                <p className="text-gray-600">{card.text}</p>
-              </motion.div>
+          <Reveal className="mt-16 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6" each={0.08}>
+            {categories.map((c) => (
+              <RevealItem key={c.name}>
+                <Link to="/capabilities" className="group block">
+                  <div className="ticked relative overflow-hidden bg-paper-200">
+                    <img
+                      src={c.image}
+                      alt={c.name}
+                      className="aspect-[3/4] w-full object-cover transition-transform duration-[900ms] ease-brand group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/15" />
+                  </div>
+                  <div className="mt-4 border-t border-ink/15 pt-3">
+                    <h3 className="w-condensed text-base font-bold uppercase leading-tight lg:text-lg">
+                      {c.name}
+                    </h3>
+                    <p className="mono-label mt-2 text-ink-300">{c.spec}</p>
+                  </div>
+                </Link>
+              </RevealItem>
             ))}
-          </div>
+          </Reveal>
         </div>
-      </section>
+      </Section>
 
-      {/* Clients */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Network of Factories Trusted by Global Brands
-            </h2>
-            <p className="text-lg text-gray-600">
-              Our network manufactures for some of the world&apos;s most recognized fashion brands.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-12">
-            {clients.map((client, i) => (
-              <motion.div
-                key={client}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="text-xl lg:text-2xl font-bold text-gray-400 hover:text-gray-900 transition-colors duration-300 cursor-pointer"
-              >
-                {client}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Streamlined Production Process
-            </h2>
-            <p className="text-lg text-gray-600">
-              From concept to delivery, our proven process ensures quality and efficiency at every step.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { step: '01', title: 'Design & Consultation', description: 'Technical review, fabric selection, and production planning with our expert team.' },
-              { step: '02', title: 'Sample Development', description: 'Rapid prototyping and sample approval process with detailed quality specifications.' },
-              { step: '03', title: 'Production & QC', description: 'Manufacturing with inline quality control and regular progress updates.' },
-              { step: '04', title: 'Delivery & Support', description: 'Final inspection, packaging, and global shipping with ongoing support.' },
-            ].map((p, i) => (
-              <motion.div
-                key={p.step}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <div className="w-16 h-16 bg-gray-900 text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
-                  {p.step}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{p.title}</h3>
-                <p className="text-gray-600">{p.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Product Categories */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Manufacturing Expertise</h2>
-            <p className="text-lg text-gray-600">
-              Specialized production across diverse apparel categories with world-class quality.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {categories.map((cat, i) => (
-              <motion.div
-                key={cat.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
-              >
-                <img
-                  src={cat.image}
-                  alt={cat.name}
-                  className={`w-full h-48 object-cover ${cat.position ?? ''} group-hover:scale-110 transition-transform duration-300`}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-white font-semibold text-lg">{cat.name}</h3>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link
-              to="/capabilities"
-              className="inline-flex items-center bg-gray-900 text-white px-6 py-3 rounded-sm font-semibold hover:bg-gray-800 transition-colors duration-300"
-            >
-              View All Capabilities
-              <ArrowRight className="ml-2" size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Certifications */}
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">Certified for Excellence</h2>
-            <p className="text-lg text-gray-300">
-              Our network of factories&apos; certifications ensure ethical manufacturing and environmental responsibility.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {certifications.map((c, i) => (
-              <motion.div
-                key={c.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gray-800 p-6 rounded-lg text-center hover:bg-gray-700 transition-colors duration-300"
-              >
-                <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white font-bold text-lg">{c.name}</span>
-                </div>
-                <p className="text-sm text-gray-300">{c.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link
-              to="/certifications"
-              className="inline-flex items-center bg-yellow-500 text-black px-6 py-3 rounded-sm font-semibold hover:bg-yellow-400 transition-colors duration-300"
-            >
-              View All Certifications
-              <ArrowRight className="ml-2" size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-gray-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+      {/* =================================================== CERTIFICATIONS */}
+      <Section tone="paper-2" className="border-y border-ink/10 py-16">
+        <div className="shell mb-6 flex flex-wrap items-center justify-between gap-4">
+          <span className="mono-label text-ink-300">Certified across the network</span>
+          <Link
+            to="/certifications"
+            className="link-swipe mono-label text-ink transition-colors hover:text-signal-700"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Ready to Start Your Next Production?</h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Join the global brands who trust WovenTex for their manufacturing needs.
-              Get a detailed quote and timeline for your project within 24 hours.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/contact"
-                className="bg-yellow-500 text-black px-8 py-3 rounded-sm font-semibold hover:bg-yellow-400 transition-colors duration-300"
-              >
-                Request a Quote
-              </Link>
-              <Link
-                to="/capabilities"
-                className="border-2 border-white text-white px-8 py-3 rounded-sm font-semibold hover:bg-white hover:text-gray-900 transition-colors duration-300"
-              >
-                View Capabilities
-              </Link>
-            </div>
-          </motion.div>
+            All certifications →
+          </Link>
+        </div>
+        <Marquee speed={38} reverse>
+          {certifications.map((c) => (
+            <span
+              key={c}
+              className="mx-3 border border-ink/20 px-7 py-3 text-sm font-bold uppercase tracking-label text-ink-500"
+            >
+              {c}
+            </span>
+          ))}
+        </Marquee>
+      </Section>
+
+      {/* ============================================================== CTA */}
+      <section className="relative overflow-hidden bg-ink text-paper">
+        <img
+          src="/images/factory.jpg"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover opacity-25"
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" />
+
+        <div className="shell relative py-28 lg:py-36">
+          <Reveal className="max-w-3xl">
+            <RevealItem>
+              <span className="mono-label text-signal">05 / 05 — Next step</span>
+            </RevealItem>
+            <WipeHeading
+              as="h2"
+              className="mt-6 w-condensed text-display font-black uppercase"
+              lines={['Ready to start', 'your next', <span key="p" className="text-signal">production?</span>]}
+            />
+            <RevealItem>
+              <p className="mt-7 max-w-lg text-base leading-relaxed text-paper/70 lg:text-lg">
+                Send us a tech pack, a sketch, or just a target price. You’ll have a costed
+                quotation and a production timeline within 24 hours.
+              </p>
+            </RevealItem>
+            <RevealItem>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <Button to="/contact" tone="signal">
+                  Request a quote
+                </Button>
+                <Button to="/clients" tone="ghost-dark">
+                  See who we make for
+                </Button>
+              </div>
+            </RevealItem>
+          </Reveal>
+
         </div>
       </section>
-    </div>
+    </>
   );
-};
-
-export default Home;
+}

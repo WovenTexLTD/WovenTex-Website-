@@ -1,87 +1,146 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Linkedin, Globe } from 'lucide-react';
+import { Linkedin, ArrowUpRight } from 'lucide-react';
+import Logo from './brand/Logo';
 
-const Footer = () => {
+const columns = [
+  {
+    title: 'Company',
+    links: [
+      { to: '/about', label: 'About' },
+      { to: '/clients', label: 'Clients' },
+      { to: '/blog', label: 'Journal' },
+      { to: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    title: 'Manufacturing',
+    links: [
+      { to: '/capabilities', label: 'Capabilities' },
+      { to: '/certifications', label: 'Certifications' },
+      { to: '/sustainability', label: 'Sustainability' },
+      { to: '/production-portal', label: 'Production Portal' },
+    ],
+  },
+];
+
+export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <img 
-                src="/images/logowhite.png" 
-                alt="WovenTex Logo" 
-                className="h-8 w-auto filter invert"
-              />
-              <span className="text-2xl font-bold">WovenTex</span>
-              <span className="text-sm text-gray-400">LTD</span>
-            </div>
-            <p className="text-gray-300 mb-6 max-w-md">
-              Your direct link to world-class apparel manufacturing. Connecting brands to certified factories with quality, speed, and transparency.
+    <footer className="woven woven-dark relative overflow-hidden bg-ink text-paper">
+      <div className="shell relative pt-20 lg:pt-28">
+        <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+          {/* Identity */}
+          <div>
+            <Logo variant="lockup" className="h-16 w-auto text-paper" />
+            <p className="mt-7 max-w-xs text-[15px] leading-relaxed text-paper/60">
+              Your direct link to world-class apparel manufacturing. Connecting brands to certified
+              factories with quality, speed and transparency.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Globe size={20} />
-              </a>
-            </div>
+            <a
+              href="https://www.linkedin.com/company/woventex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-7 inline-flex h-11 w-11 items-center justify-center border border-paper/20 text-paper/60 transition-colors duration-300 hover:border-signal hover:bg-signal hover:text-ink"
+              aria-label="WovenTex on LinkedIn"
+            >
+              <Linkedin size={18} />
+            </a>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors">About</Link></li>
-              <li><Link to="/capabilities" className="text-gray-300 hover:text-white transition-colors">Capabilities</Link></li>
-              <li><Link to="/certifications" className="text-gray-300 hover:text-white transition-colors">Certifications</Link></li>
-              <li><Link to="/sustainability" className="text-gray-300 hover:text-white transition-colors">Sustainability</Link></li>
-              <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">
-  Privacy Policy
-</Link>
-            </ul>
-          </div>
+          {/* Link columns */}
+          {columns.map((col) => (
+            <nav key={col.title} aria-label={col.title}>
+              <h2 className="mono-label text-paper/35">{col.title}</h2>
+              <ul className="mt-6 space-y-3">
+                {col.links.map((l) => (
+                  <li key={l.to}>
+                    <Link
+                      to={l.to}
+                      className="link-swipe text-[15px] text-paper/75 transition-colors duration-200 hover:text-signal"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h3 className="font-semibold mb-4">Contact</h3>
-            <div className="space-y-3">
-             <div className="flex items-start gap-3">
-  <MapPin className="w-5 h-5 text-gray-400 shrink-0" strokeWidth={2} />
-  <span className="text-gray-300 text-sm leading-snug">
-    167–169 Great Portland Street, 5th Floor, London, England, W1W 5PF
-  </span>
-</div>
-              <div className="flex items-center space-x-3">
-                <Mail size={16} className="text-gray-400" />
-                <a href="mailto:contact@woventex.co" className="text-gray-300 text-sm hover:text-white transition-colors">
+            <h2 className="mono-label text-paper/35">Contact</h2>
+            <address className="mt-6 space-y-5 not-italic">
+              <div>
+                <div className="mono-label text-paper/35">Office</div>
+                <p className="mt-1.5 text-[15px] leading-snug text-paper/75">
+                  167–169 Great Portland Street
+                  <br />
+                  5th Floor, London W1W 5PF
+                </p>
+              </div>
+              <div>
+                <div className="mono-label text-paper/35">Email</div>
+                <a
+                  href="mailto:contact@woventex.co"
+                  className="link-swipe mt-1.5 inline-block text-[15px] text-paper/75 hover:text-signal"
+                >
                   contact@woventex.co
                 </a>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone size={20} className="text-gray-400" />
-                <span className="text-gray-300 text-sm">+44 7933 291037</span>
+              <div>
+                <div className="mono-label text-paper/35">Phone</div>
+                <a
+                  href="tel:+447933291037"
+                  className="link-swipe mt-1.5 inline-block text-[15px] text-paper/75 hover:text-signal"
+                >
+                  +44 7933 291037
+                </a>
               </div>
-            </div>
+            </address>
           </div>
         </div>
-<button
-  onClick={() => (window as Window & { openCookiePreferences?: () => void }).openCookiePreferences?.()}
-  className="text-sm text-gray-500 hover:underline"
->
-  Cookie settings
-</button>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">© 2025 WovenTex LTD. All rights reserved.</p>
-          <p className="text-gray-400 text-sm mt-2 md:mt-0">Made with integrity</p>
+        {/* Portal strip */}
+        <a
+          href="https://productionportal.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mt-16 flex flex-wrap items-center justify-between gap-4 border-y border-paper/15 py-6 transition-colors duration-500 hover:border-signal/50"
+        >
+          <div className="flex items-center gap-4">
+            <span className="h-2 w-2 animate-blink bg-signal" aria-hidden />
+            <span className="w-condensed text-xl font-bold uppercase tracking-tight sm:text-2xl">
+              Production Portal — every order, every line, under control
+            </span>
+          </div>
+          <ArrowUpRight
+            size={22}
+            className="shrink-0 text-paper/50 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-signal"
+          />
+        </a>
+
+        {/* Legal bar */}
+        <div className="flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="mono-label text-paper/35">© {year} WovenTex LTD — Made with integrity</p>
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-2">
+            <Link to="/privacy-policy" className="mono-label text-paper/50 hover:text-signal">
+              Privacy Policy
+            </Link>
+            <button
+              type="button"
+              onClick={() =>
+                (window as Window & { openCookiePreferences?: () => void }).openCookiePreferences?.()
+              }
+              className="mono-label text-paper/50 hover:text-signal"
+            >
+              Cookie Settings
+            </button>
+          </div>
         </div>
       </div>
+
     </footer>
   );
-};
-
-export default Footer;
+}

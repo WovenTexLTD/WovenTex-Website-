@@ -1,143 +1,219 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import Logo from './brand/Logo';
+import { EASE } from './brand/ui';
 
-const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const navItems = [
+  { path: '/', label: 'Home' },
+  { path: '/about', label: 'About' },
+  { path: '/capabilities', label: 'Capabilities' },
+  { path: '/certifications', label: 'Certifications' },
+  { path: '/clients', label: 'Clients' },
+  { path: '/sustainability', label: 'Sustainability' },
+  { path: '/blog', label: 'Journal' },
+];
+
+export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mobile menu on route change (prevents menu staying open after navigation)
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  useEffect(() => setMenuOpen(false), [location.pathname]);
 
-  const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/capabilities', label: 'Capabilities' },
-    { path: '/certifications', label: 'Certifications' },
-    { path: '/clients', label: 'Clients' },
-    { path: '/sustainability', label: 'Sustainability' },
-    { path: '/blog', label: 'WovenTex Blog' },
-  ];
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
+  /* Every page opens on a dark hero, so the header rides inverted until the
+     visitor scrolls, then flips to paper. One rule, no per-page config. */
+  const solid = scrolled || menuOpen;
 
   return (
-    <header
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
-          <Link to="/" className="flex items-center space-x-2">
-            <img
-              src="/images/logoblack.png"
-              alt="WovenTex Logo"
-              className="h-8 w-auto"
-              loading="eager"
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-signal focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-ink"
+      >
+        Skip to content
+      </a>
+
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ease-brand ${
+          solid ? 'bg-paper/95 text-ink backdrop-blur-xl' : 'bg-transparent text-paper'
+        }`}
+      >
+        <div className="shell flex h-16 items-center justify-between gap-8 lg:h-[4.5rem]">
+          <Link to="/" className="group flex shrink-0 items-center gap-3" aria-label="WovenTex LTD — home">
+            <Logo
+              variant="mark"
+              className="h-[17px] w-auto transition-colors duration-300 group-hover:text-signal"
             />
-            <span className="text-xl lg:text-2xl font-bold text-gray-900">WovenTex</span>
-            <span className="text-sm text-gray-600 hidden sm:block">LTD</span>
+            <span className="hidden h-6 w-px bg-current opacity-25 sm:block" aria-hidden />
+            <span className="hidden text-[13px] font-bold uppercase tracking-[0.2em] sm:block">
+              WovenTex
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden items-center gap-6 xl:flex">
             {navItems.map((item) => (
-              <Link
+              <NavLink
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  location.pathname === item.path
-                    ? 'text-gray-900 border-b-2 border-yellow-500'
-                    : 'text-gray-700 hover:text-gray-900'
-                }`}
+                end={item.path === '/'}
+                className={({ isActive }) =>
+                  `link-swipe whitespace-nowrap text-[12px] font-medium uppercase tracking-label transition-opacity duration-200 ${
+                    isActive ? 'opacity-100' : 'opacity-55 hover:opacity-100'
+                  }`
+                }
               >
                 {item.label}
-              </Link>
+              </NavLink>
             ))}
+          </nav>
 
+          <div className="flex shrink-0 items-center gap-2.5">
             <a
               href="https://productionportal.co"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-[#000a68] hover:text-[#000c38] transition-colors duration-200"
+              className={`hidden items-center gap-2 border px-4 py-2.5 text-[10px] font-semibold uppercase tracking-label transition-colors duration-300 lg:inline-flex ${
+                solid
+                  ? 'border-portal/30 text-portal hover:bg-portal hover:text-paper'
+                  : 'border-paper/30 text-paper hover:bg-paper hover:text-portal'
+              }`}
             >
-              Production Portal
+              <span
+                className={`h-1.5 w-1.5 animate-blink rounded-full ${
+                  solid ? 'bg-portal' : 'bg-signal'
+                }`}
+                aria-hidden
+              />
+              Portal
             </a>
 
             <Link
               to="/contact"
-              className="bg-yellow-500 text-black px-6 py-2 rounded-sm font-medium hover:bg-yellow-400 transition-colors duration-200"
+              className={`hidden px-5 py-2.5 text-[10px] font-semibold uppercase tracking-label transition-colors duration-300 sm:inline-block ${
+                solid ? 'bg-ink text-paper hover:bg-signal hover:text-ink' : 'bg-signal text-ink hover:bg-paper'
+              }`}
             >
-              Get in Touch
+              Request a Quote
             </Link>
-          </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen((v) => !v)}
-            className="lg:hidden p-2"
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isMobileMenuOpen}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              className="-mr-2 flex h-10 w-10 items-center justify-center xl:hidden"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+            >
+              <span className="relative block h-3 w-6">
+                <span
+                  className={`absolute left-0 block h-[2px] w-full bg-current transition-all duration-300 ease-brand ${
+                    menuOpen ? 'top-1.5 rotate-45' : 'top-0'
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 block h-[2px] w-full bg-current transition-all duration-300 ease-brand ${
+                    menuOpen ? 'top-1.5 -rotate-45' : 'top-3'
+                  }`}
+                />
+              </span>
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.nav
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden border-t border-gray-200 bg-white"
-            >
-              <div className="py-4 space-y-4">
-                {navItems.map((item) => (
-                  <Link
+        {/* The yellow thread — draws across as the page leaves the hero */}
+        <div
+          className={`h-[2px] origin-left bg-signal transition-transform duration-700 ease-brand ${
+            solid ? 'scale-x-100' : 'scale-x-0'
+          }`}
+        />
+      </header>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ clipPath: 'inset(0 0 0% 0)' }}
+            exit={{ clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.6, ease: EASE }}
+            className="fixed inset-0 z-40 overflow-y-auto bg-ink text-paper xl:hidden"
+          >
+            <div className="woven woven-dark min-h-full pb-16 pt-28">
+              <nav className="shell">
+                {navItems.map((item, i) => (
+                  <motion.div
                     key={item.path}
-                    to={item.path}
-                    className={`block px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                      location.pathname === item.path
-                        ? 'text-gray-900 bg-yellow-50'
-                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
-                    }`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15 + i * 0.05, duration: 0.5, ease: EASE }}
+                    className="border-t border-paper/12"
                   >
-                    {item.label}
-                  </Link>
+                    <Link
+                      to={item.path}
+                      className="flex items-baseline gap-5 py-4 transition-colors duration-200 hover:text-signal"
+                    >
+                      <span className="mono-label text-paper/35">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className="w-condensed text-3xl font-black uppercase sm:text-4xl">
+                        {item.label}
+                      </span>
+                    </Link>
+                  </motion.div>
                 ))}
 
-                <a
-                  href="https://productionportal.co"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block px-4 py-2 text-sm font-medium text-[#000a68] hover:text-[#000c38] hover:bg-gray-50 transition-colors duration-200"
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.5, ease: EASE }}
+                  className="mt-10 flex flex-col gap-3"
                 >
-                  Production Portal
-                </a>
+                  <Link
+                    to="/contact"
+                    className="bg-signal px-6 py-4 text-center text-sm font-semibold uppercase tracking-label text-ink"
+                  >
+                    Request a Quote
+                  </Link>
+                  <a
+                    href="https://productionportal.co"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-paper/30 px-6 py-4 text-center text-sm font-semibold uppercase tracking-label"
+                  >
+                    Production Portal ↗
+                  </a>
+                </motion.div>
 
-                <Link
-                  to="/contact"
-                  className="mx-4 bg-yellow-500 text-black px-6 py-3 rounded-sm font-medium hover:bg-yellow-400 transition-colors duration-200 text-center block"
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="mono-label mt-12 space-y-2 text-paper/40"
                 >
-                  Let&apos;s Talk Production
-                </Link>
-              </div>
-            </motion.nav>
-          )}
-        </AnimatePresence>
-      </div>
-    </header>
+                  <p>167–169 Great Portland St, London W1W 5PF</p>
+                  <p>
+                    <a href="mailto:contact@woventex.co" className="hover:text-signal">
+                      contact@woventex.co
+                    </a>
+                  </p>
+                </motion.div>
+              </nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
-};
-
-export default Header;
+}

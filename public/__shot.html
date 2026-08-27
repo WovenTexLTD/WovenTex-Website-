@@ -1,0 +1,8 @@
+<!doctype html><meta charset="utf-8"><title>shot setup</title>
+<script>
+  var q = new URLSearchParams(location.search);
+  localStorage.setItem('cookie-consent-v1', JSON.stringify({necessary:true,analytics:false,marketing:false,timestamp:'2026-01-01T00:00:00.000Z'}));
+  var y = q.get('y');
+  if (y) sessionStorage.setItem('__shotScroll', y); else sessionStorage.removeItem('__shotScroll');
+  location.replace(q.get('to') || '/');
+</script>
