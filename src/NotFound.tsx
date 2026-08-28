@@ -60,7 +60,7 @@ export default function NotFound() {
 
         <Enter delay={0.85} className="mt-14">
           <div className="border-t border-paper/20 pt-4">
-            <span className="mono-label text-paper/45">Or jump to</span>
+            <span className="mono-label text-paper/60">Or jump to</span>
           </div>
           <ul className="mt-2 grid gap-px sm:grid-cols-2 lg:grid-cols-4">
             {routes.map((r) => (
@@ -72,7 +72,7 @@ export default function NotFound() {
                   <span className="w-condensed text-lg font-bold uppercase leading-tight">
                     {r.label}
                   </span>
-                  <span className="mono-label text-paper/45">{r.note}</span>
+                  <span className="mono-label text-paper/60">{r.note}</span>
                 </Link>
               </li>
             ))}

@@ -43,7 +43,7 @@ export default function Footer() {
           {/* Link columns */}
           {columns.map((col) => (
             <nav key={col.title} aria-label={col.title}>
-              <h2 className="mono-label text-paper/35">{col.title}</h2>
+              <h2 className="mono-label text-paper/55">{col.title}</h2>
               <ul className="mt-6 space-y-3">
                 {col.links.map((l) => (
                   <li key={l.to}>
@@ -61,10 +61,10 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h2 className="mono-label text-paper/35">Contact</h2>
+            <h2 className="mono-label text-paper/55">Contact</h2>
             <address className="mt-6 space-y-5 not-italic">
               <div>
-                <div className="mono-label text-paper/35">Office</div>
+                <div className="mono-label text-paper/55">Office</div>
                 <p className="mt-1.5 text-[15px] leading-snug text-paper/75">
                   167–169 Great Portland Street
                   <br />
@@ -72,7 +72,7 @@ export default function Footer() {
                 </p>
               </div>
               <div>
-                <div className="mono-label text-paper/35">Email</div>
+                <div className="mono-label text-paper/55">Email</div>
                 <a
                   href="mailto:contact@woventex.co"
                   className="link-swipe mt-1.5 inline-block text-[15px] text-paper/75 hover:text-signal"
@@ -81,7 +81,7 @@ export default function Footer() {
                 </a>
               </div>
               <div>
-                <div className="mono-label text-paper/35">Phone</div>
+                <div className="mono-label text-paper/55">Phone</div>
                 <a
                   href="tel:+447933291037"
                   className="link-swipe mt-1.5 inline-block text-[15px] text-paper/75 hover:text-signal"
@@ -108,15 +108,15 @@ export default function Footer() {
           </div>
           <ArrowUpRight
             size={22}
-            className="shrink-0 text-paper/50 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-signal"
+            className="shrink-0 text-paper/60 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-signal"
           />
         </a>
 
         {/* Legal bar */}
         <div className="flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="mono-label text-paper/35">© {year} WovenTex LTD — Made with integrity</p>
+          <p className="mono-label text-paper/55">© {year} WovenTex LTD — Made with integrity</p>
           <div className="flex flex-wrap items-center gap-x-7 gap-y-2">
-            <Link to="/privacy-policy" className="mono-label text-paper/50 hover:text-signal">
+            <Link to="/privacy-policy" className="mono-label text-paper/60 hover:text-signal">
               Privacy Policy
             </Link>
             <button
@@ -124,7 +124,7 @@ export default function Footer() {
               onClick={() =>
                 (window as Window & { openCookiePreferences?: () => void }).openCookiePreferences?.()
               }
-              className="mono-label text-paper/50 hover:text-signal"
+              className="mono-label text-paper/60 hover:text-signal"
             >
               Cookie Settings
             </button>

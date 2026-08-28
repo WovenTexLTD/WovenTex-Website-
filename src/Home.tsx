@@ -15,7 +15,7 @@ import {
 import { EASE } from './brand/motion';
 import useMeta from './brand/useMeta';
 import { useDarkHero } from './brand/hero';
-import ProcessLine from './brand/ProcessLine';
+import GarmentLine from './brand/GarmentLine';
 
 /* ---------------------------------------------------------------- data --- */
 
@@ -192,7 +192,7 @@ export default function Home() {
           <dl className="shell grid grid-cols-2 divide-paper/10 py-5 sm:grid-cols-4 sm:divide-x">
             {heroSpecs.map((s, i) => (
               <div key={s.k} className={`px-0 py-2 sm:px-6 ${i === 0 ? 'sm:pl-0' : ''}`}>
-                <dt className="mono-label text-paper/40">{s.k}</dt>
+                <dt className="mono-label text-paper/55">{s.k}</dt>
                 <dd className="mt-1.5 text-sm font-semibold text-paper sm:text-base">{s.v}</dd>
               </div>
             ))}
@@ -348,8 +348,8 @@ export default function Home() {
       </section>
 
       {/* ========================================================== PROCESS */}
-      <ProcessLine
-        steps={process}
+      <GarmentLine
+        stages={process}
         index="03 / 05"
         label="How it runs"
         title={['From tech pack', 'to container']}

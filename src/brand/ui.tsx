@@ -478,7 +478,7 @@ export function Stat({
         className="block font-black w-condensed text-4xl leading-none tracking-tight lg:text-5xl"
       />
       <div className={`mono-label mt-3 ${dark ? 'text-paper/55' : 'text-ink-400'}`}>{label}</div>
-      {note && <p className={`mt-2 text-sm ${dark ? 'text-paper/45' : 'text-ink-300'}`}>{note}</p>}
+      {note && <p className={`mt-2 text-sm ${dark ? 'text-paper/60' : 'text-ink-300'}`}>{note}</p>}
     </div>
   );
 }
@@ -500,7 +500,7 @@ export function SpecRow({
         dark ? 'border-paper/15' : 'border-ink/12'
       }`}
     >
-      <dt className={`mono-label pt-1 ${dark ? 'text-paper/50' : 'text-ink-400'}`}>{term}</dt>
+      <dt className={`mono-label pt-1 ${dark ? 'text-paper/60' : 'text-ink-400'}`}>{term}</dt>
       <dd className={`${dark ? 'text-paper/80' : 'text-ink-600'} leading-relaxed`}>{children}</dd>
     </div>
   );

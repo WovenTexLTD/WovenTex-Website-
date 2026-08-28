@@ -156,6 +156,25 @@
 }
 
 @layer utilities {
+  /* currentColor at reduced strength — lets a whole section flip ink/paper
+     by animating one `color` while hierarchy ratios hold */
+  .text-dim {
+    color: color-mix(in srgb, currentColor 62%, transparent);
+  }
+  .text-faint {
+    /* 58 percent is the floor that clears AA for small text on both inks */
+    color: color-mix(in srgb, currentColor 58%, transparent);
+  }
+  .border-faint {
+    border-color: color-mix(in srgb, currentColor 20%, transparent);
+  }
+  .bg-faint {
+    background-color: color-mix(in srgb, currentColor 15%, transparent);
+  }
+  .stroke-faint {
+    stroke: color-mix(in srgb, currentColor 15%, transparent);
+  }
+
   .shell {
     width: 100%;
     max-width: theme('maxWidth.shell');

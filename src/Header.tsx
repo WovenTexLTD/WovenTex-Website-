@@ -167,7 +167,7 @@ export default function Header() {
                       to={item.path}
                       className="flex items-baseline gap-5 py-4 transition-colors duration-200 hover:text-signal"
                     >
-                      <span className="mono-label text-paper/35">
+                      <span className="mono-label text-paper/55">
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <span className="w-condensed text-3xl font-black uppercase sm:text-4xl">
@@ -203,7 +203,7 @@ export default function Header() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.5 }}
-                  className="mono-label mt-12 space-y-2 text-paper/40"
+                  className="mono-label mt-12 space-y-2 text-paper/55"
                 >
                   <p>167–169 Great Portland St, London W1W 5PF</p>
                   <p>

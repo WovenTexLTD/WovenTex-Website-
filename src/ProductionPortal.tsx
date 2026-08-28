@@ -177,7 +177,7 @@ export default function ProductionPortal() {
               { k: 'Onboarding', v: 'One session' },
             ].map((s, i) => (
               <div key={s.k} className={`py-2 sm:px-6 ${i === 0 ? 'sm:pl-0' : ''}`}>
-                <dt className="mono-label text-paper/45">{s.k}</dt>
+                <dt className="mono-label text-paper/60">{s.k}</dt>
                 <dd className="mt-1.5 text-sm font-semibold sm:text-base">{s.v}</dd>
               </div>
             ))}
@@ -250,7 +250,7 @@ export default function ProductionPortal() {
                   />
                 </div>
               </div>
-              <p className="mono-label mt-4 text-paper/50">
+              <p className="mono-label mt-4 text-paper/60">
                 Introduction — core features in three minutes
               </p>
             </RevealItem>
@@ -301,7 +301,7 @@ export default function ProductionPortal() {
                   </span>
                   <div>
                     <div className="w-condensed text-xl font-bold uppercase leading-none">{d.os}</div>
-                    <div className="mono-label mt-2 text-paper/45">Release {RELEASE}</div>
+                    <div className="mono-label mt-2 text-paper/60">Release {RELEASE}</div>
                   </div>
                 </div>
 
@@ -324,12 +324,12 @@ export default function ProductionPortal() {
                   ))}
                 </div>
 
-                <p className="mono-label mt-auto pt-6 text-paper/45">{d.note}</p>
+                <p className="mono-label mt-auto pt-6 text-paper/60">{d.note}</p>
               </RevealItem>
             ))}
           </Reveal>
 
-          <p className="mono-label mt-8 text-paper/45">
+          <p className="mono-label mt-8 text-paper/60">
             If a download doesn’t start, your browser may be blocking the redirect.
           </p>
         </div>

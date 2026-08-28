@@ -135,7 +135,7 @@ export default function Sustainability() {
                   className="block w-condensed text-5xl font-black leading-none text-signal lg:text-6xl"
                 />
                 <div className="mono-label mt-4 text-paper/60">{m.label}</div>
-                <div className="mono-label mt-2 text-paper/35">
+                <div className="mono-label mt-2 text-paper/55">
                   {m.dir === 'down' ? '↓ Reduced' : '↑ Improved'}
                 </div>
               </RevealItem>

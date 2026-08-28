@@ -73,7 +73,7 @@ export default function PageHero({
           <dl className="shell grid grid-cols-2 divide-paper/10 py-5 sm:grid-cols-4 sm:divide-x">
             {specs.map((s, i) => (
               <div key={s.k} className={`py-2 sm:px-6 ${i === 0 ? 'sm:pl-0' : ''}`}>
-                <dt className="mono-label text-paper/40">{s.k}</dt>
+                <dt className="mono-label text-paper/55">{s.k}</dt>
                 <dd className="mt-1.5 text-sm font-semibold text-paper sm:text-base">{s.v}</dd>
               </div>
             ))}

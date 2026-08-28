@@ -1,0 +1,4 @@
+<body><script>
+try{const c=document.createElement('canvas');const gl=c.getContext('webgl2')||c.getContext('webgl');
+document.body.textContent='GL '+(gl? 'OK '+gl.getParameter(gl.RENDERER):'UNAVAILABLE');}catch(e){document.body.textContent='GL THROW '+e.message}
+</script></body>
