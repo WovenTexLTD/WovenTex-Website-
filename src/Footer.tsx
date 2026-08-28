@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Linkedin, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Logo from './brand/Logo';
 
 const columns = [
@@ -38,15 +38,6 @@ export default function Footer() {
               Your direct link to world-class apparel manufacturing. Connecting brands to certified
               factories with quality, speed and transparency.
             </p>
-            <a
-              href="https://www.linkedin.com/company/woventex"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-7 inline-flex h-11 w-11 items-center justify-center border border-paper/20 text-paper/60 transition-colors duration-300 hover:border-signal hover:bg-signal hover:text-ink"
-              aria-label="WovenTex on LinkedIn"
-            >
-              <Linkedin size={18} />
-            </a>
           </div>
 
           {/* Link columns */}

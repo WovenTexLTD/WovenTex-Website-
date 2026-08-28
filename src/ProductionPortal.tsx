@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Apple, Monitor, Terminal } from 'lucide-react';
 import { Enter, Reveal, RevealItem, WipeHeading } from './brand/ui';
 import useMeta from './brand/useMeta';
+import { useDarkHero } from './brand/hero';
 
 const RELEASE = 'v1.0.39';
 const RELEASE_BASE =
@@ -76,6 +77,7 @@ const portalBtn =
   'group/btn inline-flex items-center justify-center gap-3 px-7 py-4 text-sm font-semibold uppercase tracking-label transition-colors duration-300 ease-brand';
 
 export default function ProductionPortal() {
+  useDarkHero();
   useMeta({
     title: 'Production Portal',
     description: 'Real-time visibility across production lines. Every order, every line, under control. Available for Windows, macOS, Linux and on the web.',

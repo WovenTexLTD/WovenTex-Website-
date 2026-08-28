@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Logo from './brand/Logo';
 import { EASE } from './brand/motion';
+import { useHasDarkHero } from './brand/hero';
 
 const navItems = [
   { path: '/', label: 'Home' },
@@ -35,9 +36,11 @@ export default function Header() {
     };
   }, [menuOpen]);
 
-  /* Every page opens on a dark hero, so the header rides inverted until the
-     visitor scrolls, then flips to paper. One rule, no per-page config. */
-  const solid = scrolled || menuOpen;
+  /* Inverted only while genuinely sitting over a registered dark hero.
+     Anything else — a 404, a future page with no hero — gets the solid
+     header rather than light type on a light page. */
+  const overHero = useHasDarkHero();
+  const solid = scrolled || menuOpen || !overHero;
 
   return (
     <>

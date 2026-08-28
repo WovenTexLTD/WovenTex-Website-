@@ -14,6 +14,7 @@ import {
 } from './brand/ui';
 import { EASE } from './brand/motion';
 import useMeta from './brand/useMeta';
+import { useDarkHero } from './brand/hero';
 import ProcessLine from './brand/ProcessLine';
 
 /* ---------------------------------------------------------------- data --- */
@@ -108,6 +109,7 @@ const categories = [
 /* ---------------------------------------------------------------- page --- */
 
 export default function Home() {
+  useDarkHero();
   useMeta({
     title: 'Apparel Manufacturing, Managed from London',
     description: 'WovenTex LTD connects international brands to certified factories producing 500,000 pieces a month — direct factory access, transparent production management and 98% on-time delivery.',

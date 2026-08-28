@@ -1,5 +1,6 @@
 import React from 'react';
 import { Enter, WipeHeading } from './ui';
+import { useDarkHero } from './hero';
 
 /**
  * The interior-page masthead. Every page opens the same way — dark plate,
@@ -26,6 +27,7 @@ export default function PageHero({
   /** `photo` shows the image behind the plate; `plain` is ink + weave only */
   tone?: 'photo' | 'plain';
 }) {
+  useDarkHero();
   return (
     <section className="grain relative flex min-h-[64svh] flex-col justify-end overflow-hidden bg-ink text-paper">
       {tone === 'photo' && image && (
