@@ -17,3 +17,6 @@ dist
 skills-lock.json
 .claude/skills/
 .claude/settings.local.json
+
+# MCP config with env-expanded secrets stays local
+.mcp.json
