@@ -28,7 +28,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-ink text-paper">
+    <footer data-dark className="relative overflow-hidden bg-ink text-paper">
       <div className="shell relative pt-20 lg:pt-28">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Identity */}
@@ -103,7 +103,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <span className="h-2 w-2 animate-blink bg-signal" aria-hidden />
             <span className="w-condensed text-xl font-bold uppercase tracking-tight sm:text-2xl">
-              Production Portal — every order, every line, under control
+              Production Portal: every order, every line, under control
             </span>
           </div>
           <ArrowUpRight
@@ -114,7 +114,7 @@ export default function Footer() {
 
         {/* Legal bar */}
         <div className="flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="mono-label text-paper/55">© {year} WovenTex LTD — Made with integrity</p>
+          <p className="mono-label text-paper/55">© {year} WovenTex LTD · Made with integrity</p>
           <div className="flex flex-wrap items-center gap-x-7 gap-y-2">
             <Link to="/privacy-policy" className="mono-label text-paper/60 hover:text-signal">
               Privacy Policy
@@ -131,7 +131,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
     </footer>
   );
 }

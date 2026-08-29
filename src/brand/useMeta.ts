@@ -24,7 +24,7 @@ export default function useMeta({
   image?: string;
 }) {
   useEffect(() => {
-    const full = title.includes(SITE) ? title : `${title} — ${SITE}`;
+    const full = title.includes(SITE) ? title : `${title} | ${SITE}`;
     const url = `${ORIGIN}${path}`;
     const img = `${ORIGIN}${image ?? '/images/background.jpg'}`;
 

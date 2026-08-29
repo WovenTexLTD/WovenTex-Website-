@@ -143,7 +143,7 @@ export default function Contact() {
                 <div className="border border-ink/15 bg-paper-200 p-10">
                   <span className="mono-label text-signal-700">Received</span>
                   <h2 className="mt-5 w-condensed text-display-sm font-black uppercase leading-none">
-                    Thanks — message sent
+                    Thanks, message sent
                   </h2>
                   <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-500">
                     We’ll come back to you at the email you provided, usually within a few business

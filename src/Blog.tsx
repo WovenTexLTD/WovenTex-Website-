@@ -35,7 +35,7 @@ const posts: Post[] = [
       'Social audit results now sit alongside price and lead time in the buying decision. The bar has moved, and it is not moving back.',
   },
   {
-    title: 'The rise of Digital Product Passports — and why brands must prepare now',
+    title: 'The rise of Digital Product Passports, and why brands must prepare now',
     date: '15 December 2025',
     iso: '2025-12-15',
     href: '/blog/DPP.html',
@@ -69,7 +69,7 @@ const posts: Post[] = [
 export default function Blog() {
   useMeta({
     title: 'Journal',
-    description: 'Perspective on sourcing, manufacturing and supply chain strategy for modern apparel brands — traceability, compliance, materials and regulation.',
+    description: 'Perspective on sourcing, manufacturing and supply chain strategy for modern apparel brands: traceability, compliance, materials and regulation.',
     path: '/blog',
     image: '/images/blogheader.png',
   });

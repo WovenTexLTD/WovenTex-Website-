@@ -20,3 +20,11 @@ skills-lock.json
 
 # MCP config with env-expanded secrets stays local
 .mcp.json
+
+# Raw source material for the product shots and the shirt sequence. The
+# optimised assets the site actually loads are committed; these masters are
+# large, unreferenced by any code, and would sit in git history forever.
+public/images/products/*.png
+public/images/products/*.zip
+public/images/products/*.mp4
+public/images/products/shirtvideo 2/

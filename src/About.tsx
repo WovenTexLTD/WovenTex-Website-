@@ -1,7 +1,6 @@
 import React from 'react';
 import PageHero from './brand/PageHero';
 import {
-  Button,
   Reveal,
   RevealItem,
   Section,
@@ -9,13 +8,14 @@ import {
   SpecRow,
   Stat,
 } from './brand/ui';
+import { Pill } from './brand/system';
 import useMeta from './brand/useMeta';
 
 const values = [
   {
     n: '01',
     title: 'Expert leadership',
-    text: 'Decades inside global apparel manufacturing and quality control — people who have run lines, not just read reports.',
+    text: 'Decades inside global apparel manufacturing and quality control, from people who have run lines, not just read reports.',
   },
   {
     n: '02',
@@ -30,7 +30,7 @@ const values = [
   {
     n: '04',
     title: 'Trusted partnerships',
-    text: 'Long-term relationships built on transparency and reliability — the reason brands stay through repeat seasons.',
+    text: 'Long-term relationships built on transparency and reliability, the reason brands stay through repeat seasons.',
   },
 ];
 
@@ -43,7 +43,7 @@ const gallery = [
 export default function About() {
   useMeta({
     title: 'About',
-    description: 'A London-based apparel sourcing agency with direct access to certified manufacturers in Bangladesh — 25+ years of experience and 500,000 pieces of monthly capacity.',
+    description: 'A London-based apparel sourcing agency with direct access to certified manufacturers in Bangladesh, with 25+ years of experience and 500,000 pieces of monthly capacity.',
     path: '/about',
     image: '/images/factory.jpg',
   });
@@ -93,9 +93,9 @@ export default function About() {
 
             <RevealItem>
               <div className="pt-4">
-                <Button to="/contact" tone="ghost">
+                <Pill size="lg" to="/contact" tone="ghost">
                   Talk to the team
-                </Button>
+                </Pill>
               </div>
             </RevealItem>
           </Reveal>
@@ -109,7 +109,7 @@ export default function About() {
             index="02 / 03"
             label="What sets us apart"
             title={['Why brands', 'choose WovenTex']}
-            lede="What sets WovenTex apart isn’t only what we offer — it’s how we deliver it."
+            lede="What sets WovenTex apart isn’t only what we offer. It’s how we deliver it."
           />
 
           <Reveal className="mt-16 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2 lg:grid-cols-4" each={0.07}>
@@ -203,12 +203,12 @@ export default function About() {
             Want to see what we could make for you?
           </h2>
           <div className="flex flex-wrap gap-3">
-            <Button to="/capabilities" tone="ink">
+            <Pill size="lg" to="/capabilities" tone="ink">
               View capabilities
-            </Button>
-            <Button to="/contact" tone="signal">
+            </Pill>
+            <Pill size="lg" to="/contact" tone="signal">
               Request a quote
-            </Button>
+            </Pill>
           </div>
         </div>
       </Section>

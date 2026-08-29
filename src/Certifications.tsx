@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHero from './brand/PageHero';
-import { Button, Reveal, RevealItem, Section, SectionHead, SpecRow } from './brand/ui';
+import { Reveal, RevealItem, Section, SectionHead, SpecRow } from './brand/ui';
+import { Pill } from './brand/system';
 import useMeta from './brand/useMeta';
 
 type Cert = {
@@ -117,7 +118,7 @@ const complianceAreas = [
 export default function Certifications() {
   useMeta({
     title: 'Certifications & Compliance',
-    description: 'GOTS, GRS, RCS, BSCI, Sedex, OEKO-TEX, WRAP, ISO 9001 and ISO 14001 — 15+ international certifications with quarterly third-party audits.',
+    description: 'GOTS, GRS, RCS, BSCI, Sedex, OEKO-TEX, WRAP, ISO 9001 and ISO 14001. 15+ international certifications with quarterly third-party audits.',
     path: '/certifications',
     image: '/images/hands.jpg',
   });
@@ -167,7 +168,7 @@ export default function Certifications() {
                   <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-ink-400">
                     {c.description}
                   </p>
-                  <p className="mono-label mt-3 text-ink-300">Scope — {c.scope}</p>
+                  <p className="mono-label mt-3 text-ink-300">Scope · {c.scope}</p>
                 </div>
 
                 <div className="mono-label text-ink-300 md:text-right">{c.certNumber}</div>
@@ -264,12 +265,12 @@ export default function Certifications() {
             Need certificates for your compliance file?
           </h2>
           <div className="flex flex-wrap gap-3">
-            <Button to="/sustainability" tone="ghost">
+            <Pill size="lg" to="/sustainability" tone="ghost">
               Sustainability
-            </Button>
-            <Button to="/contact" tone="signal">
+            </Pill>
+            <Pill size="lg" to="/contact" tone="signal">
               Request documents
-            </Button>
+            </Pill>
           </div>
         </div>
       </Section>

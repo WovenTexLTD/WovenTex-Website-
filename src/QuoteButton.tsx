@@ -34,19 +34,22 @@ export default function QuoteButton() {
     <AnimatePresence>
       {show && (
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.45, ease: EASE }}
+          initial={{ opacity: 0, y: 16, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 16, scale: 0.96 }}
+          transition={{ duration: 0.4, ease: EASE }}
           className="fixed bottom-6 right-6 z-40 hidden sm:block"
         >
           <Link
             to="/contact"
-            className="group flex items-center gap-3 bg-signal px-6 py-4 text-ink shadow-[0_16px_44px_-12px_rgba(0,0,0,0.5)] transition-colors duration-300 hover:bg-ink hover:text-signal"
+            className="group inline-flex items-center gap-1.5 rounded-full bg-signal px-5 py-3 text-[15px] font-medium text-ink shadow-[0_12px_36px_-10px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:bg-signal-600"
           >
-            <span className="text-[11px] font-bold uppercase tracking-label">Request a quote</span>
-            <span className="transition-transform duration-300 ease-brand group-hover:translate-x-1">
-              →
+            Request a quote
+            <span
+              aria-hidden
+              className="transition-transform duration-300 ease-brand group-hover:translate-x-0.5"
+            >
+              ›
             </span>
           </Link>
         </motion.div>

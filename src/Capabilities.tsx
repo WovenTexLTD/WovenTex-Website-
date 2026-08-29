@@ -1,56 +1,88 @@
 import React from 'react';
 import PageHero from './brand/PageHero';
-import { Button, Reveal, RevealItem, Section, SectionHead, SpecRow, Stat } from './brand/ui';
+import { Reveal, RevealItem, Section, SectionHead, SpecRow, Stat } from './brand/ui';
+import { Pill } from './brand/system';
 import useMeta from './brand/useMeta';
 
-const products = [
+const ranges = [
   {
+    n: '01',
     title: 'Denim',
-    image: '/images/jeans.jpg',
     spec: 'Rigid · Stretch · Selvedge',
-    description: 'Jeans, jackets and shirting with laser, ozone and enzyme wash programmes.',
+    description:
+      'Jeans, jackets, shirting and shorts, with laser, ozone and enzyme wash programmes run in house.',
+    /* Tops first, then bottoms, the order holds within every range, so the
+       grid reads the same way down the page regardless of family. */
+    items: [
+      { name: 'Trucker jacket', image: '/images/products/denim-jacket.jpg' },
+      { name: 'Fitted denim shirt', image: '/images/products/denim-shirt.jpg' },
+      { name: 'Sleeveless peplum top', image: '/images/products/denim-top.jpg' },
+      { name: 'Slim jean, grey wash', image: '/images/products/denim-jeans.jpg' },
+      { name: 'Wide short, rinse', image: '/images/products/denim-shorts-wide.jpg' },
+      { name: 'Cargo short', image: '/images/products/denim-shorts-cargo.jpg' },
+      { name: 'Five-pocket short', image: '/images/products/denim-shorts.jpg' },
+    ],
   },
   {
-    title: 'T-shirts & Basics',
-    image: '/images/shirt.jpg',
-    spec: 'Jersey · Rib · Interlock',
-    description: 'Knit basics, graphic tees and premium cotton essentials at volume.',
-  },
-  {
-    title: 'Jackets & Outerwear',
-    image: '/images/jacket.jpg',
-    spec: 'Woven · Bonded · Shell',
-    description: 'Tailored blazers, casual jackets and technical outerwear for all seasons.',
-  },
-  {
-    title: 'Puffer Jackets',
-    image: '/images/puffer.jpg',
+    n: '02',
+    title: 'Puffers & padded outerwear',
     spec: 'Down · Synthetic fill',
-    description: 'Insulated outerwear with baffle construction and fill-power control.',
+    description:
+      'Insulated outerwear with baffle construction, fill-power control and water-repellent finishes.',
+    items: [
+      { name: 'Gloss hooded puffer', image: '/images/products/puffer-gloss.jpg' },
+      { name: 'Hooded puffer, matte', image: '/images/products/puffer-hooded.jpg' },
+      { name: 'Down hooded jacket', image: '/images/products/puffer-navy.jpg' },
+      { name: 'Longline hooded coat', image: '/images/products/puffer-longline.jpg' },
+      { name: 'Padded bomber', image: '/images/products/padded-bomber.jpg' },
+    ],
   },
   {
-    title: 'Activewear',
-    image: '/images/sport.jpg',
-    spec: 'Moisture-wick · 4-way stretch',
-    description: 'Performance sportswear with bonded seams and technical finishes.',
+    n: '03',
+    title: 'Knitwear',
+    spec: 'Cable · Rib · Quarter-zip',
+    description:
+      'Cut-and-sew and fully fashioned knits in cotton, wool and blended yarns, from fine gauge to chunky.',
+    items: [
+      { name: 'Cable crew neck', image: '/images/products/knit-cable.jpg' },
+      { name: 'Button-through cardigan', image: '/images/products/knit-cardigan.jpg' },
+      { name: 'Quarter-zip sweater', image: '/images/products/knit-quarter-zip.jpg' },
+    ],
   },
   {
-    title: 'Workwear',
-    image: '/images/construction.jpg',
-    spec: 'EN ISO 20471 · Hi-vis',
-    description: 'Durable industrial and corporate uniforms with certified safety features.',
+    n: '04',
+    title: 'T-shirts, tops & blouses',
+    spec: 'Jersey · Rib · Poplin',
+    description:
+      'Knit basics, graphic tees and woven blouses in premium cotton, at volume and to a fixed hand feel.',
+    items: [
+      { name: 'Crew neck t-shirt', image: '/images/products/tee-crew.jpg' },
+      { name: 'Rib mock-neck top', image: '/images/products/mock-neck-top.jpg' },
+      { name: 'Puff-sleeve blouse', image: '/images/products/blouse-puff-sleeve.jpg' },
+    ],
   },
   {
-    title: 'Courier Apparel',
-    image: '/images/bag.jpg',
-    spec: 'Ripstop · Reinforced',
-    description: 'Delivery uniforms built for durability, comfort and brand visibility.',
+    n: '05',
+    title: 'Trousers & chinos',
+    spec: 'Twill · Cargo · Tapered',
+    description:
+      'Cotton twill and blended trousers and shorts, with utility pocketing and garment-dye options.',
+    items: [
+      { name: 'Utility chino', image: '/images/products/chino-trouser.jpg' },
+      { name: 'Chino short', image: '/images/products/chino-shorts.jpg' },
+    ],
   },
   {
-    title: 'Swimwear',
-    image: '/images/swim.jpg',
-    spec: 'UPF 50+ · Quick-dry',
-    description: 'Performance swimwear and beachwear with chlorine-resistant finishes.',
+    n: '06',
+    title: 'Activewear & swim',
+    spec: 'Moisture-wick · Quick-dry',
+    description:
+      'Performance pieces with bonded seams, technical finishes and chlorine-resistant swim fabrics.',
+    items: [
+      { name: 'Technical gilet', image: '/images/products/technical-gilet.jpg' },
+      { name: 'Jersey training short', image: '/images/products/jersey-shorts.jpg' },
+      { name: 'Swim short', image: '/images/products/swim-shorts.jpg' },
+    ],
   },
 ];
 
@@ -80,7 +112,7 @@ const capabilities = [
 export default function Capabilities() {
   useMeta({
     title: 'Manufacturing Capabilities',
-    description: 'Denim, knits, outerwear, puffers, activewear, workwear, courier apparel and swimwear. 500,000 pieces monthly, MOQs from 2,000, 30–60 day lead times.',
+    description: 'Denim, knitwear, puffers and padded outerwear, tops, trousers, activewear and swimwear. 500,000 pieces monthly, MOQs from 2,000, 30–60 day lead times.',
     path: '/capabilities',
     image: '/images/machine.jpg',
   });
@@ -90,12 +122,12 @@ export default function Capabilities() {
       <PageHero
         eyebrow="Manufacturing capabilities"
         title={['Everything we', 'can build for you']}
-        lede="Comprehensive apparel manufacturing through our network of certified factories — world-class quality, capacity and flexibility across eight product families."
+        lede="Comprehensive apparel manufacturing through our network of certified factories: world-class quality, capacity and flexibility across six product families."
         image="/images/machine.jpg"
         imageAlt="Technical finishing equipment on the production floor"
         imagePosition="50% 40%"
         specs={[
-          { k: 'Categories', v: '8 product families' },
+          { k: 'Categories', v: '6 product families' },
           { k: 'Capacity', v: '500,000 pcs / month' },
           { k: 'MOQ', v: 'From 2,000 pcs' },
           { k: 'Lead time', v: '30–60 days' },
@@ -140,31 +172,51 @@ export default function Capabilities() {
           <SectionHead
             index="02 / 03"
             label="Product categories"
-            title={['Eight families,', 'one standard']}
+            title={['Six families,', 'one standard']}
+            lede="Every piece below is made across the same network, to the same QC protocol and the same delivery discipline."
           />
 
-          <Reveal className="mt-16 grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4 lg:gap-x-6" each={0.06}>
-            {products.map((p) => (
-              <RevealItem key={p.title} className="group">
-                <div className="ticked relative overflow-hidden bg-paper">
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="aspect-[3/4] w-full object-cover transition-transform duration-[900ms] ease-brand group-hover:scale-105"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <div className="mt-4 border-t border-ink/15 pt-3">
-                  <h3 className="w-condensed text-base font-bold uppercase leading-tight lg:text-lg">
-                    {p.title}
+          {/* Grouped rather than one flat grid: the range is the unit a buyer
+              thinks in, and it lets each family show its actual spread of
+              silhouettes instead of a single representative photograph. */}
+          <div className="mt-16 space-y-16 lg:space-y-20">
+            {ranges.map((r) => (
+              <div key={r.title}>
+                <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2 border-t border-ink/15 pt-5">
+                  <span className="mono-label text-signal-700">{r.n}</span>
+                  <h3 className="w-condensed text-2xl font-bold uppercase leading-tight lg:text-3xl">
+                    {r.title}
                   </h3>
-                  <p className="mono-label mt-2 text-signal-700">{p.spec}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-400">{p.description}</p>
+                  <span className="mono-label text-ink-300">{r.spec}</span>
                 </div>
-              </RevealItem>
+                <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-400">
+                  {r.description}
+                </p>
+
+                <Reveal
+                  className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-6"
+                  each={0.05}
+                >
+                  {r.items.map((it) => (
+                    <RevealItem key={it.image} className="group">
+                      <div className="overflow-hidden rounded-4xl bg-paper">
+                        <img
+                          src={it.image}
+                          alt={`${it.name}, ${r.title}`}
+                          /* The product shots are shot 4:5, so this crops
+                             nothing off a hem or a collar. */
+                          className="aspect-[4/5] w-full object-cover transition-transform duration-[900ms] ease-brand group-hover:scale-105"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                      <p className="mt-3 text-[13px] font-medium text-ink-500">{it.name}</p>
+                    </RevealItem>
+                  ))}
+                </Reveal>
+              </div>
             ))}
-          </Reveal>
+          </div>
         </div>
       </Section>
 
@@ -234,12 +286,12 @@ export default function Capabilities() {
             Send a tech pack. Get a costed quote in 24 hours.
           </h2>
           <div className="flex flex-wrap gap-3">
-            <Button to="/certifications" tone="ghost">
+            <Pill size="lg" to="/certifications" tone="ghost">
               Certifications
-            </Button>
-            <Button to="/contact" tone="signal">
+            </Pill>
+            <Pill size="lg" to="/contact" tone="signal">
               Request a quote
-            </Button>
+            </Pill>
           </div>
         </div>
       </Section>

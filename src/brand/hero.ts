@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect } from 'react';
  * The header rides inverted (light type, no background) while it sits over a
  * full-bleed dark hero, and flips to paper once you scroll past it.
  *
- * That used to be assumed — every page happened to open on a dark hero — which
+ * That used to be assumed, every page happened to open on a dark hero, which
  * meant any page without one rendered the header white-on-white and invisible.
  * Heroes now register themselves, so the header is solid by default and only
  * inverts when something has actually declared itself behind it.

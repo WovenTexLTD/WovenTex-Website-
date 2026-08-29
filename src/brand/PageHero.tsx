@@ -3,8 +3,8 @@ import { Enter, WipeHeading } from './ui';
 import { useDarkHero } from './hero';
 
 /**
- * The interior-page masthead. Every page opens the same way — dark plate,
- * mono eyebrow, condensed headline, optional spec strip — so the site reads
+ * The interior-page masthead. Every page opens the same way, dark plate,
+ * mono eyebrow, condensed headline, optional spec strip, so the site reads
  * as one document rather than nine.
  */
 export default function PageHero({
@@ -29,7 +29,7 @@ export default function PageHero({
 }) {
   useDarkHero();
   return (
-    <section className="grain relative flex min-h-[64svh] flex-col justify-end overflow-hidden bg-ink text-paper">
+    <section data-dark className="grain relative flex min-h-[64svh] flex-col justify-end overflow-hidden bg-ink text-paper">
       {tone === 'photo' && image && (
         <div className="absolute inset-0">
           <img
@@ -40,7 +40,7 @@ export default function PageHero({
             loading="eager"
             {...{ fetchpriority: 'high' }}
           />
-          {/* Scrim weighted to the left, where the type sits — the photograph
+          {/* Scrim weighted to the left, where the type sits, the photograph
               keeps its detail on the open side of the frame */}
           <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/72 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/25 to-ink/45" />

@@ -33,6 +33,14 @@ export default {
           600: '#0A1690',
           300: '#5C69C9',
         },
+        /* Neutral surfaces and secondary text for the product-page register:
+           near-white, cool light grey, and the quiet grey for supporting copy */
+        snow: '#FBFBFD',
+        haze: '#F5F5F7',
+        ash: '#86868B',
+      },
+      borderRadius: {
+        '4xl': '1.75rem',
       },
       fontFamily: {
         sans: ['Archivo', 'Helvetica Neue', 'Arial', 'sans-serif'],
@@ -44,6 +52,10 @@ export default {
         'display': ['clamp(2.25rem, 7vw, 5rem)', { lineHeight: '0.9', letterSpacing: '-0.03em' }],
         'display-lg': ['clamp(2.4rem, 8.2vw, 6.5rem)', { lineHeight: '0.86', letterSpacing: '-0.035em' }],
         'display-xl': ['clamp(4rem, 15vw, 13rem)', { lineHeight: '0.82', letterSpacing: '-0.04em' }],
+        /* Product-page scale: large, tight, mixed case, generous leading */
+        hero: ['clamp(2.75rem, 6.4vw, 5.25rem)', { lineHeight: '1.04', letterSpacing: '-0.022em' }],
+        title: ['clamp(2rem, 4.4vw, 3.5rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
+        sub: ['clamp(1.125rem, 1.6vw, 1.5rem)', { lineHeight: '1.35', letterSpacing: '-0.01em' }],
       },
       opacity: {
         /* Hairline weights the default scale doesn't reach */

@@ -5,6 +5,9 @@
 @layer base {
   :root {
     --shell-x: clamp(1.25rem, 5vw, 4.5rem);
+    /* Studio grey of the shirt sequence. Overwritten at runtime with the
+       colour sampled from the actual frames; this is the pre-sample default. */
+    --shirt-bg: #bebfc0;
   }
 
   * {
@@ -13,7 +16,7 @@
 
   html {
     scroll-behavior: smooth;
-    /* Header is fixed — anchor targets need clearance */
+    /* Header is fixed, so anchor targets need clearance */
     scroll-padding-top: 6rem;
   }
 
@@ -79,7 +82,7 @@
     aspect-ratio: 869 / 544;
   }
 
-  /* Diagonal hatch — used for "in production" / technical zones */
+  /* Diagonal hatch, used for "in production" / technical zones */
   .hatch {
     background-image: repeating-linear-gradient(
       45deg,
@@ -126,7 +129,7 @@
     border-right-width: 1px;
   }
 
-  /* Underline that draws in on hover — used across nav and inline links */
+  /* Underline that draws in on hover, used across nav and inline links */
   .link-swipe {
     position: relative;
   }
@@ -156,7 +159,7 @@
 }
 
 @layer utilities {
-  /* currentColor at reduced strength — lets a whole section flip ink/paper
+  /* currentColor at reduced strength, which lets a whole section flip ink/paper
      by animating one `color` while hierarchy ratios hold */
   .text-dim {
     color: color-mix(in srgb, currentColor 62%, transparent);
@@ -182,7 +185,15 @@
     padding-inline: var(--shell-x);
   }
 
-  /* Optical width axis on Archivo — condensed for display, normal for text */
+  /* A scroller whose bar would only add chrome; arrows and snap do the job */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Optical width axis on Archivo: condensed for display, normal for text */
   .w-condensed {
     font-stretch: 84%;
     font-variation-settings: 'wdth' 84;

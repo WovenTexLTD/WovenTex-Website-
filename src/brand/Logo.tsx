@@ -7,7 +7,7 @@ type LogoProps = {
 } & React.ComponentPropsWithoutRef<'span'>;
 
 /**
- * The WT mark is painted with a CSS mask, so it takes `currentColor` —
+ * The WT mark is painted with a CSS mask, so it takes `currentColor`,
  * one asset works on paper, on ink, and in signal yellow.
  */
 export default function Logo({ variant = 'mark', className = '', ...rest }: LogoProps) {

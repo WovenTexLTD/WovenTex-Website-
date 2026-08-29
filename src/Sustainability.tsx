@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHero from './brand/PageHero';
-import { Button, Counter, Reveal, RevealItem, Section, SectionHead, SpecRow } from './brand/ui';
+import { Counter, Reveal, RevealItem, Section, SectionHead, SpecRow } from './brand/ui';
+import { Pill } from './brand/system';
 import useMeta from './brand/useMeta';
 
 const initiatives = [
@@ -61,7 +62,7 @@ const sdgGoals = [
 export default function Sustainability() {
   useMeta({
     title: 'Sustainability & Ethics',
-    description: '60% organic content, 40% recycled materials, 80% renewable energy and 95% waste diversion — measured, audited and aligned to six UN Sustainable Development Goals.',
+    description: '60% organic content, 40% recycled materials, 80% renewable energy and 95% waste diversion, measured, audited and aligned to six UN Sustainable Development Goals.',
     path: '/sustainability',
     image: '/images/fibers.jpg',
   });
@@ -71,7 +72,7 @@ export default function Sustainability() {
       <PageHero
         eyebrow="Sustainability & ethics"
         title={['Made with', 'integrity']}
-        lede="Manufacturing with integrity through ethical labour practices, environmental responsibility and sustainable material choices — measured, audited and published."
+        lede="Manufacturing with integrity through ethical labour practices, environmental responsibility and sustainable material choices, measured, audited and published."
         image="/images/fibers.jpg"
         imageAlt="Raw natural fibre before spinning"
         imagePosition="50% 50%"
@@ -90,7 +91,7 @@ export default function Sustainability() {
             index="01 / 04"
             label="Initiatives"
             title={['Programmes with', 'numbers attached']}
-            lede="Six programmes addressing environmental impact, social responsibility and ethical manufacturing — each with a figure we hold ourselves to."
+            lede="Six programmes addressing environmental impact, social responsibility and ethical manufacturing, each with a figure we hold ourselves to."
           />
 
           <Reveal className="mt-16 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2 lg:grid-cols-3" each={0.06}>
@@ -224,12 +225,12 @@ export default function Sustainability() {
             Building a responsible supply chain?
           </h2>
           <div className="flex flex-wrap gap-3">
-            <Button to="/certifications" tone="ghost">
+            <Pill size="lg" to="/certifications" tone="ghost">
               See certifications
-            </Button>
-            <Button to="/contact" tone="signal">
+            </Pill>
+            <Pill size="lg" to="/contact" tone="signal">
               Talk to us
-            </Button>
+            </Pill>
           </div>
         </div>
       </Section>

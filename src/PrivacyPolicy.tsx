@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
       />
       <section className="bg-paper py-20 lg:py-28">
         <div className="shell">
-          {/* Legal copy wants a short measure — cap it inside the shell */}
+          {/* Legal copy wants a short measure, cap it inside the shell */}
           <div className="max-w-3xl space-y-12 leading-relaxed text-ink-500">
             {/* Intro */}
             <section>

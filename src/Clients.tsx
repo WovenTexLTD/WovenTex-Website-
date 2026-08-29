@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHero from './brand/PageHero';
-import { Button, Marquee, Reveal, RevealItem, Section, SectionHead, Stat } from './brand/ui';
+import { Marquee, Reveal, RevealItem, Section, SectionHead, Stat } from './brand/ui';
+import { Pill } from './brand/system';
 import useMeta from './brand/useMeta';
 
 const majorClients = [
@@ -70,7 +71,7 @@ export default function Clients() {
             index="01 / 02"
             label="Major clients"
             title={['Who our factories', 'make for']}
-            lede="Longstanding relationships across fashion and retail — from luxury menswear to national grocery ranges."
+            lede="Longstanding relationships across fashion and retail, from luxury menswear to national grocery ranges."
           />
 
           <Reveal className="mt-16 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2 lg:grid-cols-4" each={0.05}>
@@ -98,7 +99,7 @@ export default function Clients() {
       </Section>
 
       {/* ============================================================== CTA */}
-      <section className="grain relative overflow-hidden bg-ink text-paper">
+      <section data-dark className="grain relative overflow-hidden bg-ink text-paper">
         <img
           src="/images/cutting.jpg"
           alt=""
@@ -112,7 +113,7 @@ export default function Clients() {
         <div className="shell relative py-24 lg:py-32">
           <Reveal className="max-w-3xl">
             <RevealItem>
-              <span className="mono-label text-signal">02 / 02 — Partnership</span>
+              <span className="mono-label text-signal">02 / 02 · Partnership</span>
             </RevealItem>
             <RevealItem>
               <h2 className="mt-6 w-condensed text-display font-black uppercase">
@@ -127,12 +128,12 @@ export default function Clients() {
             </RevealItem>
             <RevealItem>
               <div className="mt-10 flex flex-wrap gap-3">
-                <Button to="/contact" tone="signal">
+                <Pill size="lg" to="/contact" tone="signal">
                   Start a partnership
-                </Button>
-                <Button to="/capabilities" tone="ghost-dark">
+                </Pill>
+                <Pill size="lg" to="/capabilities" tone="ghost-dark">
                   See what we make
-                </Button>
+                </Pill>
               </div>
             </RevealItem>
           </Reveal>

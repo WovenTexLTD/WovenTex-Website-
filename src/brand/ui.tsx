@@ -11,7 +11,7 @@ import {
 import { EASE, rise, stagger } from './motion';
 
 /* ====================================================================== *
- *  Motion presets — one vocabulary, used everywhere
+ *  Motion presets, one vocabulary, used everywhere
  * ====================================================================== */
 
 /* ---------------------------------------------------------------------- *
@@ -84,7 +84,7 @@ export function RevealItem({
 
 /**
  * Headline that wipes up from behind a mask, line by line.
- * Pass each line as a separate string — that's what makes the effect read.
+ * Pass each line as a separate string, that's what makes the effect read.
  */
 export function WipeHeading({
   lines,
@@ -97,7 +97,7 @@ export function WipeHeading({
   className?: string;
   as?: React.ElementType;
   delay?: number;
-  /** Play on mount rather than on scroll — for above-the-fold headlines */
+  /** Play on mount rather than on scroll, for above-the-fold headlines */
   immediate?: boolean;
 }) {
   const reduce = useReducedMotion();
@@ -118,18 +118,34 @@ export function WipeHeading({
   return (
     <As className={className}>
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden pb-[0.09em]">
+        /* The scroll trigger lives on the mask, not on the line inside it.
+           IntersectionObserver clips a target against its ancestors' overflow,
+           and the line starts translated fully below this mask, so observing
+           the line directly reports zero intersection forever and the heading
+           never arrives. The mask is unclipped, so it sees the viewport; the
+           line inherits the variant from it. */
+        <motion.span
+          key={i}
+          className="block overflow-hidden pb-[0.09em]"
+          variants={{ hidden: {}, show: {} }}
+          initial="hidden"
+          {...(immediate
+            ? { animate: 'show' as const }
+            : { whileInView: 'show' as const, viewport: { once: true, amount: 0.4 } })}
+        >
           <motion.span
             className="block"
-            initial={{ y: '110%' }}
-            {...(immediate
-              ? { animate: { y: '0%' } }
-              : { whileInView: { y: '0%' }, viewport: { once: true, amount: 0.5 } })}
-            transition={{ duration: 0.9, ease: EASE, delay: delay + i * 0.09 }}
+            variants={{
+              hidden: { y: '110%' },
+              show: {
+                y: '0%',
+                transition: { duration: 0.9, ease: EASE, delay: delay + i * 0.09 },
+              },
+            }}
           >
             {line}
           </motion.span>
-        </span>
+        </motion.span>
       ))}
     </As>
   );
@@ -189,7 +205,13 @@ export function Section({
     none: '',
   };
   return (
-    <section id={id} className={`relative ${tones[tone]} ${className}`}>
+    <section
+      id={id}
+      /* Declares itself dark so the transparent header knows to invert its
+         type when it is the thing sitting under the bar. */
+      data-dark={tone === 'ink' ? '' : undefined}
+      className={`relative ${tones[tone]} ${className}`}
+    >
       {children}
     </section>
   );
@@ -217,7 +239,7 @@ export function SectionHead({
   tone?: 'light' | 'dark';
   className?: string;
   /** For heads inside a sticky/pinned container, where scroll-triggering
-      the wipe is unreliable — play it on mount instead. */
+      the wipe is unreliable, play it on mount instead. */
   immediate?: boolean;
 }) {
   const dark = tone === 'dark';
@@ -458,7 +480,7 @@ export function Parallax({
   );
 }
 
-/** A labelled figure — the site's core "fact" component. */
+/** A labelled figure, the site's core "fact" component. */
 export function Stat({
   value,
   label,

@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Logo from './brand/Logo';
 import { EASE } from './brand/motion';
-import { useHasDarkHero } from './brand/hero';
 
 const navItems = [
   { path: '/', label: 'Home' },
@@ -15,17 +14,61 @@ const navItems = [
   { path: '/blog', label: 'Journal' },
 ];
 
-export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
+/** Height of the bar, and so the depth of the strip of page it sits over. */
+const BAR = 72;
+
+/**
+ * True while a section that has declared itself dark is the thing underneath
+ * the bar right now.
+ *
+ * The header is transparent at every scroll position, so it cannot decide its
+ * own colour from how far down the page it is: the home page alone runs dark
+ * hero, light marquee, grey sequence, light grid, dark call to action. It has
+ * to know what is actually behind it. Sections mark themselves with `data-dark`
+ * and an observer watches a strip the height of the bar at the top of the
+ * viewport, so this costs nothing on scroll.
+ */
+function useDarkBehind(pathname: string) {
+  const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    let io: IntersectionObserver | null = null;
+    const hits = new Set<Element>();
+
+    const build = () => {
+      io?.disconnect();
+      hits.clear();
+      io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) hits.add(e.target);
+            else hits.delete(e.target);
+          }
+          setDark(hits.size > 0);
+        },
+        /* Shrink the viewport to just the band the bar covers. */
+        { rootMargin: `0px 0px ${-Math.max(0, window.innerHeight - BAR)}px 0px` },
+      );
+      document.querySelectorAll('[data-dark]').forEach((el) => io?.observe(el));
+    };
+
+    build();
+    /* Route content can mount a frame after the effect runs. */
+    const again = requestAnimationFrame(build);
+    window.addEventListener('resize', build);
+    return () => {
+      cancelAnimationFrame(again);
+      io?.disconnect();
+      window.removeEventListener('resize', build);
+    };
+  }, [pathname]);
+
+  return dark;
+}
+
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => setMenuOpen(false), [location.pathname]);
 
@@ -36,28 +79,32 @@ export default function Header() {
     };
   }, [menuOpen]);
 
-  /* Inverted only while genuinely sitting over a registered dark hero.
-     Anything else — a 404, a future page with no hero — gets the solid
-     header rather than light type on a light page. */
-  const overHero = useHasDarkHero();
-  const solid = scrolled || menuOpen || !overHero;
+  /* The bar itself never gets a background, so this flag now means only
+     "what is behind me is light, so use ink type". The open mobile menu is
+     its own full-screen ink panel sitting under the bar, so it counts as
+     dark, not light. */
+  const darkBehind = useDarkBehind(location.pathname);
+  const solid = !darkBehind && !menuOpen;
 
   return (
     <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-signal focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-ink"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-signal focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-ink"
       >
         Skip to content
       </a>
 
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ease-brand ${
-          solid ? 'bg-paper/95 text-ink backdrop-blur-xl' : 'bg-transparent text-paper'
+        /* Transparent, but frosted: no background fill of its own, while the
+           backdrop filter softens whatever scrolls beneath so the type stays
+           legible over busy content. */
+        className={`fixed inset-x-0 top-0 z-50 bg-transparent backdrop-blur-xl backdrop-saturate-150 transition-colors duration-500 ease-brand ${
+          solid ? 'text-ink' : 'text-paper'
         }`}
       >
         <div className="shell flex h-16 items-center justify-between gap-8 lg:h-[4.5rem]">
-          <Link to="/" className="group flex shrink-0 items-center gap-3" aria-label="WovenTex LTD — home">
+          <Link to="/" className="group flex shrink-0 items-center gap-3" aria-label="WovenTex LTD, home">
             <Logo
               variant="mark"
               className="h-[17px] w-auto transition-colors duration-300 group-hover:text-signal"
@@ -85,21 +132,21 @@ export default function Header() {
             ))}
           </nav>
 
+          {/* Pill controls: the one place the header borrows the product-page
+              register, so they match the buttons across the home page. */}
           <div className="flex shrink-0 items-center gap-2.5">
             <a
               href="https://productionportal.co"
               target="_blank"
               rel="noopener noreferrer"
-              className={`hidden items-center gap-2 border px-4 py-2.5 text-[10px] font-semibold uppercase tracking-label transition-colors duration-300 lg:inline-flex ${
+              className={`hidden items-center gap-2 rounded-full border px-4 py-2 text-[11px] font-semibold uppercase tracking-label transition-colors duration-300 lg:inline-flex ${
                 solid
                   ? 'border-portal/30 text-portal hover:bg-portal hover:text-paper'
                   : 'border-paper/30 text-paper hover:bg-paper hover:text-portal'
               }`}
             >
               <span
-                className={`h-1.5 w-1.5 animate-blink rounded-full ${
-                  solid ? 'bg-portal' : 'bg-signal'
-                }`}
+                className={`h-1.5 w-1.5 animate-blink rounded-full ${solid ? 'bg-portal' : 'bg-signal'}`}
                 aria-hidden
               />
               Portal
@@ -107,7 +154,7 @@ export default function Header() {
 
             <Link
               to="/contact"
-              className={`hidden px-5 py-2.5 text-[10px] font-semibold uppercase tracking-label transition-colors duration-300 sm:inline-block ${
+              className={`hidden rounded-full px-5 py-2 text-[11px] font-semibold uppercase tracking-label transition-colors duration-300 sm:inline-block ${
                 solid ? 'bg-ink text-paper hover:bg-signal hover:text-ink' : 'bg-signal text-ink hover:bg-paper'
               }`}
             >
@@ -135,13 +182,6 @@ export default function Header() {
             </button>
           </div>
         </div>
-
-        {/* The yellow thread — draws across as the page leaves the hero */}
-        <div
-          className={`h-[2px] origin-left bg-signal transition-transform duration-700 ease-brand ${
-            solid ? 'scale-x-100' : 'scale-x-0'
-          }`}
-        />
       </header>
 
       <AnimatePresence>
@@ -185,7 +225,7 @@ export default function Header() {
                 >
                   <Link
                     to="/contact"
-                    className="bg-signal px-6 py-4 text-center text-sm font-semibold uppercase tracking-label text-ink"
+                    className="rounded-full bg-signal px-6 py-4 text-center text-sm font-semibold uppercase tracking-label text-ink"
                   >
                     Request a Quote
                   </Link>
@@ -193,7 +233,7 @@ export default function Header() {
                     href="https://productionportal.co"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="border border-paper/30 px-6 py-4 text-center text-sm font-semibold uppercase tracking-label"
+                    className="rounded-full border border-paper/30 px-6 py-4 text-center text-sm font-semibold uppercase tracking-label"
                   >
                     Production Portal ↗
                   </a>

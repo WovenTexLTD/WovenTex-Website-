@@ -32,7 +32,7 @@ export default function App() {
       <ScrollToTop />
 
       <HeroProvider>
-        {/* dvh, not vh — 100vh sits under mobile browser chrome and jumps */}
+        {/* dvh, not vh, 100vh sits under mobile browser chrome and jumps */}
         <div className="flex min-h-dvh flex-col bg-paper">
           <Header />
 

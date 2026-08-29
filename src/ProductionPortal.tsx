@@ -33,7 +33,7 @@ const downloads: DownloadItem[] = [
     buttons: [
       { label: 'Download (DMG)', href: `${RELEASE_BASE}/Production_Portal_universal.dmg`, primary: true },
     ],
-    note: 'Universal build — Apple Silicon and Intel.',
+    note: 'Universal build for Apple Silicon and Intel.',
   },
   {
     os: 'Linux',
@@ -51,7 +51,7 @@ const pillars = [
   {
     n: '01',
     title: 'One source of truth',
-    text: 'Operators, merchandisers and management aligned on the same live production data — no parallel spreadsheets.',
+    text: 'Operators, merchandisers and management aligned on the same live production data, with no parallel spreadsheets.',
   },
   {
     n: '02',
@@ -130,7 +130,7 @@ export default function ProductionPortal() {
             />
 
             <Enter as="p" delay={0.6} className="mt-7 max-w-xl text-lg leading-relaxed text-paper/75">
-              Real-time visibility across production lines — updates, blockers, output and
+              Real-time visibility across production lines: updates, blockers, output and
               accountability in one place. Built for factories and brands that need speed, clarity
               and control.
             </Enter>
@@ -251,7 +251,7 @@ export default function ProductionPortal() {
                 </div>
               </div>
               <p className="mono-label mt-4 text-paper/60">
-                Introduction — core features in three minutes
+                Introduction: core features in three minutes
               </p>
             </RevealItem>
           </Reveal>

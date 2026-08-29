@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Enter, WipeHeading } from './brand/ui';
+import { Enter, WipeHeading } from './brand/ui';
+import { Pill } from './brand/system';
 import { useDarkHero } from './brand/hero';
 import useMeta from './brand/useMeta';
 
@@ -20,7 +21,7 @@ export default function NotFound() {
   });
 
   return (
-    <section className="grain relative flex min-h-[80svh] flex-col justify-center overflow-hidden bg-ink text-paper">
+    <section data-dark className="grain relative flex min-h-[80svh] flex-col justify-center overflow-hidden bg-ink text-paper">
       <img
         src="/images/cutting.jpg"
         alt=""
@@ -33,7 +34,7 @@ export default function NotFound() {
       <div className="shell relative py-24 lg:py-28">
         <Enter delay={0.1} y={12} className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="h-[1px] w-10 bg-signal" />
-          <span className="mono-label text-signal">Error 404 — Page not found</span>
+          <span className="mono-label text-signal">Error 404 · Page not found</span>
         </Enter>
 
         <WipeHeading
@@ -50,12 +51,12 @@ export default function NotFound() {
         </Enter>
 
         <Enter delay={0.7} className="mt-10 flex flex-wrap gap-3">
-          <Button to="/" tone="signal">
+          <Pill size="lg" to="/" tone="signal">
             Back to home
-          </Button>
-          <Button to="/contact" tone="ghost-dark">
+          </Pill>
+          <Pill size="lg" to="/contact" tone="ghost-dark">
             Talk to us
-          </Button>
+          </Pill>
         </Enter>
 
         <Enter delay={0.85} className="mt-14">
