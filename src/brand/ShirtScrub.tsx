@@ -100,16 +100,15 @@ const STAGES = N + 1;
 /** Which step owns a given progress value, once the heading has passed. */
 const stepAt = (p: number) => Math.min(N - 1, Math.max(0, Math.floor(p * STAGES) - 1));
 
-/** Share of the viewport the frame takes in portrait, where the copy sits
-    under it rather than beside it. The text column pads down by the same
-    amount, so the two never fight for the same band of screen. */
-const PORTRAIT_IMAGE = 0.46;
-
 /** Height of one step block, and so of the window it travels through. Taller
     on narrow screens, where both the title and the body wrap to more lines
     and a desktop-sized window would let two steps collide. */
 const SLOT_DESKTOP = '11rem';
 const SLOT_NARROW = '13.5rem';
+/** SLOT_NARROW in pixels, plus the gap above it. The canvas needs the number
+    to know where the copy ends and the garment can begin. */
+const SLOT_NARROW_PX = 216;
+const TEXT_TOP_PAD = 16;
 
 /* ------------------------------------------------------------- preload --- */
 
@@ -310,23 +309,31 @@ function layout(cw: number, ch: number, iw: number, ih: number): Placement {
     };
   }
 
-  /* Slightly over width so the resting shirt has presence, capped so the
-     text block still has room beneath it. The fraction is mirrored by
-     PORTRAIT_IMAGE below, which is what keeps the copy clear of the frame. */
-  const s = Math.min((1.33 * cw) / iw, (PORTRAIT_IMAGE * ch) / ih);
+  /* Copy sits at the top here and the garment hangs beneath it, flush to the
+     bottom edge. The frame is scaled to fill exactly the space the copy
+     leaves, rather than to a fixed share of the viewport: a phone is narrow
+     enough that the width cap wins, so a fixed share reserved a band the
+     image never filled and left a dead strip through the middle. Cropping
+     the frame's empty sides is free, since the garment sits in the middle. */
+  const nav = cw >= 1024 ? NAV_PX.desktop : NAV_PX.mobile;
+  const avail = Math.max(160, ch - (nav + TEXT_TOP_PAD + SLOT_NARROW_PX));
+  const s = Math.min((2.2 * cw) / iw, avail / ih);
   const dw = iw * s;
   const dh = ih * s;
   const dx = (cw - dw) / 2;
   return {
     dx,
-    dy: cw >= 1024 ? NAV_PX.desktop : NAV_PX.mobile,
+    dy: ch - dh,
     dw,
     dh,
     blend: {
-      left: dx > 0 ? dw * 0.16 : 0,
-      right: dx > 0 ? dw * 0.16 : 0,
-      top: 0,
-      bottom: dh * 0.3,
+      left: dx > 0 ? dw * 0.12 : 0,
+      right: dx > 0 ? dw * 0.12 : 0,
+      /* Fades into the copy above. Measured against the frames: the garment
+         never starts higher than 9.2% down, so the fade stops short of that
+         and never washes out the collar. */
+      top: dh * 0.08,
+      bottom: 0,
     },
   };
 }
@@ -865,10 +872,9 @@ function LiveSequence({ urls }: { urls: string[] }) {
             connection still gets a complete, readable section. */}
         <div className={`relative flex h-full flex-col ${NAV_CLEARANCE}`}>
           <div
-            className="shell flex flex-1 flex-col justify-center pb-8 lg:pb-0 lg:pt-0"
-            /* Portrait: start below the frame, then centre in what is left.
-               Landscape: the frame is beside the copy, so no offset. */
-            style={{ paddingTop: portrait ? `calc(${PORTRAIT_IMAGE * 100}vh - 4rem)` : undefined }}
+            className={`shell flex flex-1 flex-col lg:justify-center lg:pb-0 lg:pt-0 ${
+              portrait ? 'justify-start pt-4' : 'justify-center pb-8'
+            }`}
           >
             <div className="lg:w-[42%] lg:max-w-lg">
               {/* Fixed-height window: the whole column travels inside it, so
