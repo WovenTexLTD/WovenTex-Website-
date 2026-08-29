@@ -9,7 +9,6 @@ const columns = [
     links: [
       { to: '/about', label: 'About' },
       { to: '/clients', label: 'Clients' },
-      { to: '/blog', label: 'Journal' },
       { to: '/contact', label: 'Contact' },
     ],
   },

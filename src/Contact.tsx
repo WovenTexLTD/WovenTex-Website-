@@ -241,12 +241,11 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group/btn mt-8 inline-flex items-center justify-center gap-3 bg-ink px-8 py-4 text-sm font-semibold uppercase tracking-label text-paper transition-colors duration-300 hover:bg-signal hover:text-ink disabled:cursor-not-allowed disabled:opacity-60"
+                    /* Matches the Pill used for every other call to action.
+                       It stays a native button so the form still submits. */
+                    className="mt-8 inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-[17px] font-medium text-paper transition-colors duration-300 ease-brand hover:bg-ink-700 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {isSubmitting ? 'Sending…' : 'Send request'}
-                    <span className="transition-transform duration-300 ease-brand group-hover/btn:translate-x-1">
-                      →
-                    </span>
                   </button>
 
                   <p className="mono-label mt-6 text-ink-300">

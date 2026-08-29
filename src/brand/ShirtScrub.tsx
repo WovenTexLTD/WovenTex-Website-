@@ -100,6 +100,11 @@ const STAGES = N + 1;
 /** Which step owns a given progress value, once the heading has passed. */
 const stepAt = (p: number) => Math.min(N - 1, Math.max(0, Math.floor(p * STAGES) - 1));
 
+/** Share of the viewport the frame takes in portrait, where the copy sits
+    under it rather than beside it. The text column pads down by the same
+    amount, so the two never fight for the same band of screen. */
+const PORTRAIT_IMAGE = 0.46;
+
 /** Height of one step block, and so of the window it travels through. Taller
     on narrow screens, where both the title and the body wrap to more lines
     and a desktop-sized window would let two steps collide. */
@@ -306,8 +311,9 @@ function layout(cw: number, ch: number, iw: number, ih: number): Placement {
   }
 
   /* Slightly over width so the resting shirt has presence, capped so the
-     text block always has the lower half or more to itself. */
-  const s = Math.min((1.33 * cw) / iw, (0.42 * ch) / ih);
+     text block still has room beneath it. The fraction is mirrored by
+     PORTRAIT_IMAGE below, which is what keeps the copy clear of the frame. */
+  const s = Math.min((1.33 * cw) / iw, (PORTRAIT_IMAGE * ch) / ih);
   const dw = iw * s;
   const dh = ih * s;
   const dx = (cw - dw) / 2;
@@ -771,6 +777,15 @@ function LiveSequence({ urls }: { urls: string[] }) {
   const stage = useRef<StageHandle>(null);
   const desktop = useMinWidth(768);
   const distance = desktop ? DISTANCE_DESKTOP : DISTANCE_MOBILE;
+  /* Matches the `stacked` test inside layout(), so the copy offset and the
+     frame placement always agree about which arrangement is on screen. */
+  const [portrait, setPortrait] = useState(false);
+  useEffect(() => {
+    const sync = () => setPortrait(window.innerWidth < 1024 || window.innerWidth < window.innerHeight);
+    sync();
+    window.addEventListener('resize', sync);
+    return () => window.removeEventListener('resize', sync);
+  }, []);
 
   /* Nothing is fetched until the section is within a viewport of arriving,
      so the requests never compete with first paint. */
@@ -849,7 +864,12 @@ function LiveSequence({ urls }: { urls: string[] }) {
             All of it renders before a single frame arrives, so a slow
             connection still gets a complete, readable section. */}
         <div className={`relative flex h-full flex-col ${NAV_CLEARANCE}`}>
-          <div className="shell flex flex-1 flex-col justify-end pb-10 lg:justify-center lg:pb-0">
+          <div
+            className="shell flex flex-1 flex-col justify-center pb-8 lg:pb-0 lg:pt-0"
+            /* Portrait: start below the frame, then centre in what is left.
+               Landscape: the frame is beside the copy, so no offset. */
+            style={{ paddingTop: portrait ? `calc(${PORTRAIT_IMAGE * 100}vh - 4rem)` : undefined }}
+          >
             <div className="lg:w-[42%] lg:max-w-lg">
               {/* Fixed-height window: the whole column travels inside it, so
                   the longest block can never push into what sits beneath. */}

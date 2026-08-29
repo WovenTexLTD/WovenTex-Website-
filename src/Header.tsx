@@ -11,7 +11,6 @@ const navItems = [
   { path: '/certifications', label: 'Certifications' },
   { path: '/clients', label: 'Clients' },
   { path: '/sustainability', label: 'Sustainability' },
-  { path: '/blog', label: 'Journal' },
 ];
 
 /** Height of the bar, and so the depth of the strip of page it sits over. */

@@ -105,14 +105,14 @@ const capabilities = [
   {
     n: '04',
     title: 'Flexible MOQs',
-    text: 'From 2,000 to 50,000+ pieces per style, so a first drop and a national rollout both fit.',
+    text: 'From 1,500 to 50,000+ pieces per style, so a first drop and a national rollout both fit.',
   },
 ];
 
 export default function Capabilities() {
   useMeta({
     title: 'Manufacturing Capabilities',
-    description: 'Denim, knitwear, puffers and padded outerwear, tops, trousers, activewear and swimwear. 500,000 pieces monthly, MOQs from 2,000, 30–60 day lead times.',
+    description: 'Denim, knitwear, puffers and padded outerwear, tops, trousers, activewear and swimwear. 500,000 pieces monthly, MOQs from 1,500, 30–60 day lead times.',
     path: '/capabilities',
     image: '/images/machine.jpg',
   });
@@ -129,7 +129,7 @@ export default function Capabilities() {
         specs={[
           { k: 'Categories', v: '6 product families' },
           { k: 'Capacity', v: '500,000 pcs / month' },
-          { k: 'MOQ', v: 'From 2,000 pcs' },
+          { k: 'MOQ', v: 'From 1,500 pcs' },
           { k: 'Lead time', v: '30–60 days' },
         ]}
       />

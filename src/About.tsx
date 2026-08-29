@@ -168,7 +168,7 @@ export default function About() {
                     45–60 days woven · 30–45 days knits · rush schedules on request
                   </SpecRow>
                   <SpecRow term="MOQ" tone="dark">
-                    2,000 to 50,000+ pieces per style
+                    1,500 to 50,000+ pieces per style
                   </SpecRow>
                   <SpecRow term="Fabric sourcing" tone="dark">
                     China, India, Pakistan and local mills

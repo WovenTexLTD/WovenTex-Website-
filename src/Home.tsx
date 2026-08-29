@@ -13,10 +13,10 @@ import HorizontalRail, { type RailItem } from './brand/HorizontalRail';
 /* ---------------------------------------------------------------- data --- */
 
 const heroSpecs = [
-  { k: 'Capacity', v: '500,000 pcs / month' },
-  { k: 'MOQ', v: '2,000 – 50,000+' },
   { k: 'On-time', v: '98%' },
-  { k: 'HQ', v: 'London, UK' },
+  { k: 'MOQ', v: '1,500' },
+  { k: 'Oversight', v: 'On site during production' },
+  { k: 'Factories', v: 'Bangladesh' },
 ];
 
 const clients = [
@@ -58,7 +58,7 @@ const pillars = [
   {
     n: '04',
     title: 'Flexible programmes',
-    text: '500,000+ pieces of monthly capacity per factory, with MOQs from 2,000, leaving room for emerging labels and established retail alike.',
+    text: '500,000+ pieces of monthly capacity per factory, with MOQs from 1,500, leaving room for emerging labels and established retail alike.',
   },
   {
     n: '05',
